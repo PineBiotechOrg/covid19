@@ -82,10 +82,15 @@ function App() {
     "MT020781.1_group_1"
   ];
 
-
-
   const handleBinClick = d => {
-    setStartingPoint(d.position);
+    // setStartingPoint(d.position);
+    // setModalShow(true);
+  };
+
+  const handleProteinClick = d => {
+    //setModalShow(true);
+
+    console.log(d);
     setModalShow(true);
   };
 
@@ -100,7 +105,6 @@ function App() {
       setUnChecked(list => [...list.filter(d => d !== name)]);
     }
   };
-
 
   const createBinsArrayCovid = (data, binSize = 100) => {
     let maxAAEntropy = 0;
@@ -145,7 +149,6 @@ function App() {
         };
 
         dataGroups.forEach(a => {
-   
           if (bin[a + "_AA+"] > maxAAEntropy) {
             maxAAEntropy = bin[a + "_AA+"];
           }
@@ -168,14 +171,11 @@ function App() {
       });
     });
 
-
     setMaxAAEntropy(maxAAEntropy);
     return bins;
   };
 
   useEffect(() => {
-
-
     d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
       setCovidEntropy(data);
     });
@@ -186,8 +186,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-
-
     setCovidEntropyBins(createBinsArrayCovid(covidEntropy, binSize));
 
     // let changesTotal = createBinsArrayCovid(covidEntropy, 500).reduce((acc,cur) => {
@@ -195,8 +193,6 @@ function App() {
     // })
 
     // setAverageData(averageData);
-
-
   }, [binSize, covidEntropy]);
 
   // useEffect(() => {
@@ -261,7 +257,7 @@ function App() {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-sm-1">
+          <div className="col-sm-2">
             <div className="form-group">
               <label>Bin size</label>
               <Form.Control
@@ -274,7 +270,7 @@ function App() {
               </Form.Control>
             </div>
           </div>
-          <div className="col-sm-7"></div>
+          <div className="col-sm-6"></div>
           <div className="col-sm-4">
             {/* <Button variant="primary" onClick={() => setModalShow(true)}>
               Open Modal
@@ -297,7 +293,13 @@ function App() {
             <InfoIcon />
             <text transform={`translate(22,16)`}>Proteins</text>
             <g transform={`translate(120,0)`}>
-              {width && <ProteinsCovid data={proteinsCovid} width={width} />}
+              {width && (
+                <ProteinsCovid
+                  data={proteinsCovid}
+                  width={width}
+                  handleBinClick={handleProteinClick}
+                />
+              )}
             </g>
           </g>
 
@@ -376,8 +378,16 @@ function App() {
         show={modalShow}
         onHide={() => setModalShow(false)}
         setModalWidth={setModalWidth}
-        values={[startingPoint, startingPoint - 1 + binSize]}
+        // values={[startingPoint, startingPoint - 1 + binSize]}
       >
+        <div>
+          <iframe
+            title="ngl-view"
+            src="./covid-19/ngl/index.html"
+            width="100%"
+            height="550"
+          />
+        </div>
         {/* <svg width="100%" height="600">
           {modalWidth && startingPoint && mtList && binSize && (
             <g>

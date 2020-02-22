@@ -2,13 +2,11 @@ import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import ReactTooltip from "react-tooltip";
 
-const ProteinsCovid = ({ data, width }) => {
+const ProteinsCovid = ({ data, width, handleBinClick }) => {
   let layerRef = useRef();
 
   useEffect(() => {
     let svg = d3.select(layerRef.current);
-
-    console.log(width)
 
     svg.selectAll("g").remove();
 
@@ -39,6 +37,11 @@ const ProteinsCovid = ({ data, width }) => {
 
         return "svgTooltip";
       })
+      .on("click", d => {
+
+          handleBinClick(d);
+      
+      })
       .attr("data-tip", d => {
         //{position: 1, coverage: 44625, count: 28.06}
 
@@ -47,13 +50,13 @@ const ProteinsCovid = ({ data, width }) => {
         // }
 
         return (
-          "Gene: " + d.gene + " Product: " + d.product
+          "Protein ID: " + d.protein_id 
         );
       });
 
       ReactTooltip.rebuild();
 
-  }, [data, width]);
+  }, [data, width, handleBinClick]);
 
   return (
     <>

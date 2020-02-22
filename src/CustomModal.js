@@ -22,7 +22,7 @@ export default function CustomModal({ show, onHide, children, setModalWidth, val
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-custom-modal-styling-title">
-          Expanded view, values from {values[0]} to {values[1]} 
+          Protein view
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
