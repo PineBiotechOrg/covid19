@@ -394,14 +394,19 @@ function App() {
             <strong>note</strong>: {proteinInfo.note} <br />
             <strong>description</strong>: {proteinInfo.description} <br />
           </div>
-          <div className="col-sm-6">
-            <iframe
-              title="ngl-view"
-              src="./covid-19/ngl/index.html"
-              width="100%"
-              height="550"
-            />
-          </div>
+
+          {proteinInfo.protein_id && (
+            <div className="col-sm-6">
+              <iframe
+                title="ngl-view"
+                src={`./covid-19/ngl/index.html?pdb=${proteinInfo.protein_id
+                  .split("|")[1]
+                  .replace(".", "_")}`}
+                width="100%"
+                height="550"
+              />
+            </div>
+          )}
         </div>
 
         {/* <svg width="100%" height="600">
