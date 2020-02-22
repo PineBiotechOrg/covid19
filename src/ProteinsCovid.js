@@ -8,6 +8,8 @@ const ProteinsCovid = ({ data, width }) => {
   useEffect(() => {
     let svg = d3.select(layerRef.current);
 
+    console.log(width)
+
     svg.selectAll("g").remove();
 
     let x = d3
@@ -45,7 +47,7 @@ const ProteinsCovid = ({ data, width }) => {
         // }
 
         return (
-          "Gene: " + d.gene + "Product: " + d.product
+          "Gene: " + d.gene + " Product: " + d.product
         );
       });
 

@@ -82,17 +82,7 @@ function App() {
     "MT020781.1_group_1"
   ];
 
-  // function getUrlVars() {
-  //   var vars = {};
-  //   window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(
-  //     m,
-  //     key,
-  //     value
-  //   ) {
-  //     vars[key] = value;
-  //   });
-  //   return vars;
-  // }
+
 
   const handleBinClick = d => {
     setStartingPoint(d.position);
@@ -111,117 +101,80 @@ function App() {
     }
   };
 
-  // const setData = (location, stateHook) => {
-  //   d3.text(location).then(function(text) {
-  //     var tempObj = { A: 0, C: 0, G: 0, T: 0 };
 
-  //     let data = tsvParseRows(text, function(d) {
-  //       return {
-  //         position: +d[0],
-  //         reference: d[1],
-  //         pair: d[2],
-  //         coverage: +d[3],
-  //         count: +d[4],
-  //         obj: { ...tempObj, [d[2]]: +d[4] }
-  //       };
-  //     });
+  const createBinsArrayCovid = (data, binSize = 100) => {
+    let maxAAEntropy = 0;
 
-  //     let result = [];
+    // "MN996527.1_group_1_NUCL"
+    // "MN996527.1_group_1_AA+"
+    // reference_N
+    // reference AA
 
-  //     data.forEach(d => {
-  //       if (
-  //         result.length &&
-  //         result[result.length - 1].position &&
-  //         result[result.length - 1].position === d.position
-  //       ) {
-  //         result[result.length - 1].obj[d.pair] = d.count;
-  //         result[result.length - 1].count += d.count;
-  //       } else {
-  //         result.push(d);
-  //       }
-  //     });
+    let num = 0;
+    let bin = {
+      position: 1,
+      NTEntropySum: 0,
+      AAEntropySum: 0
+    };
 
-  //     stateHook(
-  //       result.map(d => {
-  //         return {
-  //           position: d.position,
-  //           reference: d.reference,
-  //           coverage: d.coverage,
-  //           count: d.count,
-  //           obj: d.obj
-  //         };
-  //       })
-  //     );
-  //   });
-  // };
+    dataGroups.forEach(d => {
+      bin[d + "_AA+"] = 0;
+    });
 
-  // const setMtData = text => {
-  //   var tempObj = { A: 0, C: 0, G: 0, T: 0 };
+    let bins = [];
 
-  //   let data = tsvParseRows(text, function(d) {
-  //     return {
-  //       position: +d[0],
-  //       reference: d[1],
-  //       pair: d[2],
-  //       coverage: +d[3],
-  //       count: +d[4],
-  //       obj: { ...tempObj, [d[2]]: +d[4] }
-  //     };
-  //   });
+    data.forEach((d, i) => {
+      //AAEntropySum += +d["AA entropy"];
 
-  //   let result = [];
+      // end bin
+      if (d.POS === data.length) {
+        bins.push(bin);
+      }
 
-  //   data.forEach(d => {
-  //     if (
-  //       result.length &&
-  //       result[result.length - 1].position &&
-  //       result[result.length - 1].position === d.position
-  //     ) {
-  //       result[result.length - 1].obj[d.pair] = d.count;
-  //       result[result.length - 1].count += d.count;
-  //     } else {
-  //       result.push(d);
-  //     }
-  //   });
+      // check if end of bin
+      if (d.POS > num + binSize) {
+        num += binSize;
+        bins.push(bin);
 
-  //   let list = result.map(d => {
-  //     return {
-  //       position: d.position,
-  //       reference: d.reference,
-  //       coverage: d.coverage,
-  //       count: d.count,
-  //       obj: d.obj
-  //     };
-  //   });
+        // reset values for new bin
+        bin = {
+          ...bin,
+          position: num + 1,
+          NTEntropySum: 0,
+          AAEntropySum: 0
+        };
 
-  //   return list;
+        dataGroups.forEach(a => {
+   
+          if (bin[a + "_AA+"] > maxAAEntropy) {
+            maxAAEntropy = bin[a + "_AA+"];
+          }
+        });
 
-  // };
+        dataGroups.forEach(a => {
+          bin[a + "_AA+"] = 0;
+        });
+      }
+
+      // AA entropy
+
+      bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
+      bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
+
+      dataGroups.forEach(a => {
+        if (d[a + "_AA+"] !== d["reference AA"]) {
+          bin[a + "_AA+"] += 1;
+        }
+      });
+    });
+
+
+    setMaxAAEntropy(maxAAEntropy);
+    return bins;
+  };
 
   useEffect(() => {
-    // const mts = [
-    //   { name: "SRR1036477", loc: "./polio/static/mts/p1.mt" },
-    //   { name: "SRR1036617", loc: "./polio/static/mts/p2.mt" },
-    //   { name: "SRR1036661", loc: "./polio/static/mts/p3.mt" },
-    //   { name: "SRR1036663", loc: "./polio/static/mts/p4.mt" },
-    //   { name: "SRR1036988", loc: "./polio/static/mts/p5.mt" },
-    //   { name: "SRR1036989", loc: "./polio/static/mts/p6.mt" },
-    //   { name: "SRR1036990", loc: "./polio/static/mts/p7.mt" }
-    // ];
 
-    // var promises = [];
-
-    // mts.forEach(function(mt) {
-    //   promises.push(d3.text(mt.loc));
-    // });
-
-    // Promise.all(promises).then(function(values) {
-    //   let results = values.map((v, i) => {
-    //     return { name: mts[i].name, value: setMtData(v) };
-    //   });
-
-    //   setMtlist(results);
-    // });
 
     d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
       setCovidEntropy(data);
@@ -233,47 +186,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // let bins = mtList.map(d => {
-    //   return { name: d.name, value: createBinsArray(d.value, binSize) };
-    // });
 
-    // setBinData(bins);
-
-    // let tempData = [];
-
-    // bins
-    //   .map(d => d.value)
-    //   .forEach((d, i) => {
-    //     d.forEach((n, i) => {
-    //       if (!tempData[i]) {
-    //         tempData.push(n);
-    //       } else {
-    //         tempData[i] = {
-    //           position: tempData[i].position,
-    //           coverage: tempData[i].coverage + n.coverage,
-    //           count: tempData[i].count + n.count
-    //         };
-    //       }
-    //     });
-    //   });
-
-    // let averageData = tempData.map(d => {
-    //   return {
-    //     position: d.position,
-    //     coverage: d.coverage / bins.length,
-    //     count: d.count / bins.length
-    //   };
-    // });
 
     setCovidEntropyBins(createBinsArrayCovid(covidEntropy, binSize));
-
-    //console.log(createBinsArrayCovid(covidEntropy, 500));
 
     // let changesTotal = createBinsArrayCovid(covidEntropy, 500).reduce((acc,cur) => {
     //   dataGroups
     // })
 
-    setAverageData(averageData);
+    // setAverageData(averageData);
+
+
   }, [binSize, covidEntropy]);
 
   // useEffect(() => {
@@ -329,77 +252,6 @@ function App() {
   //   return bins;
   // };
 
-  const createBinsArrayCovid = (data, binSize = 100) => {
-    let maxAAEntropy = 0;
-
-    // "MN996527.1_group_1_NUCL"
-    // "MN996527.1_group_1_AA+"
-    // reference_N
-    // reference AA
-
-    let num = 0;
-    let bin = {
-      position: 1,
-      NTEntropySum: 0,
-      AAEntropySum: 0
-    };
-
-    dataGroups.forEach(d => {
-      bin[d + "_AA+"] = 0;
-    });
-
-    let bins = [];
-
-    data.forEach((d, i) => {
-      //AAEntropySum += +d["AA entropy"];
-
-      // end bin
-      if (d.POS === data.length) {
-        bins.push(bin);
-      }
-
-      // check if end of bin
-      if (d.POS > num + binSize) {
-        num += binSize;
-        bins.push(bin);
-
-        // reset values for new bin
-        bin = {
-          ...bin,
-          position: num + 1,
-          NTEntropySum: 0,
-          AAEntropySum: 0
-        };
-
-        dataGroups.forEach(a => {
-          //console.log(bin[a + "_AA+"])
-          if (bin[a + "_AA+"] > maxAAEntropy) {
-            maxAAEntropy = bin[a + "_AA+"];
-          }
-        });
-
-        dataGroups.forEach(a => {
-          bin[a + "_AA+"] = 0;
-        });
-      }
-
-      // AA entropy
-
-      bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
-      bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
-
-      dataGroups.forEach(a => {
-        if (d[a + "_AA+"] !== d["reference AA"]) {
-          bin[a + "_AA+"] += 1;
-        }
-      });
-    });
-
-    //console.log(maxAAEntropy)
-    setMaxAAEntropy(maxAAEntropy);
-    return bins;
-  };
-
   return (
     <div className="App" ref={appRef}>
       <div>
@@ -430,7 +282,7 @@ function App() {
           </div>
         </div>
       </div>
-      {!averageData.length && !covidEntropyBins.length ? (
+      {!covidEntropy.length && !covidEntropyBins.length ? (
         <Spinner animation="border" role="status" className="spinner">
           <span className="sr-only">Loading...</span>
         </Spinner>
@@ -441,23 +293,11 @@ function App() {
             <text transform={`translate(22,16)`}>Coverage</text>
           </g>
 
-          {/* <g transform={`translate(140,177)`}>
-            {width && (
-              <Linechart
-                width={width}
-                data={binData}
-                colors={colors}
-                unChecked={unChecked}
-                setBinsColorScale={setBinsColorScale}
-              />
-            )}
-          </g> */}
-
           <g transform={`translate(18,10)`}>
             <InfoIcon />
             <text transform={`translate(22,16)`}>Proteins</text>
             <g transform={`translate(120,0)`}>
-              {width && <ProteinsCovid data={proteinsCovid} width={width} />}
+              {width && <ProteinsCovid data={proteinsCovid} width={width - 15} />}
             </g>
           </g>
 
@@ -467,7 +307,7 @@ function App() {
             <g transform={`translate(120,0)`}>
               <BinsCovid
                 data={covidEntropyBins}
-                width={width}
+                width={width - 15}
                 // name={mtList[0].name}
                 axis={true}
                 tooltip={false}
@@ -479,40 +319,42 @@ function App() {
           </g>
 
           <g transform={`translate(18,350)`}>
-            {dataGroups.map((d, i) => {
-              return (
-                <g transform={`translate(120,${i * 35})`} key={d + "_bins"}>
-                  {covidEntropyBins.length && (
-                    <BinsCovid
-                      handleBinClick={handleBinClick}
-                      data={covidEntropyBins}
-                      width={width}
-                      // name={d.name}
-                      axis={false}
-                      tooltip={true}
-                      binsColorScale={binsColorScale}
-                      aa={d}
-                      maxAAEntropy={maxAAEntropy}
+            {width &&
+              dataGroups.map((d, i) => {
+                return (
+                  <g transform={`translate(120,${i * 35})`} key={d + "_bins"}>
+                    {covidEntropyBins.length && (
+                      <BinsCovid
+                        handleBinClick={handleBinClick}
+                        data={covidEntropyBins}
+                        width={width -15}
+                        // name={d.name}
+                        axis={false}
+                        tooltip={true}
+                        binsColorScale={binsColorScale}
+                        aa={d}
+                        maxAAEntropy={maxAAEntropy}
+                      />
+                    )}
+                  </g>
+                );
+              })}
+            {width &&
+              dataGroups.map((d, i) => {
+                return (
+                  <g
+                    transform={`translate(0,${i * 35 + 5})`}
+                    key={d}
+                    onClick={() => handleCheckbox(d)}
+                  >
+                    <CheckBox
+                      name={d}
+                      active={unChecked.indexOf(d) === -1}
+                      // color={colors[i]}
                     />
-                  )}
-                </g>
-              );
-            })}
-            {dataGroups.map((d, i) => {
-              return (
-                <g
-                  transform={`translate(0,${i * 35 + 5})`}
-                  key={d}
-                  onClick={() => handleCheckbox(d)}
-                >
-                  <CheckBox
-                    name={d}
-                    active={unChecked.indexOf(d) === -1}
-                    // color={colors[i]}
-                  />
-                </g>
-              );
-            })}
+                  </g>
+                );
+              })}
           </g>
         </svg>
       )}
