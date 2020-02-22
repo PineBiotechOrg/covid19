@@ -404,6 +404,7 @@ function App() {
                   .replace(".", "_")}`}
                 width="100%"
                 height="550"
+                frameBorder="0"
               />
             </div>
           )}
