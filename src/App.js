@@ -52,6 +52,8 @@ function App() {
 
   const [proteinsCovid, setProteinsCovid] = useState([]);
 
+  const [proteinInfo, setProteinInfo] = useState({});
+
   let dataGroups = [
     "MN996527.1_group_1",
     "MN996530.1_group_1",
@@ -91,6 +93,7 @@ function App() {
     //setModalShow(true);
 
     console.log(d);
+    setProteinInfo(d);
     setModalShow(true);
   };
 
@@ -380,14 +383,27 @@ function App() {
         setModalWidth={setModalWidth}
         // values={[startingPoint, startingPoint - 1 + binSize]}
       >
-        <div>
-          <iframe
-            title="ngl-view"
-            src="./covid-19/ngl/index.html"
-            width="100%"
-            height="550"
-          />
+        <div className="row">
+          <div className="col-sm-6">
+            <strong>start</strong>: {proteinInfo.start} <br />
+            <strong>end</strong>: {proteinInfo.end} <br />
+            <strong>gene</strong>: {proteinInfo.gene} <br />
+            <strong>product</strong>: {proteinInfo.product} <br />
+            <strong>prot_desc</strong>: {proteinInfo.prot_desc} <br />
+            <strong>protein_id</strong>: {proteinInfo.protein_id} <br />
+            <strong>note</strong>: {proteinInfo.note} <br />
+            <strong>description</strong>: {proteinInfo.description} <br />
+          </div>
+          <div className="col-sm-6">
+            <iframe
+              title="ngl-view"
+              src="./covid-19/ngl/index.html"
+              width="100%"
+              height="550"
+            />
+          </div>
         </div>
+
         {/* <svg width="100%" height="600">
           {modalWidth && startingPoint && mtList && binSize && (
             <g>
