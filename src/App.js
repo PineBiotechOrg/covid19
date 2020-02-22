@@ -287,27 +287,27 @@ function App() {
           <span className="sr-only">Loading...</span>
         </Spinner>
       ) : (
-        <svg width="100%" height="1500" ref={svgRef}>
-          <g transform={`translate(20,177)`}>
+        <svg width="100%" height="750" ref={svgRef}>
+          {/* <g transform={`translate(20,177)`}>
             <InfoIcon />
             <text transform={`translate(22,16)`}>Coverage</text>
-          </g>
+          </g> */}
 
           <g transform={`translate(18,10)`}>
             <InfoIcon />
             <text transform={`translate(22,16)`}>Proteins</text>
             <g transform={`translate(120,0)`}>
-              {width && <ProteinsCovid data={proteinsCovid} width={width - 15} />}
+              {width && <ProteinsCovid data={proteinsCovid} width={width} />}
             </g>
           </g>
 
-          <g transform={`translate(18,300)`}>
+          <g transform={`translate(18,100)`}>
             <InfoIcon />
             <text transform={`translate(22,16)`}>Reference</text>
             <g transform={`translate(120,0)`}>
               <BinsCovid
                 data={covidEntropyBins}
-                width={width - 15}
+                width={width}
                 // name={mtList[0].name}
                 axis={true}
                 tooltip={false}
@@ -318,16 +318,16 @@ function App() {
             </g>
           </g>
 
-          <g transform={`translate(18,350)`}>
+          <g transform={`translate(18,140)`}>
             {width &&
               dataGroups.map((d, i) => {
                 return (
-                  <g transform={`translate(120,${i * 35})`} key={d + "_bins"}>
+                  <g transform={`translate(120,${i * 22})`} key={d + "_bins"}>
                     {covidEntropyBins.length && (
                       <BinsCovid
                         handleBinClick={handleBinClick}
                         data={covidEntropyBins}
-                        width={width -15}
+                        width={width}
                         // name={d.name}
                         axis={false}
                         tooltip={true}
@@ -343,7 +343,7 @@ function App() {
               dataGroups.map((d, i) => {
                 return (
                   <g
-                    transform={`translate(0,${i * 35 + 5})`}
+                    transform={`translate(0,${i * 22})`}
                     key={d}
                     onClick={() => handleCheckbox(d)}
                   >

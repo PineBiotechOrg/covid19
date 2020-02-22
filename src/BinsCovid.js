@@ -52,7 +52,7 @@ const Bins = ({
       .attr("x", d => x(d.position))
       .attr("width", d => x.bandwidth())
       .attr("y", 0)
-      .attr("height", 24)
+      .attr("height", 16)
       .attr("fill", d => {
         return colors(d.count);
       })
