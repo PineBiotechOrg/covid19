@@ -125,10 +125,6 @@ function App() {
   const createBinsArrayCovid = (data, binSize = 100) => {
     let maxAAEntropy = 0;
 
-    // "MN996527.1_group_1_NUCL"
-    // "MN996527.1_group_1_AA+"
-    // reference_N
-    // reference AA
 
     let num = 0;
     let bin = {
@@ -210,59 +206,6 @@ function App() {
 
     // setAverageData(averageData);
   }, [binSize, covidEntropy]);
-
-  // useEffect(() => {
-  //   // d3.tsv("dengue/static/proteins/humanb_proteins.txt").then(data => {
-  //   //   setHumanb_proteins(data);
-  //   // });
-
-  //   // d3.csv("dengue/static/proteins/dengueproteins.csv").then(data => {
-  //   //   setDengueproteins(data);
-  //   // });
-
-  //   setData("polio/static/mts/p1.mt", setD7);
-  //   setData("polio/static/mts/p2.mt", setD8);
-  //   setData("polio/static/mts/p3.mt", setD9);
-
-  // }, [width]);
-
-  // index, num, coverage
-
-  // const createBinsArray = (data, binSize = 100) => {
-  //   let num = 0;
-  //   let bin = {
-  //     position: 1,
-  //     coverage: 0,
-  //     count: 0
-  //   };
-
-  //   let bins = [];
-
-  //   data.forEach((d, i) => {
-  //     if (d.position === data.length) {
-  //       bins.push(bin);
-  //     }
-
-  //     if (d.position > num + binSize) {
-  //       num += binSize;
-  //       bins.push(bin);
-  //       bin = {
-  //         position: num + 1,
-  //         coverage: 0,
-  //         count: 0
-  //       };
-  //     }
-
-  //     if (d.coverage > bin.coverage) {
-  //       bin.coverage = d.coverage;
-  //     }
-  //     if (d.count > bin.count) {
-  //       bin.count = d.count;
-  //     }
-  //   });
-
-  //   return bins;
-  // };
 
   return (
     <Container fluid="true" >
@@ -389,16 +332,6 @@ function App() {
           html={true}
           className="tooltipMain"
           id="svgTooltip"
-          // getContent={dataTip => {
-          //   if (!dataTip || !dataTip.position) {
-          //     return null;
-          //   }
-          //   return <div>
-          //     position: {dataTip.position} <br />
-          //     coverage: {dataTip.coverage} <br />
-          //     count: {dataTip.count}
-          //   </div>;
-          // }}
         />
 
         {proteinInfo.product && (
@@ -411,14 +344,6 @@ function App() {
           >
             <div className="row">
               <div className="col-sm-6">
-                {/* <strong>start</strong>: {proteinInfo.start} <br />
-              <strong>end</strong>: {proteinInfo.end} <br />
-              <strong>gene</strong>: {proteinInfo.gene} <br />
-              <strong>product</strong>: {proteinInfo.product} <br />
-              <strong>prot_desc</strong>: {proteinInfo.prot_desc} <br />
-              <strong>protein_id</strong>: {proteinInfo.protein_id} <br />
-              <strong>note</strong>: {proteinInfo.note} <br />
-              <strong>description</strong>: {proteinInfo.description} <br /> */}
 
                 <ListGroup variant="flush">
                   <ListGroup.Item>
@@ -460,90 +385,7 @@ function App() {
               )}
             </div>
 
-            {/* <svg width="100%" height="600">
-          {modalWidth && startingPoint && mtList && binSize && (
-            <g>
-              <g transform={`translate(20,20)`}>
-                <InfoIcon />
-                <text transform={`translate(22,16)`}>Reference</text>
-                <g transform={`translate(120,0)`}>
-                  <BinsModal
-                    data={averageData}
-                    width={modalWidth}
-                    // name={mtList[0].name}
-                    axis={true}
-                    tooltip={false}
-                  />
-                </g>
-              </g>
 
-              <g transform={`translate(19,90)`}>
-                <InfoIcon />
-                <text transform={`translate(22,16)`}>Coverage</text>
-              </g>
-
-              <g transform={`translate(140,90)`}>
-                {width && (
-                  <LinechartModal
-                    width={modalWidth}
-                    data={mtList.map(d => {
-                      return {
-                        ...d,
-                        value: d.value.slice(
-                          startingPoint - 1,
-                          startingPoint - 1 + binSize
-                        )
-                      };
-                    })}
-                    colors={colors}
-                    unChecked={unChecked}
-                  />
-                )}
-              </g>
-
-              <g transform={`translate(20,220)`}>
-                {mtList.map((d, i) => {
-                  return (
-                    <g
-                      transform={`translate(120,${i * 35})`}
-                      key={d.name + "_bins"}
-                    >
-                      {d.name && (
-                        <BinsModal
-                          handleBinClick={handleBinClick}
-                          data={d.value.slice(
-                            startingPoint - 1,
-                            startingPoint - 1 + binSize
-                          )}
-                          width={modalWidth}
-                          // name={d.name}
-                          axis={false}
-                          tooltip={true}
-                          binsColorScale={binsColorScale}
-                        />
-                      )}
-                    </g>
-                  );
-                })}
-                {mtList.map((d, i) => {
-                  return (
-                    <g
-                      transform={`translate(0,${i * 35 + 5})`}
-                      key={d.name}
-                      onClick={() => handleCheckbox(d.name)}
-                    >
-                      <CheckBox
-                        name={d.name}
-                        active={unChecked.indexOf(d.name) === -1}
-                        color={colors[i]}
-                      />
-                    </g>
-                  );
-                })}
-              </g>
-            </g>
-          )}
-        </svg> */}
           </CustomModal>
         )}
       </div>
