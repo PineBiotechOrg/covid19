@@ -47,6 +47,8 @@ function App() {
 
   const [modalShow, setModalShow] = useState(false);
 
+  const [modalStrainShow, setModalStrainShow] = useState(false);
+
   const [binSize, setBinSize] = useState(500);
 
   const [appRef, { x, y, width }] = useDimensions();
@@ -68,6 +70,10 @@ function App() {
   const [proteinsCovid, setProteinsCovid] = useState([]);
 
   const [proteinInfo, setProteinInfo] = useState({});
+
+  const [strainInfoData, setStrainInfoData] = useState([]);
+
+  const [strainInfo, setStrainInfo] = useState({});
 
   let groupsLegend = {
     "COVID-19": "red",
@@ -211,6 +217,20 @@ function App() {
     setModalShow(true);
   };
 
+  const handleStrainClick = d => {
+    console.log(d);
+
+    let selected = strainInfoData.filter(s => {
+      return d === s.Accession;
+    });
+
+    console.log("selected", selected);
+
+    setModalStrainShow(true);
+
+    setStrainInfo(selected[0]);
+  };
+
   const handleCheckbox = name => {
     if (unChecked.indexOf(name) === -1) {
       setUnChecked(list => [...list, name]);
@@ -295,6 +315,11 @@ function App() {
     d3.csv("./covid-19/COVID19-gbMN908947-3.csv").then(proteins => {
       setProteinsCovid(proteins);
     });
+
+    d3.csv("./covid-19/sample_data.csv").then(data => {
+      console.log(data);
+      setStrainInfoData(data);
+    });
   }, []);
 
   useEffect(() => {
@@ -345,8 +370,7 @@ function App() {
                   minHeight: "60px"
                 }}
               >
-                Legend: 
-                COVID-19
+                Legend: COVID-19
                 <div
                   style={{
                     width: 20,
@@ -481,7 +505,7 @@ function App() {
                           active={unChecked.indexOf(d) === -1}
                           group={getGroup(groupNames, d)}
                           groupsLegend={groupsLegend}
-                          // color={colors[i]}
+                          handleStrainClick={handleStrainClick}
                         />
                       </g>
                     );
@@ -504,11 +528,12 @@ function App() {
             setModalWidth={setModalWidth}
             // values={[startingPoint, startingPoint - 1 + binSize]}
             product={proteinInfo.product}
+            modalTitle={`Protein view: ${proteinInfo.product.toUpperCase()}`}
           >
             <div className="row">
               <div className="col-sm-6">
                 <ListGroup variant="flush">
-                  <ListGroup.Item>
+                  {/* <ListGroup.Item>
                     Start position: {(+proteinInfo.start).toLocaleString()}
                   </ListGroup.Item>
                   <ListGroup.Item>
@@ -523,7 +548,7 @@ function App() {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     Protein ID: {proteinInfo.protein_id}
-                  </ListGroup.Item>
+                  </ListGroup.Item> */}
                   {proteinInfo.description && (
                     <ListGroup.Item>
                       Description: {proteinInfo.description}
@@ -543,13 +568,70 @@ function App() {
                     height="550"
                     frameBorder="0"
                   />
+                  <Row>
+                    <Col>Product: {proteinInfo.product}</Col>
+                    <Col>Protein ID: {proteinInfo.protein_id}</Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      Start position: {(+proteinInfo.start).toLocaleString()}
+                    </Col>
+                    <Col>
+                      End position: {(+proteinInfo.end).toLocaleString()}
+                    </Col>
+                    <Col>
+                      Protein Length:{" "}
+                      {(+proteinInfo["protein length"]).toLocaleString()}
+                    </Col>
+                  </Row>
                 </div>
               )}
             </div>
           </CustomModal>
         )}
+
+        {/* 
+Strain: "CUHK_W1"
+country: "Hong Kong"
+host: "human"
+region: "China"
+virus species: "Severe_acute_respiratory_syndrome_related_coronavirus"
+Accession: "AY278554"
+Group: "SARS" 
+*/}
+
+        <CustomModal
+          show={modalStrainShow}
+          onHide={() => setModalStrainShow(false)}
+          setModalWidth={setModalWidth}
+          // values={[startingPoint, startingPoint - 1 + binSize]}
+          product="asdf"
+          modalTitle="asdf"
+        >
+          <div className="row">
+            {!strainInfo ? (
+              "no data yet"
+            ) : (
+              <ListGroup variant="flush">
+                <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
+                <ListGroup.Item>Country: {strainInfo.country}</ListGroup.Item>
+                <ListGroup.Item>Host: {strainInfo["host"]}</ListGroup.Item>
+                <ListGroup.Item>region: {strainInfo.region}</ListGroup.Item>
+                <ListGroup.Item>
+                  virus species: {strainInfo["virus species"]}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  Accession: {strainInfo.Accession}
+                </ListGroup.Item>
+                <ListGroup.Item>Group: {strainInfo.Group}</ListGroup.Item>
+              </ListGroup>
+            )}
+          </div>
+        </CustomModal>
       </div>
-      <p className="text-center mt-4 mb-4">© Copyright 2020 | Pine Biotech, Inc.</p>
+      <p className="text-center mt-4 mb-4">
+        © Copyright 2020 | Pine Biotech, Inc.
+      </p>
     </Container>
   );
 }

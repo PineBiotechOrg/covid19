@@ -7,7 +7,7 @@ export default function CustomModal({
   onHide,
   children,
   setModalWidth,
-  product
+  modalTitle
 }) {
   const [modalRef, { x, y, width }] = useDimensions();
 
@@ -26,7 +26,7 @@ export default function CustomModal({
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-custom-modal-styling-title">
-          <strong>Protein view:</strong> {product.toUpperCase()}
+          {modalTitle}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

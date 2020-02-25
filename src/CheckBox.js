@@ -1,6 +1,6 @@
 import React from "react";
 
-function CheckBox({ name, groupsLegend, group }) {
+function CheckBox({ name, groupsLegend, group, handleStrainClick }) {
   return (
     <g className="check-box">
       {/* <path
@@ -27,7 +27,14 @@ function CheckBox({ name, groupsLegend, group }) {
       ></path> */}
 
       <rect width="10" height="22" fill={groupsLegend[group]} />
-      <text x="21" y="15" style={{ fontSize: 13 }}>
+      <text
+        x="21"
+        y="15"
+        style={{ fontSize: 13 }}
+        onClick={() => {
+          handleStrainClick(name.split(".")[0]);
+        }}
+      >
         {name.split(".")[0]}
       </text>
     </g>

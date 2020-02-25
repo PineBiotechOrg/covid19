@@ -1,0 +1,45 @@
+Strain,country,host,region,virus species,Accession,Group
+Buraidah_1_2013,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KF600630,MERS
+England/3/2013,United Kingdom,human,Europe,Middle_East_respiratory_syndrome_coronavirus,KM210278,MERS
+England/2/2013,United Kingdom,human,Europe,Middle_East_respiratory_syndrome_coronavirus,KM015348,MERS
+England/4/2013,United Kingdom,human,Europe,Middle_East_respiratory_syndrome_coronavirus,KM210277,MERS
+Al_Hasa_4_2013,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KF186564,MERS
+Al_Hasa_11c_2013,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KF600636,MERS
+Bisha_1_2012,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KF600620,MERS
+Munich,United Arab Emirates,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KF192507,MERS
+England/Qatar/2012,United Kingdom,human,Europe,Middle_East_respiratory_syndrome_coronavirus,KC667074,MERS
+Hu/Riyadh_KSA_2049/2015,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KR011266,MERS
+Hu/Oman_2285_2013,Oman,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KT156560,MERS
+Abu_Dhabi_UAE_9_2013,United Arab Emirates,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KP209312,MERS
+Hu/Oman_2874_2013,Oman,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KT156561,MERS
+Taif_2b_2013,Saudi Arabia,human,West Asia,Middle_East_respiratory_syndrome_coronavirus,KJ156876,MERS
+SC9430,USA,human,North America,Betacoronavirus_1,MN306053,BetaCOV_1
+SC0776,USA,human,North America,Betacoronavirus_1,MN310478,BetaCOV_1
+SC2730,USA,human,North America,Betacoronavirus_1,KY967359,BetaCOV_1
+SC2481,USA,human,North America,Betacoronavirus_1,KY983583,BetaCOV_1
+HCoV_OC43/USA/TCNP_00204/2017,USA,human,North America,Betacoronavirus_1,MF374984,BetaCOV_1
+MY_U002/12,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538964,BetaCOV_1
+12694/2012,China,human,China,Betacoronavirus_1,KF923904,BetaCOV_1
+MY_U236/12,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538966,BetaCOV_1
+MY_U1057/12,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538976,BetaCOV_1
+MY_U774/12,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538972,BetaCOV_1
+MY_U1975/13,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538979,BetaCOV_1
+SC2924,USA,human,North America,Betacoronavirus_1,KY967356,BetaCOV_1
+MY_U1758/13,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538978,BetaCOV_1
+MY_U710/12,Malaysia,human,Southeast Asia,Betacoronavirus_1,KX538970,BetaCOV_1
+E0_034,Uganda,human,Africa,Betacoronavirus_1,MH685718,BetaCOV_1
+HCoV_OC43/UK/London/2011,United Kingdom,human,Europe,Betacoronavirus_1,KU131570,BetaCOV_1
+1783A/10,China,human,China,Betacoronavirus_1,KP198611,BetaCOV_2
+3194A/2012,China,human,China,Betacoronavirus_1,KF923906,BetaCOV_3
+OC43/USA/873_16/1987,USA,human,North America,Betacoronavirus_1,KF530077,BetaCOV_4
+OC43/USA/851_15/1985,USA,human,North America,Betacoronavirus_1,KF530060,BetaCOV_5
+OC43/USA/901_33/1990,USA,human,North America,Betacoronavirus_1,KF530066,BetaCOV_1
+OC43/USA/951_15/1995,USA,human,North America,Betacoronavirus_1,KF530059,BetaCOV_1
+OC43/USA/9712_13/1997,USA,human,North America,Betacoronavirus_1,KF530072,BetaCOV_1
+OC43/USA/9712_31/1997,USA,human,North America,Betacoronavirus_1,KF530080,BetaCOV_1
+CUHK_W1,Hong Kong,human,China,Severe_acute_respiratory_syndrome_related_coronavirus,AY278554,SARS
+BJ02,China,human,China,Severe_acute_respiratory_syndrome_related_coronavirus,AY278487,SARS
+BJ01,China,human,China,Severe_acute_respiratory_syndrome_related_coronavirus,AY278488,SARS
+GZ50,Hong Kong,human,China,Severe_acute_respiratory_syndrome_related_coronavirus,AY304495,SARS
+GZ0402,China,human,China,Severe_acute_respiratory_syndrome_related_coronavirus,AY613947,SARS
+WH-Human_1,China,human,China,novel_coronavirus,NC_45512,nCOVID-19
