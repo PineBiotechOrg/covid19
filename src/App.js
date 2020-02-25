@@ -98,7 +98,52 @@ function App() {
     "MN996529.1_group_1",
     "MT020781.1_group_1"
   ];
-
+  let dataGroups44 = [
+    "NC_045512.2_group_1",
+    "AY278554.2_group_1",
+    "AY304495.1_group_1",
+    "AY278488.2_group_1",
+    "AY278487.3_group_1",
+    "AY613947.1_group_1",
+    "KX538972.1_group_1",
+    "KX538976.1_group_1",
+    "KX538966.1_group_1",
+    "KF923904.1_group_1",
+    "KX538964.1_group_1",
+    "KX538970.1_group_1",
+    "KX538979.1_group_1",
+    "KX538978.1_group_1",
+    "KY967356.1_group_1",
+    "MH685718.1_group_1",
+    "KY967359.1_group_1",
+    "KY983583.1_group_1",
+    "MF374984.1_group_1",
+    "MN306053.1_group_1",
+    "MN310478.1_group_1",
+    "KP198611.1_group_1",
+    "KU131570.1_group_1",
+    "KF923906.1_group_1",
+    "KF530072.1_group_1",
+    "KF530080.1_group_1",
+    "KF530060.1_group_1",
+    "KF530077.1_group_1",
+    "KF530066.1_group_1",
+    "KF530059.1_group_1",
+    "KC667074.1_group_1",
+    "KF192507.1_group_1",
+    "KF600636.1_group_1",
+    "KJ156876.1_group_1",
+    "KF186564.1_group_1",
+    "KF600630.1_group_1",
+    "KP209312.1_group_1",
+    "KT156560.1_group_1",
+    "KT156561.1_group_1",
+    "KM015348.1_group_1",
+    "KM210278.1_group_1",
+    "KM210277.1_group_1",
+    "KR011266.1_group_1",
+    "KF600620.1_group_1"
+  ];
   const handleBinClick = d => {
     // setStartingPoint(d.position);
     // setModalShow(true);
@@ -123,7 +168,6 @@ function App() {
   const createBinsArrayCovid = (data, binSize = 100) => {
     let maxAAEntropy = 0;
 
-
     let num = 0;
     let bin = {
       position: 1,
@@ -131,7 +175,7 @@ function App() {
       AAEntropySum: 0
     };
 
-    dataGroups.forEach(d => {
+    dataGroups44.forEach(d => {
       bin[d + "_AA+"] = 0;
     });
 
@@ -158,13 +202,13 @@ function App() {
           AAEntropySum: 0
         };
 
-        dataGroups.forEach(a => {
+        dataGroups44.forEach(a => {
           if (bin[a + "_AA+"] > maxAAEntropy) {
             maxAAEntropy = bin[a + "_AA+"];
           }
         });
 
-        dataGroups.forEach(a => {
+        dataGroups44.forEach(a => {
           bin[a + "_AA+"] = 0;
         });
       }
@@ -174,7 +218,7 @@ function App() {
       bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
       bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
 
-      dataGroups.forEach(a => {
+      dataGroups44.forEach(a => {
         if (d[a + "_AA+"] !== d["reference AA"]) {
           bin[a + "_AA+"] += 1;
         }
@@ -186,7 +230,12 @@ function App() {
   };
 
   useEffect(() => {
-    d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
+    // d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
+    //   setCovidEntropy(data);
+    // });
+
+    d3.tsv("./covid-19/corona44.tsv").then(data => {
+      console.log(data);
       setCovidEntropy(data);
     });
 
@@ -206,7 +255,7 @@ function App() {
   }, [binSize, covidEntropy]);
 
   return (
-    <Container fluid="true" >
+    <Container fluid="true">
       <div className="App">
         <Header />
 
@@ -218,8 +267,8 @@ function App() {
               <div
                 style={{
                   display: "flex",
-                  "alignItems": "center",
-                  "minHeight": "60px"
+                  alignItems: "center",
+                  minHeight: "60px"
                 }}
               >
                 <div style={{ margin: "5px" }}>Bin size: </div>
@@ -239,14 +288,15 @@ function App() {
           </div>
         </div>
 
-        {!covidEntropy.length && !covidEntropyBins.length && !proteinInfo.length ? (
+        {!covidEntropy.length &&
+        !covidEntropyBins.length &&
+        !proteinInfo.length ? (
           <Spinner animation="border" role="status" className="spinner">
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
           <div ref={appRef}>
-            <svg width="100%" height="900">
-
+            <svg width="100%" height="1150">
               <g transform={`translate(18,10)`}>
                 <InfoIcon />
                 <text transform={`translate(22,16)`}>Proteins</text>
@@ -272,7 +322,7 @@ function App() {
                     axis={true}
                     tooltip={false}
                     setBinsColorScale={setBinsColorScale}
-                    aa="MT019530.1_group_1"
+                    aa="NC_045512.2_group_1"
                     maxAAEntropy={maxAAEntropy}
                   />
                 </g>
@@ -280,7 +330,7 @@ function App() {
 
               <g transform={`translate(18,140)`}>
                 {width &&
-                  dataGroups.map((d, i) => {
+                  dataGroups44.map((d, i) => {
                     return (
                       <g
                         transform={`translate(120,${i * 22})`}
@@ -303,7 +353,7 @@ function App() {
                     );
                   })}
                 {width &&
-                  dataGroups.map((d, i) => {
+                  dataGroups44.map((d, i) => {
                     return (
                       <g
                         transform={`translate(0,${i * 22})`}
@@ -339,7 +389,6 @@ function App() {
           >
             <div className="row">
               <div className="col-sm-6">
-
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     Start position: {(+proteinInfo.start).toLocaleString()}
@@ -379,8 +428,6 @@ function App() {
                 </div>
               )}
             </div>
-
-
           </CustomModal>
         )}
       </div>
