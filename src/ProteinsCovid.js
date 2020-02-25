@@ -5,13 +5,7 @@ import ReactTooltip from "react-tooltip";
 const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
   let layerRef = useRef();
 
-  
-
-
   useEffect(() => {
-
-    console.log("ProteinsCovid")
-
     let svg = d3.select(layerRef.current);
 
     svg.selectAll("g").remove();
@@ -55,13 +49,11 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
         handleBinClick(d);
       })
       .on("mouseover", d => {
-
         if (+d["protein length"] === 0) {
           d3.select(".protein" + d.start).attr("fill", "red");
         } else {
           d3.select(".protein" + d.start).attr("fill", "steelblue");
         }
-        
       })
       .on("mouseout", d => {
         d3.select(".protein" + d.start).attr("fill", "grey");
@@ -79,7 +71,9 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
       });
 
     ReactTooltip.rebuild();
-  }, [data, width, handleBinClick]);
+
+    
+  }, [data, width, max]);
 
   return (
     <>

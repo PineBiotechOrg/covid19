@@ -69,6 +69,9 @@ function App() {
 
   const [proteinInfo, setProteinInfo] = useState({});
 
+
+
+
   let dataGroups = [
     "MN996527.1_group_1",
     "MN996530.1_group_1",
@@ -240,6 +243,7 @@ function App() {
     d3.csv("./covid-19/COVID19-gbMN908947-3.csv").then(proteins => {
       setProteinsCovid(proteins);
     });
+
   }, []);
 
   useEffect(() => {
@@ -250,6 +254,7 @@ function App() {
     // })
 
     // setAverageData(averageData);
+
   }, [binSize, covidEntropy]);
 
   return (

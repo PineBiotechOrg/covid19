@@ -103,7 +103,7 @@ const Bins = ({
     }
 
     ReactTooltip.rebuild();
-  }, [data, axis, width, tooltip, binsColorScale, maxAAEntropy, aa, handleBinClick]);
+  }, [data, axis, width, tooltip, binsColorScale, maxAAEntropy, aa]);
 
   return (
     <>
