@@ -603,12 +603,12 @@ Group: "SARS"
           product="asdf"
           modalTitle={!strainInfo ? "No data" : strainInfo.Accession}
         >
-          <div className="row">
-            {!strainInfo ? (
-              <ListGroup variant="flush">
-                <ListGroup.Item>Data coming soon</ListGroup.Item>
-              </ListGroup>
-            ) : (
+          {!strainInfo ? (
+            <ListGroup variant="flush">
+              <ListGroup.Item>Data coming soon</ListGroup.Item>
+            </ListGroup>
+          ) : (
+            <div className="row">
               <ListGroup variant="flush">
                 <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
                 <ListGroup.Item>Country: {strainInfo.country}</ListGroup.Item>
@@ -622,8 +622,9 @@ Group: "SARS"
                 </ListGroup.Item>
                 <ListGroup.Item>Group: {strainInfo.Group}</ListGroup.Item>
               </ListGroup>
-            )}
-          </div>
+
+            </div>
+          )}
         </CustomModal>
       </div>
       <p className="text-center mt-4 mb-4">
