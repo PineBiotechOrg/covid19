@@ -399,7 +399,7 @@ function App() {
           </Spinner>
         ) : (
           <div ref={appRef}>
-            <svg width="100%" height="1150">
+            <svg width="100%" height="1120">
               <g transform={`translate(18,10)`}>
                 <InfoIcon />
                 <text transform={`translate(22,16)`}>Proteins</text>
@@ -549,6 +549,7 @@ function App() {
           </CustomModal>
         )}
       </div>
+      <p className="text-center mt-4 mb-4">© Copyright 2020 | Pine Biotech, Inc.</p>
     </Container>
   );
 }
