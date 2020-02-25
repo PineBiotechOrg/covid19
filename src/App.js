@@ -10,12 +10,27 @@ import Linechart from "./Linechart";
 import LinechartModal from "./LinechartModal";
 import ReactTooltip from "react-tooltip";
 import ProteinsCovid from "./ProteinsCovid";
+import Header from "./Header";
 
-import { Button, Spinner, Form } from "react-bootstrap";
+import {
+  Button,
+  Spinner,
+  Form,
+  Table,
+  ListGroup,
+  Container,
+  Row,
+  Col,
+  Nav
+} from "react-bootstrap";
 import CustomModal from "./CustomModal";
 import InfoIcon from "./InfoIcon";
 import useDimensions from "react-use-dimensions";
 import "./App.css";
+
+const formatNum = num => {
+  return num.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+};
 
 function App() {
   // const [humanb_proteins, setHumanb_proteins] = useState([]);
@@ -98,8 +113,6 @@ function App() {
   };
 
   let colors = ["gray", "red", "green", "gold", "violet", "orange", "cyan"];
-
-  let svgRef = useRef();
 
   const handleCheckbox = name => {
     if (unChecked.indexOf(name) === -1) {
@@ -252,165 +265,202 @@ function App() {
   // };
 
   return (
-    <div className="App" ref={appRef}>
-      <div>
-        {/* <button onClick={() => setBinSize(100)}>Bin size 100</button>
-        <button onClick={() => setBinSize(50)}>Bin size 50</button>
-        <button onClick={() => setBinSize(25)}>Bin size 25</button> */}
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-2">
-            <div className="form-group">
-              <label>Bin size</label>
-              <Form.Control
-                as="select"
-                size="sm"
-                onChange={e => setBinSize(+e.target.value)}
+    <Container fluid="true" >
+      <div className="App">
+        <Header />
+
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              {/* <div className="form-group">
+              <span class="helper"></span> */}
+              <div
+                style={{
+                  display: "flex",
+                  "align-items": "center",
+                  "min-height": "60px"
+                }}
               >
-                <option>500</option>
-                <option>250</option>
-              </Form.Control>
+                <div style={{ margin: "5px" }}>Bin size: </div>
+                <Form.Control
+                  style={{ width: "70px" }}
+                  as="select"
+                  size="sm"
+                  onChange={e => setBinSize(+e.target.value)}
+                >
+                  <option>500</option>
+                  <option>250</option>
+                </Form.Control>
+              </div>
+              {/* </div> */}
             </div>
-          </div>
-          <div className="col-sm-6"></div>
-          <div className="col-sm-4">
-            {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-              Open Modal
-            </Button> */}
+            <div className="col-sm-8"></div>
           </div>
         </div>
-      </div>
-      {!covidEntropy.length && !covidEntropyBins.length ? (
-        <Spinner animation="border" role="status" className="spinner">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      ) : (
-        <svg width="100%" height="750" ref={svgRef}>
-          {/* <g transform={`translate(20,177)`}>
+        {!covidEntropy.length && !covidEntropyBins.length ? (
+          <Spinner animation="border" role="status" className="spinner">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        ) : (
+          <div ref={appRef}>
+            <svg width="100%" height="900">
+              {/* <g transform={`translate(20,177)`}>
             <InfoIcon />
             <text transform={`translate(22,16)`}>Coverage</text>
           </g> */}
 
-          <g transform={`translate(18,10)`}>
-            <InfoIcon />
-            <text transform={`translate(22,16)`}>Proteins</text>
-            <g transform={`translate(120,0)`}>
-              {width && (
-                <ProteinsCovid
-                  data={proteinsCovid}
-                  width={width}
-                  handleBinClick={handleProteinClick}
-                />
-              )}
-            </g>
-          </g>
-
-          <g transform={`translate(18,100)`}>
-            <InfoIcon />
-            <text transform={`translate(22,16)`}>Reference</text>
-            <g transform={`translate(120,0)`}>
-              <BinsCovid
-                data={covidEntropyBins}
-                width={width}
-                // name={mtList[0].name}
-                axis={true}
-                tooltip={false}
-                setBinsColorScale={setBinsColorScale}
-                aa="MT019530.1_group_1"
-                maxAAEntropy={maxAAEntropy}
-              />
-            </g>
-          </g>
-
-          <g transform={`translate(18,140)`}>
-            {width &&
-              dataGroups.map((d, i) => {
-                return (
-                  <g transform={`translate(120,${i * 22})`} key={d + "_bins"}>
-                    {covidEntropyBins.length && (
-                      <BinsCovid
-                        handleBinClick={handleBinClick}
-                        data={covidEntropyBins}
-                        width={width}
-                        // name={d.name}
-                        axis={false}
-                        tooltip={true}
-                        binsColorScale={binsColorScale}
-                        aa={d}
-                        maxAAEntropy={maxAAEntropy}
-                      />
-                    )}
-                  </g>
-                );
-              })}
-            {width &&
-              dataGroups.map((d, i) => {
-                return (
-                  <g
-                    transform={`translate(0,${i * 22})`}
-                    key={d}
-                    onClick={() => handleCheckbox(d)}
-                  >
-                    <CheckBox
-                      name={d}
-                      active={unChecked.indexOf(d) === -1}
-                      // color={colors[i]}
+              <g transform={`translate(18,10)`}>
+                <InfoIcon />
+                <text transform={`translate(22,16)`}>Proteins</text>
+                <g transform={`translate(120,0)`}>
+                  {width && (
+                    <ProteinsCovid
+                      data={proteinsCovid}
+                      width={width}
+                      handleBinClick={handleProteinClick}
                     />
-                  </g>
-                );
-              })}
-          </g>
-        </svg>
-      )}
-      <ReactTooltip
-        className="tooltipMain"
-        id="svgTooltip"
-        // getContent={dataTip => {
-        //   if (!dataTip || !dataTip.position) {
-        //     return null;
-        //   }
-        //   return <div>
-        //     position: {dataTip.position} <br />
-        //     coverage: {dataTip.coverage} <br />
-        //     count: {dataTip.count}
-        //   </div>;
-        // }}
-      />
-      <CustomModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        setModalWidth={setModalWidth}
-        // values={[startingPoint, startingPoint - 1 + binSize]}
-      >
-        <div className="row">
-          <div className="col-sm-6">
-            <strong>start</strong>: {proteinInfo.start} <br />
-            <strong>end</strong>: {proteinInfo.end} <br />
-            <strong>gene</strong>: {proteinInfo.gene} <br />
-            <strong>product</strong>: {proteinInfo.product} <br />
-            <strong>prot_desc</strong>: {proteinInfo.prot_desc} <br />
-            <strong>protein_id</strong>: {proteinInfo.protein_id} <br />
-            <strong>note</strong>: {proteinInfo.note} <br />
-            <strong>description</strong>: {proteinInfo.description} <br />
+                  )}
+                </g>
+              </g>
+
+              <g transform={`translate(18,100)`}>
+                <InfoIcon />
+                <text transform={`translate(22,16)`}>Reference</text>
+                <g transform={`translate(120,0)`}>
+                  <BinsCovid
+                    data={covidEntropyBins}
+                    width={width}
+                    // name={mtList[0].name}
+                    axis={true}
+                    tooltip={false}
+                    setBinsColorScale={setBinsColorScale}
+                    aa="MT019530.1_group_1"
+                    maxAAEntropy={maxAAEntropy}
+                  />
+                </g>
+              </g>
+
+              <g transform={`translate(18,140)`}>
+                {width &&
+                  dataGroups.map((d, i) => {
+                    return (
+                      <g
+                        transform={`translate(120,${i * 22})`}
+                        key={d + "_bins"}
+                      >
+                        {covidEntropyBins.length && (
+                          <BinsCovid
+                            handleBinClick={handleBinClick}
+                            data={covidEntropyBins}
+                            width={width}
+                            // name={d.name}
+                            axis={false}
+                            tooltip={true}
+                            binsColorScale={binsColorScale}
+                            aa={d}
+                            maxAAEntropy={maxAAEntropy}
+                          />
+                        )}
+                      </g>
+                    );
+                  })}
+                {width &&
+                  dataGroups.map((d, i) => {
+                    return (
+                      <g
+                        transform={`translate(0,${i * 22})`}
+                        key={d}
+                        onClick={() => handleCheckbox(d)}
+                      >
+                        <CheckBox
+                          name={d}
+                          active={unChecked.indexOf(d) === -1}
+                          // color={colors[i]}
+                        />
+                      </g>
+                    );
+                  })}
+              </g>
+            </svg>
           </div>
+        )}
+        <ReactTooltip
+          // type="light"
+          html={true}
+          className="tooltipMain"
+          id="svgTooltip"
+          // getContent={dataTip => {
+          //   if (!dataTip || !dataTip.position) {
+          //     return null;
+          //   }
+          //   return <div>
+          //     position: {dataTip.position} <br />
+          //     coverage: {dataTip.coverage} <br />
+          //     count: {dataTip.count}
+          //   </div>;
+          // }}
+        />
 
-          {proteinInfo.protein_id && (
-            <div className="col-sm-6">
-              <iframe
-                title="ngl-view"
-                src={`./covid-19/ngl/index.html?pdb=${proteinInfo.protein_id
-                  .split("|")[1]
-                  .replace(".", "_")}`}
-                width="100%"
-                height="550"
-                frameBorder="0"
-              />
+        {proteinInfo.product && (
+          <CustomModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            setModalWidth={setModalWidth}
+            // values={[startingPoint, startingPoint - 1 + binSize]}
+            product={proteinInfo.product}
+          >
+            <div className="row">
+              <div className="col-sm-6">
+                {/* <strong>start</strong>: {proteinInfo.start} <br />
+              <strong>end</strong>: {proteinInfo.end} <br />
+              <strong>gene</strong>: {proteinInfo.gene} <br />
+              <strong>product</strong>: {proteinInfo.product} <br />
+              <strong>prot_desc</strong>: {proteinInfo.prot_desc} <br />
+              <strong>protein_id</strong>: {proteinInfo.protein_id} <br />
+              <strong>note</strong>: {proteinInfo.note} <br />
+              <strong>description</strong>: {proteinInfo.description} <br /> */}
+
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    Start position: {(+proteinInfo.start).toLocaleString()}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    End position: {(+proteinInfo.end).toLocaleString()}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Protein Length:{" "}
+                    {(+proteinInfo["protein length"]).toLocaleString()}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Product: {proteinInfo.product}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Protein ID: {proteinInfo.protein_id}
+                  </ListGroup.Item>
+                  {proteinInfo.description && (
+                    <ListGroup.Item>
+                      Description: {proteinInfo.description}
+                    </ListGroup.Item>
+                  )}
+                </ListGroup>
+              </div>
+
+              {proteinInfo.protein_id && (
+                <div className="col-sm-6">
+                  <iframe
+                    title="ngl-view"
+                    src={`./covid-19/ngl/index.html?pdb=${proteinInfo.protein_id
+                      .split("|")[1]
+                      .replace(".", "_")}`}
+                    width="100%"
+                    height="550"
+                    frameBorder="0"
+                  />
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        {/* <svg width="100%" height="600">
+            {/* <svg width="100%" height="600">
           {modalWidth && startingPoint && mtList && binSize && (
             <g>
               <g transform={`translate(20,20)`}>
@@ -494,8 +544,10 @@ function App() {
             </g>
           )}
         </svg> */}
-      </CustomModal>
-    </div>
+          </CustomModal>
+        )}
+      </div>
+    </Container>
   );
 }
 

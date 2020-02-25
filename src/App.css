@@ -2,6 +2,10 @@
   z-index: 1151 !important;
 } */
 
+body {
+  font-family: "Montserrat", sans-serif !important;
+}
+
 .spinner {
   position: absolute;
   height: 100px;
@@ -17,3 +21,62 @@
 .modal-90w {
   max-width: 90% !important;
 }
+
+span.capitalize {
+  text-transform: capitalize;
+}
+
+.protein-bars:hover {
+  opacity: 0.8;
+}
+
+.form-group {
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-nav {
+  color: gray;
+  font-weight: bolder;
+  font-size: larger;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.main-nav:hover {
+  color: black;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+/* .logoImg {
+  vertical-align: middle;
+  max-width: 160px;
+} */
+
+.grayTitle {
+  color: white;
+  /* font-size: 20px; */
+  font-weight: bold;
+  /* height: 70px;
+  line-height: 70px; */
+}
+
+.grayLink {
+  color: white;
+}
+
+/* .grayRow {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+} */

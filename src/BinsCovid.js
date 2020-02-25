@@ -78,12 +78,12 @@ const Bins = ({
         }
 
         return (
-          "AA: " +
-          aa +
-          ", Count: " +
-          d.count.toFixed(2) +
-          ", Position: " +
-          d.position
+          "BIN Number: " +
+          d.position + "</br>" +
+          "Count: " +
+          d.count.toFixed(2) 
+
+          
         );
       });
 

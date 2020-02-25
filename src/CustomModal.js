@@ -2,15 +2,19 @@ import React, { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import useDimensions from "react-use-dimensions";
 
-export default function CustomModal({ show, onHide, children, setModalWidth, values }) {
+export default function CustomModal({
+  show,
+  onHide,
+  children,
+  setModalWidth,
+  product
+}) {
   const [modalRef, { x, y, width }] = useDimensions();
 
   useEffect(() => {
     //console.log("modal", width);
     setModalWidth(width);
   }, [width, setModalWidth]);
-
-
 
   return (
     <Modal
@@ -22,7 +26,7 @@ export default function CustomModal({ show, onHide, children, setModalWidth, val
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-custom-modal-styling-title">
-          Protein view
+          <strong>Protein view:</strong> {product.toUpperCase()}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

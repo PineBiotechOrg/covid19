@@ -24,10 +24,14 @@ const ProteinsCovid = ({ data, width, handleBinClick }) => {
         return x(+d.start);
       })
       .attr("width", d => {
-        return x(d.end) - x(d.start)
+        return x(d.end) - x(d.start);
       })
       .attr("y", 0)
-      .attr("fill", "lightgrey")
+      .attr("class", d => "protein" + d.start)
+      .attr("fill", "grey")
+      .style("opacity", d => {
+        return +d["protein length"] ? 0.5 : 0.25;
+      })
       .attr("stroke", "black")
       .attr("height", 40)
       .attr("data-for", () => {
@@ -38,9 +42,23 @@ const ProteinsCovid = ({ data, width, handleBinClick }) => {
         return "svgTooltip";
       })
       .on("click", d => {
+        if (+d["protein length"] === 0) {
+          return null;
+        }
 
-          handleBinClick(d);
-      
+        handleBinClick(d);
+      })
+      .on("mouseover", d => {
+
+        if (+d["protein length"] === 0) {
+          d3.select(".protein" + d.start).attr("fill", "red");
+        } else {
+          d3.select(".protein" + d.start).attr("fill", "steelblue");
+        }
+        
+      })
+      .on("mouseout", d => {
+        d3.select(".protein" + d.start).attr("fill", "grey");
       })
       .attr("data-tip", d => {
         //{position: 1, coverage: 44625, count: 28.06}
@@ -48,14 +66,13 @@ const ProteinsCovid = ({ data, width, handleBinClick }) => {
         // if (!tooltip) {
         //   return null;
         // }
-
-        return (
-          "Protein ID: " + d.protein_id 
-        );
+        if (+d["protein length"] === 0) {
+          return null;
+        }
+        return "Protein: " + d.product.toUpperCase();
       });
 
-      ReactTooltip.rebuild();
-
+    ReactTooltip.rebuild();
   }, [data, width, handleBinClick]);
 
   return (
