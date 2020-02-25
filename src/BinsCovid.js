@@ -16,7 +16,6 @@ const Bins = ({
   let layerRef = useRef();
 
   useEffect(() => {
-
     let data0 = data.map(d => {
       return {
         count: +d[aa + "_AA+"],
@@ -79,12 +78,7 @@ const Bins = ({
         }
 
         return (
-          "BIN Number: " +
-          d.position + "</br>" +
-          "Count: " +
-          d.count.toFixed(2) 
-
-          
+          "BIN Number: " + d.position + "</br>Count: " + d.count.toFixed(2)
         );
       });
 
@@ -98,7 +92,6 @@ const Bins = ({
       svg
         .append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + 0 + ")")
         .call(xAxis);
     }
 

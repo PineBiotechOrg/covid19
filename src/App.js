@@ -69,8 +69,12 @@ function App() {
 
   const [proteinInfo, setProteinInfo] = useState({});
 
-
-
+  let groupsLegend = {
+    "COVID-19": "red",
+    SARS: "pink",
+    BetaCOV: "green",
+    MERS: "orange"
+  };
 
   let dataGroups = [
     "MN996527.1_group_1",
@@ -147,6 +151,54 @@ function App() {
     "KR011266.1_group_1",
     "KF600620.1_group_1"
   ];
+
+  let groupNames = [
+    "AY278487.3_SARS",
+    "AY278488.2_SARS",
+    "AY278554.2_SARS",
+    "AY304495.1_SARS",
+    "AY613947.1_SARS",
+    "KC667074.1_MERS",
+    "KF186564.1_MERS",
+    "KF192507.1_MERS",
+    "KF530059.1_BetaCOV_1",
+    "KF530060.1_BetaCOV_1",
+    "KF530066.1_BetaCOV_1",
+    "KF530072.1_BetaCOV_1",
+    "KF530077.1_BetaCOV_1",
+    "KF530080.1_BetaCOV_1",
+    "KF600620.1_MERS",
+    "KF600630.1_MERS",
+    "KF600636.1_MERS",
+    "KF923904.1_BetaCOV_1",
+    "KF923906.1_BetaCOV_1",
+    "KJ156876.1_MERS",
+    "KM015348.1_MERS",
+    "KM210277.1_MERS",
+    "KM210278.1_MERS",
+    "KP198611.1_BetaCOV_1",
+    "KP209312.1_MERS",
+    "KR011266.1_MERS",
+    "KT156560.1_MERS",
+    "KT156561.1_MERS",
+    "KU131570.1_BetaCOV_1",
+    "KX538964.1_BetaCOV_1",
+    "KX538966.1_BetaCOV_1",
+    "KX538970.1_BetaCOV_1",
+    "KX538972.1_BetaCOV_1",
+    "KX538976.1_BetaCOV_1",
+    "KX538978.1_BetaCOV_1",
+    "KX538979.1_BetaCOV_1",
+    "KY967356.1_BetaCOV_1",
+    "KY967359.1_BetaCOV_1",
+    "KY983583.1_BetaCOV_1",
+    "MF374984.1_BetaCOV_1",
+    "MH685718.1_BetaCOV_1",
+    "MN306053.1_BetaCOV_1",
+    "MN310478.1_BetaCOV_1",
+    "NC_045512.2_COVID-19_Wuhan"
+  ];
+
   const handleBinClick = d => {
     // setStartingPoint(d.position);
     // setModalShow(true);
@@ -243,7 +295,6 @@ function App() {
     d3.csv("./covid-19/COVID19-gbMN908947-3.csv").then(proteins => {
       setProteinsCovid(proteins);
     });
-
   }, []);
 
   useEffect(() => {
@@ -254,7 +305,6 @@ function App() {
     // })
 
     // setAverageData(averageData);
-
   }, [binSize, covidEntropy]);
 
   return (
@@ -287,7 +337,57 @@ function App() {
               </div>
               {/* </div> */}
             </div>
-            <div className="col-sm-8"></div>
+            <div className="col-sm-8">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  minHeight: "60px"
+                }}
+              >
+                Legend: 
+                COVID-19
+                <div
+                  style={{
+                    width: 20,
+                    height: 20,
+                    backgroundColor: "red",
+                    marginRight: 15,
+                    marginLeft: 5
+                  }}
+                />
+                SARS
+                <div
+                  style={{
+                    width: 20,
+                    height: 20,
+                    backgroundColor: "pink",
+                    marginRight: 15,
+                    marginLeft: 5
+                  }}
+                />
+                BetaCOV
+                <div
+                  style={{
+                    width: 20,
+                    height: 20,
+                    backgroundColor: "green",
+                    marginRight: 15,
+                    marginLeft: 5
+                  }}
+                />
+                MERS
+                <div
+                  style={{
+                    width: 20,
+                    height: 20,
+                    backgroundColor: "orange",
+                    marginRight: 15,
+                    marginLeft: 5
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -358,6 +458,19 @@ function App() {
                   })}
                 {width &&
                   dataGroups44.map((d, i) => {
+                    // let groupNames = [
+                    //   "AY278487.3_SARS",
+
+                    const getGroup = (groupNames, d) => {
+                      return groupNames
+                        .filter(g => {
+                          return d.split("_")[0] === g.split("_")[0];
+                        })[0]
+                        .split(".")[1]
+                        .split("_")[1];
+                    };
+
+                    console.log(getGroup(groupNames, d));
                     return (
                       <g
                         transform={`translate(0,${i * 22})`}
@@ -367,6 +480,8 @@ function App() {
                         <CheckBox
                           name={d}
                           active={unChecked.indexOf(d) === -1}
+                          group={getGroup(groupNames, d)}
+                          groupsLegend={groupsLegend}
                           // color={colors[i]}
                         />
                       </g>

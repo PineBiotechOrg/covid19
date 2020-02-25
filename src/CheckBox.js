@@ -1,9 +1,9 @@
 import React from "react";
 
-function CheckBox({ name, active }) {
+function CheckBox({ name, groupsLegend, group }) {
   return (
     <g className="check-box">
-      <path
+      {/* <path
         d="M 11 4 C 7.1 4 4 7.1 4 11 L 4 39 4 39 C 4 42.9 7.1 46 11 46 L 39 46 C 42.9 46 46 42.9 46 39 L 46 11 46 11 C 46 7.1 42.9 4 39 4 L 11 4"
         transform="matrix(0.4 0 0 0.4 0 -2)"
         className="unchecked-external-path"
@@ -24,8 +24,10 @@ function CheckBox({ name, active }) {
         style={
           active ? { display: "inline", fill: "black" } : { display: "none" }
         } // none
-      ></path>
-      <text x="21" y="15" style={{ fontSize: 13}}>
+      ></path> */}
+
+      <rect width="10" height="22" fill={groupsLegend[group]} />
+      <text x="21" y="15" style={{ fontSize: 13 }}>
         {name.split(".")[0]}
       </text>
     </g>
