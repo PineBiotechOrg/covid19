@@ -152,7 +152,6 @@ function App() {
   const handleProteinClick = d => {
     //setModalShow(true);
 
-    console.log(d);
     setProteinInfo(d);
     setModalShow(true);
   };
@@ -235,7 +234,6 @@ function App() {
     // });
 
     d3.tsv("./covid-19/corona44.tsv").then(data => {
-      console.log(data);
       setCovidEntropy(data);
     });
 
@@ -306,6 +304,7 @@ function App() {
                       data={proteinsCovid}
                       width={width}
                       handleBinClick={handleProteinClick}
+                      max={covidEntropy.length}
                     />
                   )}
                 </g>

@@ -2,17 +2,23 @@ import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
 import ReactTooltip from "react-tooltip";
 
-const ProteinsCovid = ({ data, width, handleBinClick }) => {
+const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
   let layerRef = useRef();
 
+  
+
+
   useEffect(() => {
+
+    console.log("ProteinsCovid")
+
     let svg = d3.select(layerRef.current);
 
     svg.selectAll("g").remove();
 
     let x = d3
       .scaleLinear()
-      .domain([1, 29903])
+      .domain([1, max])
       .range([0, width - 150]);
 
     svg
