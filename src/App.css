@@ -70,6 +70,23 @@ span.capitalize {
 
 .grayLink {
   color: white;
+  font-size: 14px;
+  text-decoration:none !important;
+}
+
+.grayLink:hover {
+  color: lightgray;
+}
+
+.linkImg {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.grayGroup {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration:none !important;
 }
 
 /* .grayRow {

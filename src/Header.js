@@ -59,7 +59,7 @@ const Header = () => {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="https://pine-biotech.com/" className="main-nav">
               About
             </Nav.Link>
           </Nav.Item>
@@ -74,34 +74,39 @@ const Header = () => {
             DISCOVER:
           </span>
 
-          <a href="http://google.com">
-            <img src={analyze} alt="seqnavLogo" className="logoImg" />
-
+          <a href="https://server.t-bio.info/" className="grayGroup">
+            <img src={analyze} alt="seqnavLogo" className="linkImg" />
             <span className="grayLink">analyze</span>
           </a>
-          <img src={learn} alt="seqnavLogo" className="logoImg" />
-
-          <span className="grayLink">learn</span>
+          <a href="https://edu.t-bio.info/" className="grayGroup">
+            <img src={learn} alt="seqnavLogo" className="linkImg" />
+            <span className="grayLink">learn</span>
+          </a>
         </Navbar.Collapse>
 
         <Navbar.Collapse className="justify-content-end">
           <span className="grayTitle">VISUALISE:</span>
 
-          <img src={phylogeny} alt="phylogeny" className="logoImg" />
-
-          <span className="grayLink">phylogeny</span>
-
-          <img src={alingment} alt="alingment" className="logoImg" />
-
-          <span className="grayLink">alingment</span>
-
-          <img src={proteinCompare} alt="proteinCompare" className="logoImg" />
-
-          <span className="grayLink">proteinCompare</span>
-
-          <img src={map} alt="map" className="logoImg" />
-
-          <span className="grayLink">map</span>
+          <a href="http://google.com" className="grayGroup">
+            <img src={phylogeny} alt="phylogeny" className="linkImg" />
+            <span className="grayLink">phylogeny</span>
+          </a>
+          <a href="http://google.com" className="grayGroup">
+            <img src={alingment} alt="alingment" className="linkImg" />
+            <span className="grayLink">alignment</span>
+          </a>
+          <a href="http://google.com" className="grayGroup">
+            <img
+              src={proteinCompare}
+              alt="proteinCompare"
+              className="linkImg"
+            />
+            <span className="grayLink">protein compare</span>
+          </a>
+          <a href="http://google.com" className="grayGroup">
+            <img src={map} alt="map" className="linkImg" />
+            <span className="grayLink">map</span>
+          </a>
         </Navbar.Collapse>
       </Navbar>
 
