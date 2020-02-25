@@ -218,7 +218,6 @@ function App() {
   };
 
   const handleStrainClick = d => {
-
     let selected = strainInfoData.filter(s => {
       return d === s.Accession;
     });
@@ -609,7 +608,6 @@ Group: "SARS"
               <ListGroup variant="flush">
                 <ListGroup.Item>Data coming soon</ListGroup.Item>
               </ListGroup>
-
             ) : (
               <ListGroup variant="flush">
                 <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
