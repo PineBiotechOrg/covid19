@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Container, Col, Row, Navbar } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 import seqnavLogo from "./images/seqnavLogo.png";
 import analyze from "./images/analyze.png";
@@ -29,32 +29,32 @@ const Header = () => {
 
         <Nav>
           <Nav.Item as="li">
-            <Nav.Link href="http://google.com" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               EBOLA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               CORONA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               DENGUE
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               POLIO
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               RHINO
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/home" className="main-nav">
+            <Nav.Link href="#" className="main-nav">
               FLU
             </Nav.Link>
           </Nav.Item>
@@ -70,7 +70,7 @@ const Header = () => {
         style={{ background: "#5E5E5E", marginRight: -15, marginLeft: -15 }}
       >
         <Navbar.Collapse>
-          <span className="grayTitle" style={{ "margin-left": "25px" }}>
+          <span className="grayTitle" style={{ marginLeft: "25px" }}>
             DISCOVER:
           </span>
 
@@ -91,7 +91,7 @@ const Header = () => {
             <img src={phylogeny} alt="phylogeny" className="linkImg" />
             <span className="grayLink">phylogeny</span>
           </a>
-          <a href="http://google.com" className="grayGroup">
+          <a href="#" className="grayGroup">
             <img src={alingment} alt="alingment" className="linkImg" />
             <span className="grayLink">alignment</span>
           </a>
@@ -110,41 +110,6 @@ const Header = () => {
         </Navbar.Collapse>
       </Navbar>
 
-      {/* <div className="row" style={{ background: "#5E5E5E" }}>
-        <div className="col-sm-5">
-          <span className="grayTitle" style={{ "margin-left": "25px" }}>
-            DISCOVER:
-          </span>
-
-          <a href="http://google.com">
-            <img src={analyze} alt="seqnavLogo" className="logoImg" />
-
-            <span className="grayLink">analyze</span>
-          </a>
-          <img src={learn} alt="seqnavLogo" className="logoImg" />
-
-          <span className="grayLink">learn</span>
-        </div>
-        <div className="col-sm-7" style={{ "text-align": "right" }}>
-          <span className="grayTitle">VISUALISE:</span>
-
-          <img src={phylogeny} alt="phylogeny" className="logoImg" />
-
-          <span className="grayLink">phylogeny</span>
-
-          <img src={alingment} alt="alingment" className="logoImg" />
-
-          <span className="grayLink">alingment</span>
-
-          <img src={proteinCompare} alt="proteinCompare" className="logoImg" />
-
-          <span className="grayLink">proteinCompare</span>
-
-          <img src={map} alt="map" className="logoImg" />
-
-          <span className="grayLink">map</span>
-        </div>
-      </div> */}
     </>
   );
 };

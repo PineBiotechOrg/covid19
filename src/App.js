@@ -112,8 +112,6 @@ function App() {
     setModalShow(true);
   };
 
-  let colors = ["gray", "red", "green", "gold", "violet", "orange", "cyan"];
-
   const handleCheckbox = name => {
     if (unChecked.indexOf(name) === -1) {
       setUnChecked(list => [...list, name]);
@@ -220,8 +218,8 @@ function App() {
               <div
                 style={{
                   display: "flex",
-                  "align-items": "center",
-                  "min-height": "60px"
+                  "alignItems": "center",
+                  "minHeight": "60px"
                 }}
               >
                 <div style={{ margin: "5px" }}>Bin size: </div>
@@ -240,17 +238,14 @@ function App() {
             <div className="col-sm-8"></div>
           </div>
         </div>
-        {!covidEntropy.length && !covidEntropyBins.length ? (
+
+        {!covidEntropy.length && !covidEntropyBins.length && !proteinInfo.length ? (
           <Spinner animation="border" role="status" className="spinner">
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
           <div ref={appRef}>
             <svg width="100%" height="900">
-              {/* <g transform={`translate(20,177)`}>
-            <InfoIcon />
-            <text transform={`translate(22,16)`}>Coverage</text>
-          </g> */}
 
               <g transform={`translate(18,10)`}>
                 <InfoIcon />
