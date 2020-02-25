@@ -27,14 +27,14 @@ const Header = () => {
 
         </Nav> */}
 
-        <Nav>
+        <Nav >
           <Nav.Item as="li">
             <Nav.Link href="#" className="main-nav">
               EBOLA
             </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="#" className="main-nav">
+            <Nav.Link href="#" className="main-nav" active>
               CORONA
             </Nav.Link>
           </Nav.Item>
