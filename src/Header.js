@@ -9,7 +9,7 @@ import alingment from "./images/alingment.png";
 import proteinCompare from "./images/proteinCompare.png";
 import map from "./images/map.png";
 
-const Header = () => {
+const Header = ({setShowTree}) => {
   return (
     <>
       <Navbar className="justify-content-between">
@@ -87,7 +87,7 @@ const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           <span className="grayTitle">VISUALISE:</span>
 
-          <a href="http://google.com" className="grayGroup">
+          <a href="#" className="grayGroup" onClick={() => setShowTree(true)}>
             <img src={phylogeny} alt="phylogeny" className="linkImg" />
             <span className="grayLink">phylogeny</span>
           </a>

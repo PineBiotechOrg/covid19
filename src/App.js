@@ -75,6 +75,8 @@ function App() {
 
   const [strainInfo, setStrainInfo] = useState({});
 
+  const [showTree, setShowTree] = useState(false);
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -330,7 +332,7 @@ function App() {
   return (
     <Container fluid="true">
       <div className="App">
-        <Header />
+        <Header setShowTree={setShowTree} />
 
         <div className="container">
           <div className="row">
@@ -622,9 +624,24 @@ Group: "SARS"
                 </ListGroup.Item>
                 <ListGroup.Item>Group: {strainInfo.Group}</ListGroup.Item>
               </ListGroup>
-
             </div>
           )}
+        </CustomModal>
+
+        <CustomModal
+          show={showTree}
+          onHide={() => setShowTree(false)}
+          setModalWidth={setModalWidth}
+          product="asdf"
+          modalTitle="Phylogenetic tree"
+        >
+          <iframe
+            title="ngl-view"
+            src={`./covid-19/phylotree/index.html`}
+            width="100%"
+            height="740"
+            frameBorder="0"
+          />
         </CustomModal>
       </div>
       <p className="text-center mt-4 mb-4">
