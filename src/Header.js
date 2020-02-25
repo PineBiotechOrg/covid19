@@ -95,7 +95,7 @@ const Header = ({setShowTree}) => {
             <img src={alingment} alt="alingment" className="linkImg" />
             <span className="grayLink">alignment</span>
           </a>
-          <a href="http://google.com" className="grayGroup">
+          <a href="#" className="grayGroup">
             <img
               src={proteinCompare}
               alt="proteinCompare"
@@ -103,7 +103,7 @@ const Header = ({setShowTree}) => {
             />
             <span className="grayLink">protein compare</span>
           </a>
-          <a href="http://google.com" className="grayGroup">
+          <a href="#" className="grayGroup">
             <img src={map} alt="map" className="linkImg" />
             <span className="grayLink">map</span>
           </a>
