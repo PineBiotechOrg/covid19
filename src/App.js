@@ -470,7 +470,6 @@ function App() {
                         .split("_")[1];
                     };
 
-                    console.log(getGroup(groupNames, d));
                     return (
                       <g
                         transform={`translate(0,${i * 22})`}
