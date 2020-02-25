@@ -28,6 +28,7 @@ function CheckBox({ name, groupsLegend, group, handleStrainClick }) {
 
       <rect width="10" height="22" fill={groupsLegend[group]} />
       <text
+        className="pointer"
         x="21"
         y="15"
         style={{ fontSize: 13 }}

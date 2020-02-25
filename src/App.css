@@ -97,3 +97,8 @@ span.capitalize {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 } */
+
+
+.pointer {
+  cursor: pointer;
+}

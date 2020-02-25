@@ -27,7 +27,7 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
         return x(d.end) - x(d.start);
       })
       .attr("y", 0)
-      .attr("class", d => "protein" + d.start)
+      .attr("class", d => "protein" + d.start + " pointer")
       .attr("fill", "grey")
       .style("opacity", d => {
         return +d["protein length"] ? 0.5 : 0.25;
@@ -49,10 +49,10 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
         handleBinClick(d);
       })
       .on("mouseover", d => {
-        if (+d["protein length"] === 0) {
-          d3.select(".protein" + d.start).attr("fill", "red");
-        } else {
+        if (d["note"] === "structural protein") {
           d3.select(".protein" + d.start).attr("fill", "steelblue");
+        } else {
+          d3.select(".protein" + d.start).attr("fill", "red");
         }
       })
       .on("mouseout", d => {
@@ -71,8 +71,6 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
       });
 
     ReactTooltip.rebuild();
-
-    
   }, [data, width, max]);
 
   return (

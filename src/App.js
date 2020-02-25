@@ -218,13 +218,10 @@ function App() {
   };
 
   const handleStrainClick = d => {
-    console.log(d);
 
     let selected = strainInfoData.filter(s => {
       return d === s.Accession;
     });
-
-    console.log("selected", selected);
 
     setModalStrainShow(true);
 
@@ -317,7 +314,6 @@ function App() {
     });
 
     d3.csv("./covid-19/sample_data.csv").then(data => {
-      console.log(data);
       setStrainInfoData(data);
     });
   }, []);
@@ -606,11 +602,14 @@ Group: "SARS"
           setModalWidth={setModalWidth}
           // values={[startingPoint, startingPoint - 1 + binSize]}
           product="asdf"
-          modalTitle="asdf"
+          modalTitle={!strainInfo ? "No data" : strainInfo.Accession}
         >
           <div className="row">
             {!strainInfo ? (
-              "no data yet"
+              <ListGroup variant="flush">
+                <ListGroup.Item>Data coming soon</ListGroup.Item>
+              </ListGroup>
+
             ) : (
               <ListGroup variant="flush">
                 <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
