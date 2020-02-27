@@ -71,7 +71,7 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
       });
 
     ReactTooltip.rebuild();
-  }, [data, width, max]);
+  }, [data, width, max, handleBinClick]);
 
   return (
     <>

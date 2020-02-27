@@ -7,7 +7,7 @@ const Bins = ({
   axis,
   width,
   tooltip,
-  handleBinClick,
+  // handleBinClick,
   //setBinsColorScale
   binsColorScale,
   aa,
@@ -60,7 +60,7 @@ const Bins = ({
         if (!tooltip) {
           return null;
         } else {
-          handleBinClick(d);
+          // handleBinClick(d);
         }
       })
       .attr("data-for", () => {

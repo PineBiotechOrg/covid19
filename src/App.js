@@ -1,38 +1,37 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
-import { tsvParseRows } from "d3-dsv";
+// import { tsvParseRows } from "d3-dsv";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Bins from "./Bins";
-import BinsModal from "./BinsModal";
+// import Bins from "./Bins";
+// import BinsModal from "./BinsModal";
 import BinsCovid from "./BinsCovid";
 import CheckBox from "./CheckBox";
-import Linechart from "./Linechart";
-import LinechartModal from "./LinechartModal";
+// import Linechart from "./Linechart";
+// import LinechartModal from "./LinechartModal";
 import ReactTooltip from "react-tooltip";
 import ProteinsCovid from "./ProteinsCovid";
 import Header from "./Header";
-import MapCustom from "./MapCustom"
-
+import MapCustom from "./MapCustom";
 
 import {
-  Button,
+  //Button,
   Spinner,
   Form,
-  Table,
+  //Table,
   ListGroup,
   Container,
   Row,
-  Col,
-  Nav
+  Col
+  //Nav
 } from "react-bootstrap";
 import CustomModal from "./CustomModal";
 import InfoIcon from "./InfoIcon";
 import useDimensions from "react-use-dimensions";
 import "./App.css";
 
-const formatNum = num => {
-  return num.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-};
+// const formatNum = num => {
+//   return num.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+// };
 
 function App() {
   // const [humanb_proteins, setHumanb_proteins] = useState([]);
@@ -43,9 +42,9 @@ function App() {
 
   const [unChecked, setUnChecked] = useState([]);
 
-  const [mtList, setMtlist] = useState([]);
+  // const [mtList, setMtlist] = useState([]);
 
-  const [binData, setBinData] = useState([]);
+  // const [binData, setBinData] = useState([]);
 
   const [modalShow, setModalShow] = useState(false);
 
@@ -53,13 +52,13 @@ function App() {
 
   const [binSize, setBinSize] = useState(500);
 
-  const [appRef, { x, y, width }] = useDimensions();
+  const [appRef, { width }] = useDimensions();
 
-  const [averageData, setAverageData] = useState([]);
+  // const [averageData, setAverageData] = useState([]);
 
   const [modalWidth, setModalWidth] = useState([]);
 
-  const [startingPoint, setStartingPoint] = useState(null);
+  // const [startingPoint, setStartingPoint] = useState(null);
 
   const [binsColorScale, setBinsColorScale] = useState(null);
 
@@ -86,35 +85,35 @@ function App() {
     MERS: "orange"
   };
 
-  let dataGroups = [
-    "MN996527.1_group_1",
-    "MN996530.1_group_1",
-    "MN996531.1_group_1",
-    "MT007544.1_group_1",
-    "MN908947.3_group_1",
-    "MT019529.1_group_1",
-    "MT039887.1_group_1",
-    "LC522975.1_group_1",
-    "LC522974.1_group_1",
-    "MN997409.1_group_1",
-    "MN985325.1_group_1",
-    "MN988713.1_group_1",
-    "MN994467.1_group_1",
-    "LC521925.1_group_1",
-    "LC522972.1_group_1",
-    "MN996528.1_group_1",
-    "MT027062.1_group_1",
-    "MT027063.1_group_1",
-    "MT039888.1_group_1",
-    "MT019532.1_group_1",
-    "MT039873.1_group_1",
-    "MN994468.1_group_1",
-    "MT019531.1_group_1",
-    "MT019530.1_group_1",
-    "MT027064.1_group_1",
-    "MN996529.1_group_1",
-    "MT020781.1_group_1"
-  ];
+  // let dataGroups = [
+  //   "MN996527.1_group_1",
+  //   "MN996530.1_group_1",
+  //   "MN996531.1_group_1",
+  //   "MT007544.1_group_1",
+  //   "MN908947.3_group_1",
+  //   "MT019529.1_group_1",
+  //   "MT039887.1_group_1",
+  //   "LC522975.1_group_1",
+  //   "LC522974.1_group_1",
+  //   "MN997409.1_group_1",
+  //   "MN985325.1_group_1",
+  //   "MN988713.1_group_1",
+  //   "MN994467.1_group_1",
+  //   "LC521925.1_group_1",
+  //   "LC522972.1_group_1",
+  //   "MN996528.1_group_1",
+  //   "MT027062.1_group_1",
+  //   "MT027063.1_group_1",
+  //   "MT039888.1_group_1",
+  //   "MT019532.1_group_1",
+  //   "MT039873.1_group_1",
+  //   "MN994468.1_group_1",
+  //   "MT019531.1_group_1",
+  //   "MT019530.1_group_1",
+  //   "MT027064.1_group_1",
+  //   "MN996529.1_group_1",
+  //   "MT020781.1_group_1"
+  // ];
   let dataGroups44 = [
     "NC_045512.2_group_1",
     "AY278554.2_group_1",
@@ -209,17 +208,17 @@ function App() {
     "NC_045512.2_COVID-19_Wuhan"
   ];
 
-  const handleBinClick = d => {
+  const handleBinClick = React.useCallback(d => {
     // setStartingPoint(d.position);
     // setModalShow(true);
-  };
+  }, []);
 
-  const handleProteinClick = d => {
+  const handleProteinClick = React.useCallback(d => {
     //setModalShow(true);
 
     setProteinInfo(d);
     setModalShow(true);
-  };
+  }, []);
 
   const handleStrainClick = d => {
     let selected = strainInfoData.filter(s => {
@@ -239,69 +238,76 @@ function App() {
     }
   };
 
-  const createBinsArrayCovid = (data, binSize = 100) => {
-    let maxAAEntropy = 0;
+  // const dispense = React.useCallback(candy => {
+  //   setCandies(allCandies => allCandies.filter(c => c !== candy))
+  // }, [])
 
-    let num = 0;
-    let bin = {
-      position: 1,
-      NTEntropySum: 0,
-      AAEntropySum: 0
-    };
+  const createBinsArrayCovid = React.useCallback(
+    (data, binSize = 500) => {
+      let maxAAEntropy = 0;
 
-    dataGroups44.forEach(d => {
-      bin[d + "_AA+"] = 0;
-    });
+      let num = 0;
+      let bin = {
+        position: 1,
+        NTEntropySum: 0,
+        AAEntropySum: 0
+      };
 
-    let bins = [];
+      dataGroups44.forEach(d => {
+        bin[d + "_AA+"] = 0;
+      });
 
-    data.forEach((d, i) => {
-      //AAEntropySum += +d["AA entropy"];
+      let bins = [];
 
-      // end bin
-      if (d.POS === data.length) {
-        bins.push(bin);
-      }
+      data.forEach((d, i) => {
+        //AAEntropySum += +d["AA entropy"];
 
-      // check if end of bin
-      if (d.POS > num + binSize) {
-        num += binSize;
-        bins.push(bin);
+        // end bin
+        if (d.POS === data.length) {
+          bins.push(bin);
+        }
 
-        // reset values for new bin
-        bin = {
-          ...bin,
-          position: num + 1,
-          NTEntropySum: 0,
-          AAEntropySum: 0
-        };
+        // check if end of bin
+        if (d.POS > num + binSize) {
+          num += binSize;
+          bins.push(bin);
+
+          // reset values for new bin
+          bin = {
+            ...bin,
+            position: num + 1,
+            NTEntropySum: 0,
+            AAEntropySum: 0
+          };
+
+          dataGroups44.forEach(a => {
+            if (bin[a + "_AA+"] > maxAAEntropy) {
+              maxAAEntropy = bin[a + "_AA+"];
+            }
+          });
+
+          dataGroups44.forEach(a => {
+            bin[a + "_AA+"] = 0;
+          });
+        }
+
+        // AA entropy
+
+        bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
+        bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
 
         dataGroups44.forEach(a => {
-          if (bin[a + "_AA+"] > maxAAEntropy) {
-            maxAAEntropy = bin[a + "_AA+"];
+          if (d[a + "_AA+"] !== d["reference AA"]) {
+            bin[a + "_AA+"] += 1;
           }
         });
-
-        dataGroups44.forEach(a => {
-          bin[a + "_AA+"] = 0;
-        });
-      }
-
-      // AA entropy
-
-      bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
-      bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
-
-      dataGroups44.forEach(a => {
-        if (d[a + "_AA+"] !== d["reference AA"]) {
-          bin[a + "_AA+"] += 1;
-        }
       });
-    });
 
-    setMaxAAEntropy(maxAAEntropy);
-    return bins;
-  };
+      setMaxAAEntropy(maxAAEntropy);
+      return bins;
+    },
+    [dataGroups44]
+  );
 
   useEffect(() => {
     // d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
@@ -416,7 +422,8 @@ function App() {
 
         {!covidEntropy.length &&
         !covidEntropyBins.length &&
-        !proteinInfo.length ? (
+        !proteinInfo.length &&
+        !maxAAEntropy ? (
           <Spinner animation="border" role="status" className="spinner">
             <span className="sr-only">Loading...</span>
           </Spinner>
@@ -619,7 +626,7 @@ function App() {
                 </ListGroup>
               </div>
               <div className="col-sm-6">
-                <MapCustom region={strainInfo.region}/>
+                <MapCustom region={strainInfo.region} />
               </div>
             </div>
           )}

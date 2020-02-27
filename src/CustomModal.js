@@ -9,7 +9,7 @@ export default function CustomModal({
   setModalWidth,
   modalTitle
 }) {
-  const [modalRef, { x, y, width }] = useDimensions();
+  const [modalRef, { width }] = useDimensions();
 
   useEffect(() => {
     //console.log("modal", width);
