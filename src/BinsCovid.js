@@ -16,6 +16,7 @@ const Bins = ({
   let layerRef = useRef();
 
   useEffect(() => {
+
     let data0 = data.map(d => {
       return {
         count: +d[aa + "_AA+"],

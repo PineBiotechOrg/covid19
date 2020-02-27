@@ -78,6 +78,8 @@ function App() {
 
   const [showTree, setShowTree] = useState(false);
 
+  const [showProteinsModal, setShowProteinsModal] = useState(false);
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -431,8 +433,10 @@ function App() {
           <div ref={appRef}>
             <svg width="100%" height="1120">
               <g transform={`translate(18,10)`}>
-                <InfoIcon />
-                <text transform={`translate(22,16)`}>Proteins</text>
+                <g className="pointer" onClick={() => setShowProteinsModal(true)}>
+                  <InfoIcon />
+                  <text transform={`translate(22,16)`}>Proteins</text>
+                </g>
                 <g transform={`translate(120,0)`}>
                   {width && (
                     <ProteinsCovid
@@ -632,6 +636,7 @@ function App() {
           )}
         </CustomModal>
 
+        {/* tree */}
         <CustomModal
           show={showTree}
           onHide={() => setShowTree(false)}
@@ -646,6 +651,24 @@ function App() {
             height="740"
             frameBorder="0"
           />
+        </CustomModal>
+
+        {/* proteins modal */}
+
+        <CustomModal
+          show={showProteinsModal}
+          onHide={() => setShowProteinsModal(false)}
+          setModalWidth={setModalWidth}
+          product="asdf"
+          modalTitle="Proteins"
+        >
+          <iframe
+            title="proteins-page"
+            width="100%"
+            height="740"
+            frameBorder="0"
+            src="https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2?report=graph"
+          ></iframe>
         </CustomModal>
       </div>
       <p className="text-center mt-4 mb-4">
