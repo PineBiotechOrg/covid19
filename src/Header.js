@@ -85,7 +85,7 @@ const Header = ({setShowTree}) => {
         </Navbar.Collapse>
 
         <Navbar.Collapse className="justify-content-end">
-          <span className="grayTitle">VISUALISE:</span>
+          <span className="grayTitle">VISUALIZE:</span>
 
           <a href="#" className="grayGroup" onClick={() => setShowTree(true)}>
             <img src={phylogeny} alt="phylogeny" className="linkImg" />
