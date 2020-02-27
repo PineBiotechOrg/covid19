@@ -630,7 +630,7 @@ function App() {
                 </ListGroup>
               </div>
               <div className="col-sm-6">
-                <MapCustom region={strainInfo.region} />
+                <MapCustom region={strainInfo.region} strainInfo={strainInfo} />
               </div>
             </div>
           )}
