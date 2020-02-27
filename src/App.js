@@ -608,9 +608,9 @@ function App() {
                   <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
                   <ListGroup.Item>Country: {strainInfo.country}</ListGroup.Item>
                   <ListGroup.Item>Host: {strainInfo["host"]}</ListGroup.Item>
-                  <ListGroup.Item>region: {strainInfo.region}</ListGroup.Item>
+                  <ListGroup.Item>Region: {strainInfo.region}</ListGroup.Item>
                   <ListGroup.Item>
-                    virus species: {strainInfo["virus species"]}
+                    Virus species: {strainInfo["virus species"]}
                   </ListGroup.Item>
                   <ListGroup.Item>
                     Accession: {strainInfo.Accession}
@@ -619,7 +619,7 @@ function App() {
                 </ListGroup>
               </div>
               <div className="col-sm-6">
-                <MapCustom/>
+                <MapCustom region={strainInfo.region}/>
               </div>
             </div>
           )}
