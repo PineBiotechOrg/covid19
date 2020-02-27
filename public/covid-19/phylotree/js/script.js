@@ -604,12 +604,9 @@ var tree = d3.layout
 //   .size([500, 500]);
 
 // var test_string =
-//   "(MN996531.1_group_1:0.005776794467,((((((((((MN996530.1_group_1:-1.214717239e-06,MT039873.1_group_1:1.214717239e-06):2.099319868e-06,MT019532.1_group_1:-2.099319868e-06):1.131242976e-06,MN996528.1_group_1:-1.131242976e-06):7.174480376e-07,MN908947.3_group_1:-7.174480376e-07):0.0001385071468,MT020781.1_group_1:-0.0001385071468):0.0001851546768,MN988713.1_group_1:-0.0001851546768):0.001855916652,(((((LC522973.1_group_1:0.003536935572,LC522974.1_group_1:0.002248342503):0.00028847593,LC522975.1_group_1:0.003802333428):0.001745112801,MN997409.1_group_1:0.004323864351):0.001419394419,MN985325.1_group_1:0.004401625344):0.001540692741,(MN996527.1_group_1:0.003170999974,MN994467.1_group_1:0.008411579953):0.00172487994):0.0005530381766):0.0002588518655,((MT027062.1_group_1:0,MT027063.1_group_1:0):0.005874864851,MT039888.1_group_1:0.007060760787):0.001021658217):0.0002154046736,MT027064.1_group_1:0.005716118945):3.858843909e-05,(((LC522972.1_group_1:0.008040685742,MT019530.1_group_1:0.01025396987):0.0001852828918,MT019529.1_group_1:0.006996912932):0.0001082431851,(MN994468.1_group_1:0.004272435227,MT007544.1_group_1:0.005748798882):0.001391939071):6.914421824e-05):2.41594214e-05,(((MT039887.1_group_1:0.004091389275,MT019531.1_group_1:0.004090092526):0.0001594783966,LC521925.1_group_1:0.005775462642):1.201638559e-05,MN996529.1_group_1:0.005777772649):1.064689567e-05);";
+//   "(KX538966.1_group_1:0.009555576501,(((((((((KY983583.1_group_1:0.01240011606,MF374984.1_group_1:0.01184117047):0.0007829493216,KY967359.1_group_1:0.01508396238):0.008519037304,(MN306053.1_group_1:0.01451061141,MN310478.1_group_1:0.01366445827):0.01386131028):0.003658211882,((((((KF530066.1_group_1:0.0201134113,KF530059.1_group_1:0.02194450026):0.005247626337,(KF530060.1_group_1:0.01390097706,KF530077.1_group_1:0.01469286853):0.009986934482):0.02515942109,(KF530072.1_group_1:0.009179986062,KF530080.1_group_1:0.008904349768):0.02789396866):0.008705998078,((KP198611.1_group_1:0.02650205748,KU131570.1_group_1:0.03276846494):0.003090231892,KF923906.1_group_1:0.02833354036):0.01385776292):0.009481184243,((((((AY278488.2_group_1:0.00964211911,AY278554.2_group_1:0.009594795222):0.0009905206582,AY304495.1_group_1:0.01067165696):0.002774707432,AY278487.3_group_1:0.01353105796):0.01465167974,AY613947.1_group_1:0.02875251098):0.1927003483,NC_045512.2_group_1:0.2276736686):0.1121731171,((((((((KJ156876.1_group_1:0.03039984616,KF600630.1_group_1:-0.001916925894):0.009287072102,KT156560.1_group_1:0.006276587447):0.001596502121,KP209312.1_group_1:0.007922094129):0.004323729048,KT156561.1_group_1:0.01265743903):0.004898502074,((KM015348.1_group_1:6.580536222e-06,KM210278.1_group_1:-6.580536222e-06):0.002845521515,KM210277.1_group_1:0.002925144631):0.01322798922):0.002299878178,((KC667074.1_group_1:0.01437482285,KF192507.1_group_1:0.01444134751):0.001635037556,KF600620.1_group_1:0.0152805681):0.003121717834):0.002202882456,(KF186564.1_group_1:0.002837148275,KF600636.1_group_1:-0.002837148275):0.01667105609):0.004529193427,KR011266.1_group_1:0.02575534092):0.3406671114):0.3005333791):0.02869313494,MH685718.1_group_1:0.02870069498):0.005352860279):0.00523719674,KY967356.1_group_1:0.02071673594):0.003412957175,KX538979.1_group_1:0.01566875616):0.0005357225343,KX538978.1_group_1:0.01090360706):0.00152378501,KX538970.1_group_1:0.0108955083):0.0007491304032,(KF923904.1_group_1:0.006741245849,KX538964.1_group_1:0.006017966997):0.002551689953):0.0004047829087,(KX538972.1_group_1:0.007380611897,KX538976.1_group_1:0.01066363996):0.0002682440148)";
 
-
-var test_string = "(KX538966.1_group_1:0.009555576501,(((((((((KY983583.1_group_1:0.01240011606,MF374984.1_group_1:0.01184117047):0.0007829493216,KY967359.1_group_1:0.01508396238):0.008519037304,(MN306053.1_group_1:0.01451061141,MN310478.1_group_1:0.01366445827):0.01386131028):0.003658211882,((((((KF530066.1_group_1:0.0201134113,KF530059.1_group_1:0.02194450026):0.005247626337,(KF530060.1_group_1:0.01390097706,KF530077.1_group_1:0.01469286853):0.009986934482):0.02515942109,(KF530072.1_group_1:0.009179986062,KF530080.1_group_1:0.008904349768):0.02789396866):0.008705998078,((KP198611.1_group_1:0.02650205748,KU131570.1_group_1:0.03276846494):0.003090231892,KF923906.1_group_1:0.02833354036):0.01385776292):0.009481184243,((((((AY278488.2_group_1:0.00964211911,AY278554.2_group_1:0.009594795222):0.0009905206582,AY304495.1_group_1:0.01067165696):0.002774707432,AY278487.3_group_1:0.01353105796):0.01465167974,AY613947.1_group_1:0.02875251098):0.1927003483,NC_045512.2_group_1:0.2276736686):0.1121731171,((((((((KJ156876.1_group_1:0.03039984616,KF600630.1_group_1:-0.001916925894):0.009287072102,KT156560.1_group_1:0.006276587447):0.001596502121,KP209312.1_group_1:0.007922094129):0.004323729048,KT156561.1_group_1:0.01265743903):0.004898502074,((KM015348.1_group_1:6.580536222e-06,KM210278.1_group_1:-6.580536222e-06):0.002845521515,KM210277.1_group_1:0.002925144631):0.01322798922):0.002299878178,((KC667074.1_group_1:0.01437482285,KF192507.1_group_1:0.01444134751):0.001635037556,KF600620.1_group_1:0.0152805681):0.003121717834):0.002202882456,(KF186564.1_group_1:0.002837148275,KF600636.1_group_1:-0.002837148275):0.01667105609):0.004529193427,KR011266.1_group_1:0.02575534092):0.3406671114):0.3005333791):0.02869313494,MH685718.1_group_1:0.02870069498):0.005352860279):0.00523719674,KY967356.1_group_1:0.02071673594):0.003412957175,KX538979.1_group_1:0.01566875616):0.0005357225343,KX538978.1_group_1:0.01090360706):0.00152378501,KX538970.1_group_1:0.0108955083):0.0007491304032,(KF923904.1_group_1:0.006741245849,KX538964.1_group_1:0.006017966997):0.002551689953):0.0004047829087,(KX538972.1_group_1:0.007380611897,KX538976.1_group_1:0.01066363996):0.0002682440148)";
-;
-  var container_id = "#tree_container";
+var container_id = "#tree_container";
 //var test_string = "(a : 0.1, (b : 0.11, (c : 0.12, d : 0.13) : 0.14) : 0.15)";
 
 //window.setInterval (function () {});
@@ -715,251 +712,254 @@ function selection_handler_delete(e) {
 }
 
 $(document).ready(function() {
-  default_tree_settings();
-  tree(test_string)
-    .svg(treeSvg)
-    // .spacing_x(20)
-    // .spacing_y(40)
-    //.options({"show-menu": false})
-    .layout();
+  d3.text("./data/Phylogenetic_Tree1.tree", function(error, treData) {
 
-  // d3.json("./data/substitution-counts.json", (err, data) => {
-  //   // D3 bar chart
-  //   var padding = { top: 20, bottom: 20, right: 20, left: 75 },
-  //     width = 400 - padding.left - padding.right,
-  //     height = 610 - padding.top - padding.bottom;
+    default_tree_settings();
+    tree(treData)
+      .svg(treeSvg)
+      // .spacing_x(20)
+      // .spacing_y(40)
+      //.options({"show-menu": false})
+      .layout();
 
-  //   var svg = d3
-  //     .select("#viz")
-  //     .attr("width", width + padding.left + padding.right)
-  //     .attr("height", height + padding.top + padding.bottom)
-  //     .append("g")
-  //     .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+    // d3.json("./data/substitution-counts.json", (err, data) => {
+    //   // D3 bar chart
+    //   var padding = { top: 20, bottom: 20, right: 20, left: 75 },
+    //     width = 400 - padding.left - padding.right,
+    //     height = 610 - padding.top - padding.bottom;
 
-  //   var x_scale = d3.scale
-  //     .ordinal()
-  //     //.domain(["Mutated", "NotMutated"])
-  //     .domain(["Nonsynonymous", "Synonymous"])
-  //     .rangeRoundBands([0, width], 0.3);
+    //   var svg = d3
+    //     .select("#viz")
+    //     .attr("width", width + padding.left + padding.right)
+    //     .attr("height", height + padding.top + padding.bottom)
+    //     .append("g")
+    //     .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
 
-  //   var synonymous_counts = _.pluck(_.values(data), "synonymous_counts").reduce(
-  //       (a, b) => a + b,
-  //       0
-  //     ),
-  //     nonsynonymous_counts = _.pluck(
-  //       _.values(data),
-  //       "nonsynonymous_counts"
-  //     ).reduce((a, b) => a + b, 0);
+    //   var x_scale = d3.scale
+    //     .ordinal()
+    //     //.domain(["Mutated", "NotMutated"])
+    //     .domain(["Nonsynonymous", "Synonymous"])
+    //     .rangeRoundBands([0, width], 0.3);
 
-  //   var y_scale = d3.scale
-  //     .linear()
-  //     .domain([0, Math.max(synonymous_counts, nonsynonymous_counts)])
-  //     .range([height, 0]);
+    //   var synonymous_counts = _.pluck(_.values(data), "synonymous_counts").reduce(
+    //       (a, b) => a + b,
+    //       0
+    //     ),
+    //     nonsynonymous_counts = _.pluck(
+    //       _.values(data),
+    //       "nonsynonymous_counts"
+    //     ).reduce((a, b) => a + b, 0);
 
-  //   var x_axis = d3.svg
-  //     .axis()
-  //     .orient("bottom")
-  //     .scale(x_scale);
+    //   var y_scale = d3.scale
+    //     .linear()
+    //     .domain([0, Math.max(synonymous_counts, nonsynonymous_counts)])
+    //     .range([height, 0]);
 
-  //   var y_axis = d3.svg
-  //     .axis()
-  //     .orient("left")
-  //     .scale(y_scale);
+    //   var x_axis = d3.svg
+    //     .axis()
+    //     .orient("bottom")
+    //     .scale(x_scale);
 
-  //   svg
-  //     .append("g")
-  //     .attr("class", "axis")
-  //     .attr("transform", "translate(0," + height + ")")
-  //     .call(x_axis);
+    //   var y_axis = d3.svg
+    //     .axis()
+    //     .orient("left")
+    //     .scale(y_scale);
 
-  //   svg
-  //     .append("g")
-  //     .attr("class", "axis")
-  //     .call(y_axis);
+    //   svg
+    //     .append("g")
+    //     .attr("class", "axis")
+    //     .attr("transform", "translate(0," + height + ")")
+    //     .call(x_axis);
 
-  //   var y_label_x = -35,
-  //     y_label_y = height / 2;
+    //   svg
+    //     .append("g")
+    //     .attr("class", "axis")
+    //     .call(y_axis);
 
-  //   svg
-  //     .append("text")
-  //     .attr("x", y_label_x)
-  //     .attr("y", y_label_y)
-  //     .attr("transform", "rotate(-90 " + y_label_x + "," + y_label_y + ")")
-  //     .attr("text-anchor", "middle")
-  //     .text("Inferred substitutions");
+    //   var y_label_x = -35,
+    //     y_label_y = height / 2;
 
-  //   svg
-  //     .selectAll(".axis-line")
-  //     .data(d3.range(10, 181, 10))
-  //     .enter()
-  //     .append("line")
-  //     .attr("x1", 1)
-  //     .attr("x2", width)
-  //     .attr("y1", y_scale)
-  //     .attr("y2", y_scale)
-  //     .attr("stroke", (d, i) => (i % 2 == 1 ? "lightgrey" : "WhiteSmoke"));
+    //   svg
+    //     .append("text")
+    //     .attr("x", y_label_x)
+    //     .attr("y", y_label_y)
+    //     .attr("transform", "rotate(-90 " + y_label_x + "," + y_label_y + ")")
+    //     .attr("text-anchor", "middle")
+    //     .text("Inferred substitutions");
 
-  //   svg
-  //     .selectAll(".bar")
-  //     .data([
-  //       { category: "Nonsynonymous", value: nonsynonymous_counts },
-  //       { category: "Synonymous", value: synonymous_counts }
-  //     ])
-  //     .enter()
-  //     .append("rect")
-  //     .attr("class", "bar")
-  //     .attr("x", d => x_scale(d.category))
-  //     .attr("y", d => y_scale(d.value))
-  //     .attr("width", x_scale.rangeBand())
-  //     .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0))
-  //     .attr("fill", d =>
-  //       d.category == "Nonsynonymous" ? "pink" : "lightblue"
-  //     );
+    //   svg
+    //     .selectAll(".axis-line")
+    //     .data(d3.range(10, 181, 10))
+    //     .enter()
+    //     .append("line")
+    //     .attr("x1", 1)
+    //     .attr("x2", width)
+    //     .attr("y1", y_scale)
+    //     .attr("y2", y_scale)
+    //     .attr("stroke", (d, i) => (i % 2 == 1 ? "lightgrey" : "WhiteSmoke"));
 
-  //   svg
-  //     .selectAll(".update-bar")
-  //     .data([
-  //       { category: "Nonsynonymous", value: 0 },
-  //       { category: "Synonymous", value: 0 }
-  //     ])
-  //     .enter()
-  //     .append("rect")
-  //     .attr("class", "update-bar")
-  //     .attr("x", d => x_scale(d.category))
-  //     .attr("y", d => y_scale(d.value))
-  //     .attr("width", x_scale.rangeBand())
-  //     .attr("height", d => height - y_scale(d.value))
-  //     .attr("fill", d => (d.category == "Nonsynonymous" ? "red" : "blue"));
+    //   svg
+    //     .selectAll(".bar")
+    //     .data([
+    //       { category: "Nonsynonymous", value: nonsynonymous_counts },
+    //       { category: "Synonymous", value: synonymous_counts }
+    //     ])
+    //     .enter()
+    //     .append("rect")
+    //     .attr("class", "bar")
+    //     .attr("x", d => x_scale(d.category))
+    //     .attr("y", d => y_scale(d.value))
+    //     .attr("width", x_scale.rangeBand())
+    //     .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0))
+    //     .attr("fill", d =>
+    //       d.category == "Nonsynonymous" ? "pink" : "lightblue"
+    //     );
 
-  //   // communication with d3
+    //   svg
+    //     .selectAll(".update-bar")
+    //     .data([
+    //       { category: "Nonsynonymous", value: 0 },
+    //       { category: "Synonymous", value: 0 }
+    //     ])
+    //     .enter()
+    //     .append("rect")
+    //     .attr("class", "update-bar")
+    //     .attr("x", d => x_scale(d.category))
+    //     .attr("y", d => y_scale(d.value))
+    //     .attr("width", x_scale.rangeBand())
+    //     .attr("height", d => height - y_scale(d.value))
+    //     .attr("fill", d => (d.category == "Nonsynonymous" ? "red" : "blue"));
 
-  //   function my_menu_title(node) {
-  //     console.log(node.name);
+    //   // communication with d3
 
-  //     //data
+    //   function my_menu_title(node) {
+    //     console.log(node.name);
 
-  //     if (!data[node.name]) {
-  //       return "Show data";
-  //     }
+    //     //data
 
-  //     console.log(data[node.name]);
-  //     //{synonymous_counts: 5, nonsynonymous_counts: 12}
+    //     if (!data[node.name]) {
+    //       return "Show data";
+    //     }
 
-  //     svg
-  //       .selectAll(".update-bar")
-  //       .data([
-  //         {
-  //           category: "Nonsynonymous",
-  //           value: data[node.name].nonsynonymous_counts
-  //         },
-  //         { category: "Synonymous", value: data[node.name].synonymous_counts }
-  //       ])
-  //       .transition()
-  //       .duration(500)
-  //       .attr("y", d => y_scale(d.value))
-  //       .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0));
+    //     console.log(data[node.name]);
+    //     //{synonymous_counts: 5, nonsynonymous_counts: 12}
 
-  //     // label
-  //     return "Show data";
-  //   }
+    //     svg
+    //       .selectAll(".update-bar")
+    //       .data([
+    //         {
+    //           category: "Nonsynonymous",
+    //           value: data[node.name].nonsynonymous_counts
+    //         },
+    //         { category: "Synonymous", value: data[node.name].synonymous_counts }
+    //       ])
+    //       .transition()
+    //       .duration(500)
+    //       .attr("y", d => y_scale(d.value))
+    //       .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0));
 
-  //   function runTreeMenuUpdate() {
-  //     tree
-  //       .get_nodes()
-  //       .filter(d3.layout.phylotree.is_leafnode)
-  //       .forEach(function(tree_node) {
-  //         d3.layout.phylotree.add_custom_menu(
-  //           tree_node, // add to this node
-  //           my_menu_title, // display this text for the menu
-  //           function() {
-  //             // my_node_style_text(tree_node);
-  //             console.log("show data is selected");
-  //           },
-  //           // on-click callback include a reference to tree_node via transitive closure
-  //           d3.layout.phylotree.is_leafnode // condition on when to display the menu
-  //           // a function that takes node as an argument
-  //         );
-  //       });
-  //   }
+    //     // label
+    //     return "Show data";
+    //   }
 
-  //   runTreeMenuUpdate();
+    //   function runTreeMenuUpdate() {
+    //     tree
+    //       .get_nodes()
+    //       .filter(d3.layout.phylotree.is_leafnode)
+    //       .forEach(function(tree_node) {
+    //         d3.layout.phylotree.add_custom_menu(
+    //           tree_node, // add to this node
+    //           my_menu_title, // display this text for the menu
+    //           function() {
+    //             // my_node_style_text(tree_node);
+    //             console.log("show data is selected");
+    //           },
+    //           // on-click callback include a reference to tree_node via transitive closure
+    //           d3.layout.phylotree.is_leafnode // condition on when to display the menu
+    //           // a function that takes node as an argument
+    //         );
+    //       });
+    //   }
 
-  //   d3.select("#reset-button").on("click", function() {
-  //     svg
-  //       .selectAll(".update-bar")
-  //       .data([
-  //         {
-  //           category: "Nonsynonymous",
-  //           value: 0
-  //         },
-  //         { category: "Synonymous", value: 0 }
-  //       ])
-  //       .transition()
-  //       .duration(500)
-  //       .attr("y", d => y_scale(d.value))
-  //       .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0));
+    //   runTreeMenuUpdate();
 
-  //     default_tree_settings();
-  //     tree(test_string)
-  //       .svg(treeSvg)
-  //       .spacing_x(20)
-  //       .spacing_y(40)
-  //       .layout();
+    //   d3.select("#reset-button").on("click", function() {
+    //     svg
+    //       .selectAll(".update-bar")
+    //       .data([
+    //         {
+    //           category: "Nonsynonymous",
+    //           value: 0
+    //         },
+    //         { category: "Synonymous", value: 0 }
+    //       ])
+    //       .transition()
+    //       .duration(500)
+    //       .attr("y", d => y_scale(d.value))
+    //       .attr("height", d => Math.max(height - y_scale(d.value) - 1, 0));
 
-  //     runTreeMenuUpdate();
+    //     default_tree_settings();
+    //     tree(test_string)
+    //       .svg(treeSvg)
+    //       .spacing_x(20)
+    //       .spacing_y(40)
+    //       .layout();
 
-  //     //update_selection_names();
-  //   });
-  // });
+    //     runTreeMenuUpdate();
 
-  //   $("#selection_new")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_new,
-  //       false
-  //     );
-  //   $("#selection_rename")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_rename,
-  //       false
-  //     );
-  //   $("#selection_delete")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_delete,
-  //       false
-  //     );
-  //   $("#selection_delete")
-  //     .get(0)
-  //     .dispatchEvent(
-  //       new CustomEvent(selection_menu_element_action, {
-  //         detail: ["cancel", null]
-  //       })
-  //     );
-  //   $("#selection_name_box")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_name_box,
-  //       false
-  //     );
-  //   $("#save_selection_name")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_save_selection_name,
-  //       false
-  //     );
-  //   $("#selection_name_dropdown")
-  //     .get(0)
-  //     .addEventListener(
-  //       selection_menu_element_action,
-  //       selection_handler_name_dropdown,
-  //       false
-  //     );
-  update_selection_names();
+    //     //update_selection_names();
+    //   });
+    // });
+
+    //   $("#selection_new")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_new,
+    //       false
+    //     );
+    //   $("#selection_rename")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_rename,
+    //       false
+    //     );
+    //   $("#selection_delete")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_delete,
+    //       false
+    //     );
+    //   $("#selection_delete")
+    //     .get(0)
+    //     .dispatchEvent(
+    //       new CustomEvent(selection_menu_element_action, {
+    //         detail: ["cancel", null]
+    //       })
+    //     );
+    //   $("#selection_name_box")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_name_box,
+    //       false
+    //     );
+    //   $("#save_selection_name")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_save_selection_name,
+    //       false
+    //     );
+    //   $("#selection_name_dropdown")
+    //     .get(0)
+    //     .addEventListener(
+    //       selection_menu_element_action,
+    //       selection_handler_name_dropdown,
+    //       false
+    //     );
+    update_selection_names();
+  });
 });
