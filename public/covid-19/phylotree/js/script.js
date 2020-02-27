@@ -717,8 +717,8 @@ $(document).ready(function() {
     default_tree_settings();
     tree(treData)
       .svg(treeSvg)
-      // .spacing_x(20)
-      // .spacing_y(40)
+      .spacing_x(25)
+      .spacing_y(50)
       //.options({"show-menu": false})
       .layout();
 
