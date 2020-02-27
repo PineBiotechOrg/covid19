@@ -11,6 +11,8 @@ import LinechartModal from "./LinechartModal";
 import ReactTooltip from "react-tooltip";
 import ProteinsCovid from "./ProteinsCovid";
 import Header from "./Header";
+import MapCustom from "./MapCustom"
+
 
 import {
   Button,
@@ -587,16 +589,6 @@ function App() {
           </CustomModal>
         )}
 
-        {/* 
-Strain: "CUHK_W1"
-country: "Hong Kong"
-host: "human"
-region: "China"
-virus species: "Severe_acute_respiratory_syndrome_related_coronavirus"
-Accession: "AY278554"
-Group: "SARS" 
-*/}
-
         <CustomModal
           show={modalStrainShow}
           onHide={() => setModalStrainShow(false)}
@@ -611,19 +603,24 @@ Group: "SARS"
             </ListGroup>
           ) : (
             <div className="row">
-              <ListGroup variant="flush">
-                <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
-                <ListGroup.Item>Country: {strainInfo.country}</ListGroup.Item>
-                <ListGroup.Item>Host: {strainInfo["host"]}</ListGroup.Item>
-                <ListGroup.Item>region: {strainInfo.region}</ListGroup.Item>
-                <ListGroup.Item>
-                  virus species: {strainInfo["virus species"]}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Accession: {strainInfo.Accession}
-                </ListGroup.Item>
-                <ListGroup.Item>Group: {strainInfo.Group}</ListGroup.Item>
-              </ListGroup>
+              <div className="col-sm-6">
+                <ListGroup variant="flush">
+                  <ListGroup.Item>Strain: {strainInfo.Strain}</ListGroup.Item>
+                  <ListGroup.Item>Country: {strainInfo.country}</ListGroup.Item>
+                  <ListGroup.Item>Host: {strainInfo["host"]}</ListGroup.Item>
+                  <ListGroup.Item>region: {strainInfo.region}</ListGroup.Item>
+                  <ListGroup.Item>
+                    virus species: {strainInfo["virus species"]}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Accession: {strainInfo.Accession}
+                  </ListGroup.Item>
+                  <ListGroup.Item>Group: {strainInfo.Group}</ListGroup.Item>
+                </ListGroup>
+              </div>
+              <div className="col-sm-6">
+                <MapCustom/>
+              </div>
             </div>
           )}
         </CustomModal>

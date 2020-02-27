@@ -102,3 +102,8 @@ span.capitalize {
 .pointer {
   cursor: pointer;
 }
+
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+}

@@ -1,51 +1,33 @@
-import React, { useEffect, useRef } from "react";
-import { Map, TileLayer } from "react-leaflet";
-import useDimensions from "react-use-dimensions";
+import React, { useEffect, useState } from "react";
+import { Map, TileLayer, Marker } from "react-leaflet";
 
+const MapCustom = () => {
+  const [zoom, setZoom] = useState(2.7);
+  const [el, setEl] = useState("");
 
-export default function MapCustom() {
-  var defaultCenter = [25.505, -0.09];
-  var [defaultZoom, setDefaultZoom] = React.useState([2.7]);
-
-  const mapEl = useRef(null);
-
-  let [center, setCenter] = React.useState(defaultCenter);
-  var [zoom, setZoom] = React.useState(defaultZoom);
-//   const [width, height] = useWindowSize();
-
-  const [appRef, { x, y, width }] = useDimensions();
-
-
+  const getEl = React.useCallback(() => {
+    return (
+      <Map center={[51.505, -0.091]} zoom={zoom}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+        />
+        <Marker position={[51.505, -0.091]} />
+      </Map>
+    );
+  }, []);
 
   useEffect(() => {
+    setZoom(10);
+  }, []);
 
-    let height = width;
+  useEffect(() => {
+    setEl(getEl())
+    }, [getEl])
 
-    let calculate = function(width, height) {
-      return width / 711 < height / 300 ? width / 711 : height / 300;
-    };
-    setDefaultZoom(calculate(width, height) || 2.7);
-    setZoom(calculate(width, height) || 2.7);
-  }, [width]);
+  return <div>{el}</div>;
+};
 
+export default MapCustom;
 
-
-
-  return (
-    <div className="leaflet-container" ref={appRef}>
-      <Map
-        center={defaultCenter}
-        length={4}
-        // onClick={this.handleClick}
-        // onLocationfound={this.handleLocationFound}
-        // ref={this.mapRef}
-        zoom={13}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-      </Map>
-    </div>
-  );
-}
+// 
