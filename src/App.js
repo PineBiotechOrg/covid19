@@ -600,12 +600,13 @@ function App() {
           </CustomModal>
         )}
 
+
+          {/* strain modal */}
         <CustomModal
           show={modalStrainShow}
           onHide={() => setModalStrainShow(false)}
           setModalWidth={setModalWidth}
           // values={[startingPoint, startingPoint - 1 + binSize]}
-          product="asdf"
           modalTitle={!strainInfo ? "No data" : strainInfo.Accession}
         >
           {!strainInfo ? (
@@ -630,7 +631,7 @@ function App() {
                 </ListGroup>
               </div>
               <div className="col-sm-6">
-                <MapCustom region={strainInfo.region} strainInfo={strainInfo} />
+                <MapCustom region={strainInfo.region} strainInfo={strainInfo} groupsLegend={groupsLegend} />
               </div>
             </div>
           )}
@@ -641,7 +642,6 @@ function App() {
           show={showTree}
           onHide={() => setShowTree(false)}
           setModalWidth={setModalWidth}
-          product="asdf"
           modalTitle="Phylogenetic tree"
         >
           <iframe

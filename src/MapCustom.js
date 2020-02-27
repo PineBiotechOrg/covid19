@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import useDimensions from "react-use-dimensions";
 
-const MapCustom = ({ region, strainInfo }) => {
+const MapCustom = ({ region, strainInfo, groupsLegend }) => {
   const [zoom, setZoom] = useState(1.3);
   const [el, setEl] = useState("");
 
@@ -19,6 +19,8 @@ const MapCustom = ({ region, strainInfo }) => {
   const getEl = React.useCallback(
     filtered => {
       let markerPosition;
+      let color = "red";
+      let radius = 5;
 
       if (!filtered) {
         if (region === "China") {
@@ -38,8 +40,23 @@ const MapCustom = ({ region, strainInfo }) => {
         }
       } else {
         markerPosition = [filtered.Lat, filtered.Long_];
+
+        if (filtered.Confirmed > 50000) {
+          radius = 20;
+        } else if (filtered.Confirmed > 1000) {
+          radius = 15;
+        } else if (filtered.Confirmed > 50) {
+          radius = 10;
+        }  else {
+          radius = 5;
+        }
       }
 
+      if (strainInfo.Group === "nCOVID-19") {
+        color = "red";
+      } else {
+        color = groupsLegend[strainInfo.Group.split("_")[0]];
+      }
 
       return (
         <Map center={[25.505, -0.09]} zoom={zoom}>
@@ -50,10 +67,10 @@ const MapCustom = ({ region, strainInfo }) => {
 
           <CircleMarker
             center={markerPosition}
-            color="red"
-            radius={20}
+            color={color}
+            radius={radius}
             stroke={false}
-            fillOpacity={0.8}
+            fillOpacity={0.5}
           >
             <Popup>
               {filtered ? (
@@ -70,7 +87,7 @@ const MapCustom = ({ region, strainInfo }) => {
         </Map>
       );
     },
-    [zoom, region]
+    [strainInfo.Group, zoom, region, groupsLegend]
   );
 
   useEffect(() => {
