@@ -80,6 +80,8 @@ function App() {
 
   const [showProteinsModal, setShowProteinsModal] = useState(false);
 
+  const [showBigMap, setShowBigMap] = useState(false);
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -433,7 +435,10 @@ function App() {
           <div ref={appRef}>
             <svg width="100%" height="1120">
               <g transform={`translate(18,10)`}>
-                <g className="pointer" onClick={() => setShowProteinsModal(true)}>
+                <g
+                  className="pointer"
+                  onClick={() => setShowProteinsModal(true)}
+                >
                   <InfoIcon />
                   <text transform={`translate(22,16)`}>Proteins</text>
                 </g>
@@ -600,8 +605,7 @@ function App() {
           </CustomModal>
         )}
 
-
-          {/* strain modal */}
+        {/* strain modal */}
         <CustomModal
           show={modalStrainShow}
           onHide={() => setModalStrainShow(false)}
@@ -631,7 +635,11 @@ function App() {
                 </ListGroup>
               </div>
               <div className="col-sm-6">
-                <MapCustom region={strainInfo.region} strainInfo={strainInfo} groupsLegend={groupsLegend} />
+                <MapCustom
+                  region={strainInfo.region}
+                  strainInfo={strainInfo}
+                  groupsLegend={groupsLegend}
+                />
               </div>
             </div>
           )}
@@ -670,6 +678,20 @@ function App() {
             src="https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2?report=graph"
           ></iframe>
         </CustomModal>
+        {/* end proteins modal */}
+
+        {/* big map modal */}
+
+        <CustomModal
+          show={showProteinsModal}
+          onHide={() => setShowBigMap(false)}
+          setModalWidth={setModalWidth}
+          modalTitle="Big Map"
+        >
+          Big map
+        </CustomModal>
+
+        {/* end big map modal */}
       </div>
       <p className="text-center mt-4 mb-4">
         © Copyright 2020 | Pine Biotech, Inc.
