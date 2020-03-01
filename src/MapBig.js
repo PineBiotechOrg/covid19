@@ -21,8 +21,6 @@ const MapCustom = () => {
     let color = "red";
     let radius = 5;
 
-    console.log(data);
-
     const calculateRadius = Confirmed => {
       let radius;
 
@@ -60,6 +58,7 @@ const MapCustom = () => {
           data.map(d => {
             return (
               <CircleMarker
+                key={d.attributes.OBJECTID}
                 center={[d.attributes.Lat, d.attributes.Long_]}
                 color={"red"}
                 radius={calculateRadius(d.attributes.Confirmed)}
