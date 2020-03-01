@@ -7,7 +7,7 @@ const Bins = ({
   axis,
   width,
   tooltip,
-  // handleBinClick,
+  handleBinClick,
   //setBinsColorScale
   binsColorScale,
   aa,
@@ -52,6 +52,7 @@ const Bins = ({
       .join("rect")
       .attr("x", d => x(d.position))
       .attr("width", d => x.bandwidth())
+      .attr("class", "pointer")
       .attr("y", 0)
       .attr("height", 16)
       .attr("fill", d => {
@@ -61,7 +62,9 @@ const Bins = ({
         if (!tooltip) {
           return null;
         } else {
-          // handleBinClick(d);
+          handleBinClick(d, aa);
+
+          //console.log(d,data,"bin click")
         }
       })
       .attr("data-for", () => {

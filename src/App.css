@@ -112,3 +112,23 @@ span.capitalize {
   height: 600px;
   width: 100%;
 }
+
+/* horizontal scroll*/
+
+body {
+	overflow-x: hidden;
+}
+.row {
+	max-width: 100rem;
+}
+.svgrow {
+    max-width: 100vw;
+    overflow-x: auto;
+}
+.svgrow svg {
+    min-width: 150rem;
+    background-color: wheat;
+}
+svg {
+    margin-bottom: 0.5em;
+}

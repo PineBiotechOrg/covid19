@@ -83,6 +83,8 @@ function App() {
 
   const [showBigMap, setShowBigMap] = useState(false);
 
+  const [showBinsModal, setShowBinsModal] = useState(false);
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -213,9 +215,11 @@ function App() {
     "NC_045512.2_COVID-19_Wuhan"
   ];
 
-  const handleBinClick = React.useCallback(d => {
+  const handleBinClick = React.useCallback((d, aa) => {
     // setStartingPoint(d.position);
-    // setModalShow(true);
+    setShowBinsModal(true);
+
+    console.log(d, aa);
   }, []);
 
   const handleProteinClick = React.useCallback(d => {
@@ -693,6 +697,38 @@ function App() {
         </CustomModal>
 
         {/* end big map modal */}
+
+        {/* bins modal */}
+
+        <CustomModal
+          show={showBinsModal}
+          onHide={() => setShowBinsModal(false)}
+          setModalWidth={setModalWidth}
+          modalTitle="Expanded View"
+        >
+          <svg width="100%" height="50px">
+            <g transform="translate(5, 20)">
+              <BinsCovid
+                data={covidEntropyBins}
+                width={width}
+                // name={mtList[0].name}
+                axis={true}
+                tooltip={false}
+                setBinsColorScale={setBinsColorScale}
+                aa="NC_045512.2_group_1"
+                maxAAEntropy={maxAAEntropy}
+              />
+            </g>
+          </svg>
+
+          <div class="row svgrow">
+            <svg width="2500px" height="50px"></svg>
+          </div>
+
+          <div width="100%" height="500px"></div>
+        </CustomModal>
+
+        {/* end bins modal */}
       </div>
       <p className="text-center mt-4 mb-4">
         © Copyright 2020 | Pine Biotech, Inc.
