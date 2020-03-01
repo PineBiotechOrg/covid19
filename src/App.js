@@ -12,6 +12,7 @@ import ReactTooltip from "react-tooltip";
 import ProteinsCovid from "./ProteinsCovid";
 import Header from "./Header";
 import MapCustom from "./MapCustom";
+import MapBig from "./MapBig";
 
 import {
   //Button,
@@ -344,7 +345,7 @@ function App() {
   return (
     <Container fluid="true">
       <div className="App">
-        <Header setShowTree={setShowTree} />
+        <Header setShowTree={setShowTree} setShowBigMap={setShowBigMap} />
 
         <div className="container">
           <div className="row">
@@ -683,12 +684,12 @@ function App() {
         {/* big map modal */}
 
         <CustomModal
-          show={showProteinsModal}
+          show={showBigMap}
           onHide={() => setShowBigMap(false)}
           setModalWidth={setModalWidth}
-          modalTitle="Big Map"
+          modalTitle="Map"
         >
-          Big map
+          <MapBig />
         </CustomModal>
 
         {/* end big map modal */}

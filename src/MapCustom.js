@@ -11,7 +11,7 @@ import {
 import useDimensions from "react-use-dimensions";
 
 const MapCustom = ({ region, strainInfo, groupsLegend }) => {
-  const [zoom, setZoom] = useState(1.3);
+  const [zoom, setZoom] = useState(2);
   const [el, setEl] = useState("");
 
   const [mapEl, { width }] = useDimensions();
@@ -59,7 +59,7 @@ const MapCustom = ({ region, strainInfo, groupsLegend }) => {
       }
 
       return (
-        <Map center={[25.505, -0.09]} zoom={zoom}>
+        <Map center={markerPosition} zoom={zoom}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
@@ -92,7 +92,7 @@ const MapCustom = ({ region, strainInfo, groupsLegend }) => {
 
   useEffect(() => {
     let calculate = function(width) {
-      return width / 711;
+      return width / 300;
     };
 
     d3.json(
@@ -119,7 +119,7 @@ const MapCustom = ({ region, strainInfo, groupsLegend }) => {
       }
     });
 
-    setZoom(calculate(width) || 1.3);
+    setZoom(calculate(width) || 2);
   }, [width, getEl, strainInfo]);
 
   return <div ref={mapEl}>{el}</div>;

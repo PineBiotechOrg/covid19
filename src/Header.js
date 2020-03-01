@@ -9,7 +9,7 @@ import alingment from "./images/alingment.png";
 import proteinCompare from "./images/proteinCompare.png";
 import map from "./images/map.png";
 
-const Header = ({setShowTree}) => {
+const Header = ({setShowTree, setShowBigMap}) => {
   return (
     <>
       <Navbar className="justify-content-between">
@@ -93,7 +93,7 @@ const Header = ({setShowTree}) => {
           </a>
           <a href="#" className="grayGroup">
             <img src={alingment} alt="alingment" className="linkImg" />
-            <span className="grayLink">alignment</span>
+            <span className="grayLink grayActive">alignment</span>
           </a>
           <a href="#" className="grayGroup">
             <img
@@ -103,7 +103,7 @@ const Header = ({setShowTree}) => {
             />
             <span className="grayLink">protein compare</span>
           </a>
-          <a href="#" className="grayGroup">
+          <a href="#" className="grayGroup" onClick={() => setShowBigMap(true)}>
             <img src={map} alt="map" className="linkImg" />
             <span className="grayLink">map</span>
           </a>

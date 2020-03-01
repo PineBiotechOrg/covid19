@@ -86,7 +86,12 @@ span.capitalize {
 .grayGroup {
   margin-left: 10px;
   margin-right: 10px;
+  padding-right: 5px;
   text-decoration:none !important;
+}
+
+.grayActive {
+  border-bottom: 2px solid white;
 }
 
 /* .grayRow {
@@ -104,6 +109,6 @@ span.capitalize {
 }
 
 .leaflet-container {
-  height: 450px;
+  height: 600px;
   width: 100%;
 }
