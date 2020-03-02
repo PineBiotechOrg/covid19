@@ -1,11 +1,6 @@
 import React from "react";
 
 const CompareRow = ({ covidEntropy, binSize, expandedViewData }) => {
-  //   const referenceAA = "reference AA";
-  //   const aa = "KX538972.1_group_1";
-  //   const position = 30001;
-  //   const binSize = 500;
-
   const { aa, position } = expandedViewData;
 
   const compare = aa + "_AA+";

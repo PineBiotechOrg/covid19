@@ -224,8 +224,6 @@ function App() {
     // setStartingPoint(d.position);
     setShowBinsModal(true);
 
-    console.log(d, aa);
-
     setExpandedViewData({
       aa: aa,
       position: d.position
