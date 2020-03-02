@@ -49,7 +49,6 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
         handleBinClick(d);
       })
       .on("mouseover", d => {
-        console.log("mouseover");
         if (d["note"] === "structural protein") {
           d3.select(".proteinExp" + d.start).attr("fill", "steelblue");
         } else {
