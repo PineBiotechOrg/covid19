@@ -91,9 +91,9 @@ const Header = ({setShowTree, setShowBigMap}) => {
             <img src={phylogeny} alt="phylogeny" className="linkImg" />
             <span className="grayLink">phylogeny</span>
           </a>
-          <a href="#" className="grayGroup">
+          <a href="#" className="grayGroup selectedNav">
             <img src={alingment} alt="alingment" className="linkImg" />
-            <span className="grayLink grayActive">alignment</span>
+            <span className="grayLink">alignment</span>
           </a>
           <a href="#" className="grayGroup">
             <img
