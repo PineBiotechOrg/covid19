@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 import seqnavLogo from "./images/seqnavLogo.png";
 import analyze from "./images/analyze.png";
@@ -73,7 +73,6 @@ const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
           <span className="grayTitle" style={{ marginLeft: "25px" }}>
             DISCOVER:
           </span>
-
           <a href="https://server.t-bio.info/" className="grayGroup">
             <img src={analyze} alt="seqnavLogo" className="linkImg" />
             <span className="grayLink">analyze</span>
@@ -81,7 +80,20 @@ const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
           <a href="https://edu.t-bio.info/" className="grayGroup">
             <img src={learn} alt="seqnavLogo" className="linkImg" />
             <span className="grayLink">learn</span>
-          </a>
+          </a>{" "}
+          <NavDropdown title="DATA" id="basic-nav-dropdown">
+            <NavDropdown.Item href="./covid-19/corona44.tsv">
+              44 strains data
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="./covid-19/COVID19-gbMN908947-3.csv">
+              Proteins data
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="./covid-19/sample_data.csv">
+              Strain info data
+            </NavDropdown.Item>
+          </NavDropdown>
         </Navbar.Collapse>
 
         <Navbar.Collapse className="justify-content-end">

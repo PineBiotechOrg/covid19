@@ -156,3 +156,13 @@ svg {
   stroke-width: 2;
   stroke: rgb(0, 0, 0);
 }
+
+a#basic-nav-dropdown.dropdown-toggle.nav-link {
+  color: #ffffff;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-right: 5px;
+  text-decoration: none !important;
+  font-weight: bold;
+}
