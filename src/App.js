@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import Bins from "./Bins";
 // import BinsModal from "./BinsModal";
 import BinsCovid from "./BinsCovid";
+
+
 import CheckBox from "./CheckBox";
 // import Linechart from "./Linechart";
 // import LinechartModal from "./LinechartModal";
@@ -718,25 +720,14 @@ function App() {
           setModalWidth={setModalWidth}
           modalTitle="Expanded View"
         >
-          <svg width="100%" height="50px">
-            <g transform="translate(5, 20)">
-              <BinsCovid
-                data={covidEntropyBins}
-                width={width}
-                // name={mtList[0].name}
-                axis={true}
-                tooltip={false}
-                setBinsColorScale={setBinsColorScale}
-                aa="NC_045512.2_group_1"
-                maxAAEntropy={maxAAEntropy}
-              />
-            </g>
-          </svg>
+
           {expandedViewData.aa && (
             <CompareRow
               binSize={binSize}
               covidEntropy={covidEntropy}
               expandedViewData={expandedViewData}
+              covidEntropyBins={covidEntropyBins}
+              width={width}
             />
           )}
 
