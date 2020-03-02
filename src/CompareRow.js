@@ -1,18 +1,39 @@
 import React from "react";
 import BinsCovidExpanded from "./BinsCovidExpanded";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const CompareRow = ({
   covidEntropy,
   binSize,
-  expandedViewData,
+  aminoacid,
+  position,
   covidEntropyBins,
-  width
+  width,
+  setPosition
 }) => {
-  const { aa, position } = expandedViewData;
+  const aa = aminoacid;
 
   const compare = aa + "_AA+";
 
   const sliced = covidEntropy.slice(position - 1, position - 1 + binSize);
+
+  const nextBin = () => {
+    if (position === covidEntropyBins[covidEntropyBins.length - 1].position) {
+      setPosition(1);
+    } else {
+      setPosition(position + binSize);
+    }
+  };
+
+  const previousBin = () => {
+    if (position === 1) {
+      setPosition(covidEntropyBins[covidEntropyBins.length - 1].position);
+    } else {
+      setPosition(position - binSize);
+    }
+  };
+
+  console.log(covidEntropyBins[covidEntropyBins.length - 1].position);
 
   return (
     <>
@@ -37,7 +58,7 @@ const CompareRow = ({
           style={
             binSize === 500 ? { minWidth: "350rem" } : { minWidth: "180rem" }
           }
-          height="200px"
+          height="110px"
         >
           <g transform={`translate(${[0, 20]})`}>
             <text y="46" x="5" fontSize="11">
@@ -98,6 +119,16 @@ const CompareRow = ({
             })}
           </g>
         </svg>
+      </div>
+      <div className="text-center mt-4 mb-4">
+        <ButtonGroup aria-label="Basic example">
+          <Button variant="secondary" onClick={previousBin}>
+            Previous bin
+          </Button>
+          <Button variant="secondary" onClick={nextBin}>
+            Next bin
+          </Button>
+        </ButtonGroup>
       </div>
     </>
   );

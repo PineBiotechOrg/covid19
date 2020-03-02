@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import BinsModal from "./BinsModal";
 import BinsCovid from "./BinsCovid";
 
-
 import CheckBox from "./CheckBox";
 // import Linechart from "./Linechart";
 // import LinechartModal from "./LinechartModal";
@@ -90,7 +89,10 @@ function App() {
 
   const [showProteinCompare, setShowProteinCompare] = useState(false);
 
-  const [expandedViewData, setExpandedViewData] = useState({});
+  // const [expandedViewData, setExpandedViewData] = useState({});
+
+  const [aminoacid, setAminoacid] = useState(null);
+  const [position, setPosition] = useState(null);
 
   let groupsLegend = {
     "COVID-19": "red",
@@ -226,10 +228,8 @@ function App() {
     // setStartingPoint(d.position);
     setShowBinsModal(true);
 
-    setExpandedViewData({
-      aa: aa,
-      position: d.position
-    });
+    setAminoacid(aa);
+    setPosition(d.position);
   }, []);
 
   const handleProteinClick = React.useCallback(d => {
@@ -720,14 +720,15 @@ function App() {
           setModalWidth={setModalWidth}
           modalTitle="Expanded View"
         >
-
-          {expandedViewData.aa && (
+          {aminoacid && (
             <CompareRow
               binSize={binSize}
               covidEntropy={covidEntropy}
-              expandedViewData={expandedViewData}
+              aminoacid={aminoacid}
+              position={position}
               covidEntropyBins={covidEntropyBins}
               width={width}
+              setPosition={setPosition}
             />
           )}
 
