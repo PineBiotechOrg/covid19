@@ -125,7 +125,7 @@ body {
   overflow-x: auto;
 }
 .svgrow svg {
-  min-width: 350rem;
+  /* min-width: 350rem; */
   background-color: whitesmoke;
 }
 svg {

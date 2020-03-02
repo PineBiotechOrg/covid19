@@ -1,21 +1,34 @@
 import React from "react";
 
-const CompareRow = ({ svgWidth, covidEntropy }) => {
-  const referenceAA = "reference AA";
-  const aa = "KX538972.1_group_1";
-  const position = 5001;
-  const binSize = 500;
+const CompareRow = ({ covidEntropy, binSize, expandedViewData }) => {
+  //   const referenceAA = "reference AA";
+  //   const aa = "KX538972.1_group_1";
+  //   const position = 30001;
+  //   const binSize = 500;
+
+  const { aa, position } = expandedViewData;
 
   const compare = aa + "_AA+";
 
   const sliced = covidEntropy.slice(position - 1, position - 1 + binSize);
 
-  console.log(sliced);
-
   return (
     <div className="row svgrow">
-      <svg width="5000px" height="100px">
-        <g>
+      <svg
+        style={
+          binSize === 500 ? { minWidth: "350rem" } : { minWidth: "180rem" }
+        }
+        height="200px"
+      >
+        <g transform={`translate(${[0, 20]})`}>
+          <text y="46" x="5" fontSize="11">
+            REFERENCE
+          </text>
+          <text y="71" x="5" fontSize="11">
+            {aa.split(".")[0]}
+          </text>
+        </g>
+        <g transform={`translate(${[80, 20]})`}>
           {sliced.map((d, i) => {
             return (
               <g
@@ -25,7 +38,7 @@ const CompareRow = ({ svgWidth, covidEntropy }) => {
               >
                 <text
                   y="20"
-                  x="-10"
+                  x="-7"
                   fontSize="10"
                   textAnchor="left"
                   transform="rotate(300)"

@@ -88,6 +88,8 @@ function App() {
 
   const [showProteinCompare, setShowProteinCompare] = useState(false);
 
+  const [expandedViewData, setExpandedViewData] = useState({});
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -223,6 +225,11 @@ function App() {
     setShowBinsModal(true);
 
     console.log(d, aa);
+
+    setExpandedViewData({
+      aa: aa,
+      position: d.position
+    });
   }, []);
 
   const handleProteinClick = React.useCallback(d => {
@@ -352,7 +359,11 @@ function App() {
   return (
     <Container fluid="true">
       <div className="App">
-        <Header setShowTree={setShowTree} setShowBigMap={setShowBigMap} setShowProteinCompare={setShowProteinCompare} />
+        <Header
+          setShowTree={setShowTree}
+          setShowBigMap={setShowBigMap}
+          setShowProteinCompare={setShowProteinCompare}
+        />
 
         <div className="container">
           <div className="row">
@@ -723,8 +734,13 @@ function App() {
               />
             </g>
           </svg>
-
-          <CompareRow  svgWidth={"10000"} covidEntropy={covidEntropy}/>
+          {expandedViewData.aa && (
+            <CompareRow
+              binSize={binSize}
+              covidEntropy={covidEntropy}
+              expandedViewData={expandedViewData}
+            />
+          )}
 
           <div width="100%" height="500px"></div>
         </CustomModal>
@@ -739,13 +755,13 @@ function App() {
           product="asdf"
           modalTitle="Protein Compare"
         >
-                  <iframe
-                    title="ngl-view"
-                    src={`./covid-19/protein-compare/index.html`}
-                    width="100%"
-                    height="700"
-                    frameBorder="0"
-                  />
+          <iframe
+            title="ngl-view"
+            src={`./covid-19/protein-compare/index.html`}
+            width="100%"
+            height="700"
+            frameBorder="0"
+          />
         </CustomModal>
         {/* end protein-compare */}
       </div>
