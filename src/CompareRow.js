@@ -1,5 +1,6 @@
 import React from "react";
 import BinsCovidExpanded from "./BinsCovidExpanded";
+import ProteinsCovidExpanded from "./ProteinsCovidExpanded";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const CompareRow = ({
@@ -9,7 +10,9 @@ const CompareRow = ({
   position,
   covidEntropyBins,
   width,
-  setPosition
+  setPosition,
+  proteinsCovid,
+  handleProteinClick
 }) => {
   const aa = aminoacid;
 
@@ -35,6 +38,16 @@ const CompareRow = ({
 
   return (
     <>
+      <svg width="100%" height="50px">
+        <g transform="translate(5, 20)">
+          <ProteinsCovidExpanded
+            data={proteinsCovid}
+            width={width}
+            handleBinClick={handleProteinClick}
+            max={covidEntropy.length}
+          />
+        </g>
+      </svg>
       <svg width="100%" height="50px">
         <g transform="translate(5, 20)">
           <BinsCovidExpanded

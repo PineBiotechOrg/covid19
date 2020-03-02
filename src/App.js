@@ -729,6 +729,8 @@ function App() {
               covidEntropyBins={covidEntropyBins}
               width={width}
               setPosition={setPosition}
+              proteinsCovid={proteinsCovid}
+              handleProteinClick={handleProteinClick}
             />
           )}
 
