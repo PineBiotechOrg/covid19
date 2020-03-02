@@ -6,8 +6,7 @@ const CompareRow = ({ svgWidth, covidEntropy }) => {
   const position = 5001;
   const binSize = 500;
 
-
-  const compare = aa +"_AA+"
+  const compare = aa + "_AA+";
 
   const sliced = covidEntropy.slice(position - 1, position - 1 + binSize);
 
@@ -24,7 +23,13 @@ const CompareRow = ({ svgWidth, covidEntropy }) => {
                 className="nucleotide-cells"
                 transform={`translate(${[i * 10 + i, 0]})`}
               >
-                <text y="20" x="-10" fontSize="10" textAnchor="left" transform="rotate(300)"> 
+                <text
+                  y="20"
+                  x="-10"
+                  fontSize="10"
+                  textAnchor="left"
+                  transform="rotate(300)"
+                >
                   {d["POS"]}
                 </text>
 
@@ -46,7 +51,11 @@ const CompareRow = ({ svgWidth, covidEntropy }) => {
                     width="10"
                     x="0"
                     y="0"
-                    style={{ fill: "rgb(212, 212, 210)" }}
+                    style={
+                      d["reference AA"] === d[compare]
+                        ? { fill: "rgb(212, 212, 210)" }
+                        : { fill: "red" }
+                    }
                   ></rect>
                   <text y="16" x="5" fontSize="11">
                     {d[compare]}
