@@ -724,7 +724,7 @@ function App() {
             </g>
           </svg>
 
-          <CompareRow />
+          <CompareRow  svgWidth={"10000"} covidEntropy={covidEntropy}/>
 
           <div width="100%" height="500px"></div>
         </CustomModal>
