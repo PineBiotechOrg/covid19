@@ -33,8 +33,6 @@ const CompareRow = ({
     }
   };
 
-  console.log(covidEntropyBins[covidEntropyBins.length - 1].position);
-
   return (
     <>
       <svg width="100%" height="50px">
