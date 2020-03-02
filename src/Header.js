@@ -9,7 +9,7 @@ import alingment from "./images/alingment.png";
 import proteinCompare from "./images/proteinCompare.png";
 import map from "./images/map.png";
 
-const Header = ({setShowTree, setShowBigMap}) => {
+const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
   return (
     <>
       <Navbar className="justify-content-between">
@@ -27,7 +27,7 @@ const Header = ({setShowTree, setShowBigMap}) => {
 
         </Nav> */}
 
-        <Nav >
+        <Nav>
           <Nav.Item as="li">
             <Nav.Link href="#" className="main-nav">
               EBOLA
@@ -95,7 +95,11 @@ const Header = ({setShowTree, setShowBigMap}) => {
             <img src={alingment} alt="alingment" className="linkImg" />
             <span className="grayLink">alignment</span>
           </a>
-          <a href="#" className="grayGroup">
+          <a
+            href="#"
+            className="grayGroup"
+            onClick={() => setShowProteinCompare(true)}
+          >
             <img
               src={proteinCompare}
               alt="proteinCompare"
@@ -109,7 +113,6 @@ const Header = ({setShowTree, setShowBigMap}) => {
           </a>
         </Navbar.Collapse>
       </Navbar>
-
     </>
   );
 };

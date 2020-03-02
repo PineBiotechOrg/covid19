@@ -13,6 +13,7 @@ import ProteinsCovid from "./ProteinsCovid";
 import Header from "./Header";
 import MapCustom from "./MapCustom";
 import MapBig from "./MapBig";
+import CompareRow from "./CompareRow";
 
 import {
   //Button,
@@ -84,6 +85,8 @@ function App() {
   const [showBigMap, setShowBigMap] = useState(false);
 
   const [showBinsModal, setShowBinsModal] = useState(false);
+
+  const [showProteinCompare, setShowProteinCompare] = useState(false);
 
   let groupsLegend = {
     "COVID-19": "red",
@@ -349,7 +352,7 @@ function App() {
   return (
     <Container fluid="true">
       <div className="App">
-        <Header setShowTree={setShowTree} setShowBigMap={setShowBigMap} />
+        <Header setShowTree={setShowTree} setShowBigMap={setShowBigMap} setShowProteinCompare={setShowProteinCompare} />
 
         <div className="container">
           <div className="row">
@@ -721,14 +724,30 @@ function App() {
             </g>
           </svg>
 
-          <div class="row svgrow">
-            <svg width="2500px" height="50px"></svg>
-          </div>
+          <CompareRow />
 
           <div width="100%" height="500px"></div>
         </CustomModal>
 
         {/* end bins modal */}
+
+        {/* protein-compare */}
+        <CustomModal
+          show={showProteinCompare}
+          onHide={() => setShowProteinCompare(false)}
+          setModalWidth={setModalWidth}
+          product="asdf"
+          modalTitle="Protein Compare"
+        >
+                  <iframe
+                    title="ngl-view"
+                    src={`./covid-19/protein-compare/index.html`}
+                    width="100%"
+                    height="700"
+                    frameBorder="0"
+                  />
+        </CustomModal>
+        {/* end protein-compare */}
       </div>
       <p className="text-center mt-4 mb-4">
         © Copyright 2020 | Pine Biotech, Inc.

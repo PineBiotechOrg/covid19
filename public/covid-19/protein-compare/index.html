@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js"></script>
+    <script>
+      function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(
+          /[?&]+([^=&]+)=([^&]*)/gi,
+          function(m, key, value) {
+            vars[key] = value;
+          }
+        );
+        return vars;
+      }
+
+      var pdb = "../pdbs/" + getUrlVars()["pdb"] + ".pdb";
+
+      console.log(pdb);
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Create NGL Stage object
+        var stage = new NGL.Stage("viewport");
+
+        // Handle window resizing
+        window.addEventListener(
+          "resize",
+          function(event) {
+            stage.handleResize();
+          },
+          false
+        );
+
+        stage.setParameters({
+          backgroundColor: "white"
+        });
+
+        var file = "5XLR_conservation-BatCorona_vs_COVID19.pdb";
+        var file1 = "5XLR_conservation-SARSHuman_vs_COVID19.pdb";
+
+        var schemeId = NGL.ColormakerRegistry.addScheme(function(params) {
+          this.atomColor = function(atom) {
+            if (atom.bfactor <= 50) {
+              return 0xff0000; // red
+            }  else {
+              return 0xffffff; // white
+            }
+          };
+        });
+
+        stage.loadFile(file).then(function(o) {
+          o.addRepresentation("surface", { color: schemeId }); // pass schemeId  here
+          o.autoView();
+        });
+
+
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewport" style="width:100%; height:100%;"></div>
+  </body>
+</html>
