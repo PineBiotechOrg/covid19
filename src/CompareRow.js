@@ -134,10 +134,10 @@ const CompareRow = ({
       <div className="text-center mt-4 mb-4">
         <ButtonGroup aria-label="Basic example">
           <Button variant="secondary" onClick={previousBin}>
-            Previous bin
+            {"< Previous bin"}
           </Button>
           <Button variant="secondary" onClick={nextBin}>
-            Next bin
+            {"Next bin >"}
           </Button>
         </ButtonGroup>
       </div>
