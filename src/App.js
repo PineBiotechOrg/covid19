@@ -333,7 +333,7 @@ function App() {
     //   setCovidEntropy(data);
     // });
 
-    d3.tsv("./covid-19/corona44.tsv").then(data => {
+    d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
       setCovidEntropy(data);
     });
 
@@ -603,18 +603,35 @@ function App() {
                     frameBorder="0"
                   />
                   <Row>
-                    <Col>Product: {proteinInfo.product}</Col>
-                    <Col>Protein ID: {proteinInfo.protein_id}</Col>
+                    <Col style={{ textAlign: "center" }}>
+                      <strong>Product:</strong> {proteinInfo.product}
+                    </Col>
+                    <Col style={{ textAlign: "center" }}>
+                      <strong>Protein ID:</strong>{" "}
+                      <a
+                        href={
+                          "https://www.ncbi.nlm.nih.gov/protein/" +
+                          proteinInfo.protein_id.split("|")[1]
+                        }
+
+                        // eslint-disable-next-line react/jsx-no-target-blank
+                        target="_blank"
+                      >
+                        {proteinInfo.protein_id}
+                      </a>
+                    </Col>
                   </Row>
                   <Row>
                     <Col>
-                      Start position: {(+proteinInfo.start).toLocaleString()}
+                      <strong>Start position:</strong>{" "}
+                      {(+proteinInfo.start).toLocaleString()}
                     </Col>
                     <Col>
-                      End position: {(+proteinInfo.end).toLocaleString()}
+                      <strong>End position:</strong>{" "}
+                      {(+proteinInfo.end).toLocaleString()}
                     </Col>
                     <Col>
-                      Protein Length:{" "}
+                      <strong>Protein Length:</strong>{" "}
                       {(+proteinInfo["protein length"]).toLocaleString()}
                     </Col>
                   </Row>

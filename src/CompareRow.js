@@ -17,6 +17,11 @@ const CompareRow = ({
   const aa = aminoacid;
 
   const compare = aa + "_AA+";
+  const compareN = aa + "_NUCL";
+
+  console.log(compareN);
+
+  // NC_045512.2_group_1_NUCL,NC_045512.2_group_1_AA+
 
   const sliced = covidEntropy.slice(position - 1, position - 1 + binSize);
 
@@ -69,7 +74,7 @@ const CompareRow = ({
           style={
             binSize === 500 ? { minWidth: "350rem" } : { minWidth: "180rem" }
           }
-          height="110px"
+          height="150px"
         >
           <g transform={`translate(${[0, 20]})`}>
             <text y="46" x="5" fontSize="11">
@@ -77,6 +82,9 @@ const CompareRow = ({
             </text>
             <text y="71" x="5" fontSize="11">
               {aa.split(".")[0]}
+            </text>
+            <text y="118" x="5" fontSize="11">
+              NUCL.
             </text>
           </g>
           <g transform={`translate(${[80, 20]})`}>
@@ -123,6 +131,18 @@ const CompareRow = ({
                     ></rect>
                     <text y="16" x="5" fontSize="11">
                       {d[compare]}
+                    </text>
+                  </g>
+                  <g transform={`translate(${[0, 100]})`}>
+                    <rect
+                      height="24"
+                      width="10"
+                      x="0"
+                      y="0"
+                      style={{ fill: "rgb(212, 212, 210)" }}
+                    ></rect>
+                    <text y="16" x="5" fontSize="11">
+                      {d[compareN]}
                     </text>
                   </g>
                 </g>
