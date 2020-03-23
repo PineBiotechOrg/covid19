@@ -610,10 +610,11 @@ function App() {
                       <strong>Protein ID:</strong>{" "}
                       <a
                         href={
-                          "https://www.ncbi.nlm.nih.gov/protein/" +
-                          proteinInfo.protein_id.split("|")[1]
+                          proteinInfo.protein_id.split("|")[1] === "QHD43423.2"
+                            ? "https://www.rcsb.org/structure/6vyo"
+                            : "https://www.ncbi.nlm.nih.gov/protein/" +
+                              proteinInfo.protein_id.split("|")[1]
                         }
-
                         // eslint-disable-next-line react/jsx-no-target-blank
                         target="_blank"
                       >
