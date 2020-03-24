@@ -6,6 +6,8 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
   let layerRef = useRef();
 
   useEffect(() => {
+
+  if (data.length && max) {
     let svg = d3.select(layerRef.current);
 
     svg.selectAll("g").remove();
@@ -21,6 +23,7 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
       .data(data)
       .join("rect")
       .attr("x", d => {
+        console.log(x(+d.start))
         return x(+d.start);
       })
       .attr("width", d => {
@@ -69,6 +72,7 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
         }
         return "Protein: " + d.product.toUpperCase();
       });
+  }
 
     ReactTooltip.rebuild();
   }, [data, width, max, handleBinClick]);

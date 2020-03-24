@@ -437,7 +437,6 @@ function App() {
     // setAverageData(averageData);
   }, [binSize, covidEntropy]);
 
-  console.log(loading)
 
   return (
     <Container fluid="true">
