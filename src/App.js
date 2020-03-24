@@ -391,9 +391,9 @@ function App() {
 
     setLoading(true);
 
-    d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
-      setCovidEntropy(data);
-    });
+    // d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
+    //   setCovidEntropy(data);
+    // });
 
     d3.csv("./covid-19/COVID19-gbMN908947-3.csv").then(proteins => {
       setProteinsCovid(proteins);
@@ -405,11 +405,13 @@ function App() {
 
     if (mainDataName === "corona44") {
       d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
+        console.log(44)
         setCovidEntropy(data);
       });
     } else if (mainDataName === "corona2") {
       d3.tsv("./covid-19/covid19-phylogeny_march_2020_FullTable.tsv").then(
         data => {
+          console.log(2)
           setCovidEntropy(data);
         }
       );
@@ -422,10 +424,12 @@ function App() {
       setCovidEntropyBins(
         createBinsArrayCovid(covidEntropy, binSize, dataGroups44)
       );
+
     } else if (mainDataName === "corona2") {
       setCovidEntropyBins(
         createBinsArrayCovid(covidEntropy, binSize, dataGroups2)
       );
+      
     }
 
     // let changesTotal = createBinsArrayCovid(covidEntropy, 500).reduce((acc,cur) => {
@@ -434,6 +438,8 @@ function App() {
 
     // setAverageData(averageData);
   }, [binSize, covidEntropy]);
+
+  console.log(covidEntropy);
 
   return (
     <Container fluid="true">
@@ -523,7 +529,8 @@ function App() {
           </div>
         </div>
 
-        {// !covidEntropy.length &&
+        {
+        // !covidEntropy.length &&
         // !covidEntropyBins.length &&
         // !proteinInfo.length &&
         // !maxAAEntropy &&
