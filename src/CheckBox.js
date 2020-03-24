@@ -1,7 +1,7 @@
 import React from "react";
 // import ReactTooltip from "react-tooltip";
 
-function CheckBox({ name, groupsLegend, group, handleStrainClick }) {
+function CheckBox({ name, groupsLegend, group, handleStrainClick,covid }) {
   // ReactTooltip.rebuild();
 
   return (
@@ -29,7 +29,7 @@ function CheckBox({ name, groupsLegend, group, handleStrainClick }) {
         } // none
       ></path> */}
 
-      <rect width="10" height="22" fill={groupsLegend[group]} data-tip={group} data-for="svgTooltip" />
+      <rect width="10" height="22" fill={covid ? "red" : groupsLegend[group]} data-tip={group} data-for="svgTooltip" />
       <text
         className="pointer"
         x="21"

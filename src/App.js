@@ -648,6 +648,7 @@ function App() {
                               // group={getGroup(groupNames, d)}
                               groupsLegend={groupsLegend}
                               handleStrainClick={handleStrainClick}
+                              covid={true}
                             />
                             {covidEntropyBins.length && (
                               <g transform="translate(120,0)">
