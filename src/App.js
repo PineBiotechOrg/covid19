@@ -94,11 +94,9 @@ function App() {
   const [aminoacid, setAminoacid] = useState(null);
   const [position, setPosition] = useState(null);
 
-
-
   const [mainDataName, setMainDataName] = useState("corona2"); // "corona44" "corona2"
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   let groupsLegend = {
     "COVID-19": "red",
@@ -380,7 +378,7 @@ function App() {
       });
 
       setMaxAAEntropy(maxAAEntropy);
-      setLoading(false)
+      setLoading(false);
       return bins;
     },
     []
@@ -391,7 +389,7 @@ function App() {
     //   setCovidEntropy(data);
     // });
 
-    setLoading(true)
+    setLoading(true);
 
     d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
       setCovidEntropy(data);
@@ -419,6 +417,7 @@ function App() {
   }, [mainDataName]);
 
   useEffect(() => {
+    setLoading(true);
     if (mainDataName === "corona44") {
       setCovidEntropyBins(
         createBinsArrayCovid(covidEntropy, binSize, dataGroups44)
@@ -524,20 +523,18 @@ function App() {
           </div>
         </div>
 
-        { 
-        // !covidEntropy.length &&
+        {// !covidEntropy.length &&
         // !covidEntropyBins.length &&
         // !proteinInfo.length &&
         // !maxAAEntropy &&
-        loading
-        ? (
+        loading ? (
           <Spinner animation="border" role="status" className="spinner">
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
-          <div ref={appRef}> 
+          <div ref={appRef}>
             {/* <svg width="100%" height="1120">  */}
-            <svg width="100%" height="1150"> 
+            <svg width="100%" height="1150">
               <g transform={`translate(18,10)`}>
                 <g
                   className="pointer"
@@ -569,7 +566,11 @@ function App() {
                     axis={true}
                     tooltip={false}
                     setBinsColorScale={setBinsColorScale}
-                    aa={mainDataName === "corona44" ? "NC_045512.2_group_1" : "MT027064.1_group_1"}
+                    aa={
+                      mainDataName === "corona44"
+                        ? "NC_045512.2_group_1"
+                        : "MT027064.1_group_1"
+                    }
                     isReference={true}
                     maxAAEntropy={maxAAEntropy}
                   />
