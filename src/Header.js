@@ -9,7 +9,7 @@ import alingment from "./images/alingment.png";
 import proteinCompare from "./images/proteinCompare.png";
 import map from "./images/map.png";
 
-const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
+const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare, setMainDataName }) => {
   return (
     <>
       <Navbar className="justify-content-between">
@@ -82,7 +82,16 @@ const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
             <span className="grayLink">learn</span>
           </a>{" "}
           <NavDropdown title="DATA" id="basic-nav-dropdown">
-            <NavDropdown.Item href="./covid-19/corona44.tsv">
+            <NavDropdown.Item onClick={() => setMainDataName("corona44")}>
+              44 strains data
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={() => setMainDataName("corona2")}>
+             covid19-phylogeny_march
+            </NavDropdown.Item>
+          </NavDropdown>
+
+          {/* <NavDropdown.Item href="./covid-19/corona44.tsv">
               44 strains data
             </NavDropdown.Item>
             <NavDropdown.Divider />
@@ -93,7 +102,9 @@ const Header = ({ setShowTree, setShowBigMap, setShowProteinCompare }) => {
             <NavDropdown.Item href="./covid-19/sample_data.csv">
               Strain info data
             </NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
+
+          
         </Navbar.Collapse>
 
         <Navbar.Collapse className="justify-content-end">

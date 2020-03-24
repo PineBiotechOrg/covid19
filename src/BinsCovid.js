@@ -11,12 +11,12 @@ const Bins = ({
   //setBinsColorScale
   binsColorScale,
   aa,
-  maxAAEntropy
+  maxAAEntropy,
+  isReference
 }) => {
   let layerRef = useRef();
 
   useEffect(() => {
-
     let data0 = data.map(d => {
       return {
         count: +d[aa + "_AA+"],
@@ -56,7 +56,8 @@ const Bins = ({
       .attr("y", 0)
       .attr("height", 16)
       .attr("fill", d => {
-        return colors(d.count);
+
+        return isReference ? "lightgrey" : colors(d.count);
       })
       .on("click", d => {
         if (!tooltip) {
@@ -100,7 +101,7 @@ const Bins = ({
     }
 
     ReactTooltip.rebuild();
-  }, [data, axis, width, tooltip, binsColorScale, maxAAEntropy, aa]);
+  }, [data, axis, width, tooltip, binsColorScale, maxAAEntropy, aa, isReference]);
 
   return (
     <>

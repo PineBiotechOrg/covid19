@@ -19,8 +19,6 @@ const CompareRow = ({
   const compare = aa + "_AA+";
   const compareN = aa + "_NUCL";
 
-  console.log(compareN);
-
   // NC_045512.2_group_1_NUCL,NC_045512.2_group_1_AA+
 
   const sliced = covidEntropy.slice(position - 1, position - 1 + binSize);

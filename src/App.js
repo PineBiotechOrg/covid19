@@ -94,6 +94,12 @@ function App() {
   const [aminoacid, setAminoacid] = useState(null);
   const [position, setPosition] = useState(null);
 
+
+
+  const [mainDataName, setMainDataName] = useState("corona2"); // "corona44" "corona2"
+
+  const [loading, setLoading] = useState(false)
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -130,6 +136,57 @@ function App() {
   //   "MN996529.1_group_1",
   //   "MT020781.1_group_1"
   // ];
+
+  let dataGroups2 = [
+    "MT027064.1_group_1",
+    "MT020781.2_group_1",
+    "MN988669.1_group_1",
+    "MT019531.1_group_1",
+    "MN938384.1_group_1",
+    "LR757995.1_group_1",
+    "LR757996.1_group_1",
+    "LR757998.1_group_1",
+    "MN996527.1_group_1",
+    "MN975262.1_group_1",
+    "MT049951.1_group_1",
+    "LC522973.1_group_1",
+    "LC522975.1_group_1",
+    "LC522974.1_group_1",
+    "MT106054.1_group_1",
+    "MN997409.1_group_1",
+    "MN985325.1_group_1",
+    "MT066175.1_group_1",
+    "MT106052.1_group_1",
+    "MN994467.1_group_1",
+    "MT044257.1_group_1",
+    "MN988713.1_group_1",
+    "MT027062.1_group_1",
+    "MT027063.1_group_1",
+    "MT039873.1_group_1",
+    "MT072688.1_group_1",
+    "MT039888.1_group_1",
+    "MN996529.1_group_1",
+    "MT066176.1_group_1",
+    "MN996530.1_group_1",
+    "MT093631.2_group_1",
+    "MN996531.1_group_1",
+    "MT019532.1_group_1",
+    "LC521925.1_group_1",
+    "LC522972.1_group_1",
+    "MN988668.1_group_1",
+    "MN996528.1_group_1",
+    "MN994468.1_group_1",
+    "MT093571.1_group_1",
+    "MT044258.1_group_1",
+    "MT118835.1_group_1",
+    "MT106053.1_group_1",
+    "MT019530.1_group_1",
+    "MT039887.1_group_1",
+    "MT019529.1_group_1",
+    "MN908947.3_group_1",
+    "MT007544.1_group_1"
+  ];
+
   let dataGroups44 = [
     "NC_045512.2_group_1",
     "AY278554.2_group_1",
@@ -262,7 +319,7 @@ function App() {
   // }, [])
 
   const createBinsArrayCovid = React.useCallback(
-    (data, binSize = 500) => {
+    (data, binSize = 500, dataGroups) => {
       let maxAAEntropy = 0;
 
       let num = 0;
@@ -272,7 +329,7 @@ function App() {
         AAEntropySum: 0
       };
 
-      dataGroups44.forEach(d => {
+      dataGroups.forEach(d => {
         bin[d + "_AA+"] = 0;
       });
 
@@ -299,13 +356,13 @@ function App() {
             AAEntropySum: 0
           };
 
-          dataGroups44.forEach(a => {
+          dataGroups.forEach(a => {
             if (bin[a + "_AA+"] > maxAAEntropy) {
               maxAAEntropy = bin[a + "_AA+"];
             }
           });
 
-          dataGroups44.forEach(a => {
+          dataGroups.forEach(a => {
             bin[a + "_AA+"] = 0;
           });
         }
@@ -315,7 +372,7 @@ function App() {
         bin.NTEntropySum = bin.NTEntropySum += +d["NT entropy"];
         bin.AAEntropySum = bin.AAEntropySum += +d["AA entropy"];
 
-        dataGroups44.forEach(a => {
+        dataGroups.forEach(a => {
           if (d[a + "_AA+"] !== d["reference AA"]) {
             bin[a + "_AA+"] += 1;
           }
@@ -323,15 +380,18 @@ function App() {
       });
 
       setMaxAAEntropy(maxAAEntropy);
+      setLoading(false)
       return bins;
     },
-    [dataGroups44]
+    []
   );
 
   useEffect(() => {
     // d3.csv("./covid-19/nCOVID-19_entropy.csv").then(data => {
     //   setCovidEntropy(data);
     // });
+
+    setLoading(true)
 
     d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
       setCovidEntropy(data);
@@ -344,10 +404,30 @@ function App() {
     d3.csv("./covid-19/sample_data.csv").then(data => {
       setStrainInfoData(data);
     });
-  }, []);
+
+    if (mainDataName === "corona44") {
+      d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
+        setCovidEntropy(data);
+      });
+    } else if (mainDataName === "corona2") {
+      d3.tsv("./covid-19/covid19-phylogeny_march_2020_FullTable.tsv").then(
+        data => {
+          setCovidEntropy(data);
+        }
+      );
+    }
+  }, [mainDataName]);
 
   useEffect(() => {
-    setCovidEntropyBins(createBinsArrayCovid(covidEntropy, binSize));
+    if (mainDataName === "corona44") {
+      setCovidEntropyBins(
+        createBinsArrayCovid(covidEntropy, binSize, dataGroups44)
+      );
+    } else if (mainDataName === "corona2") {
+      setCovidEntropyBins(
+        createBinsArrayCovid(covidEntropy, binSize, dataGroups2)
+      );
+    }
 
     // let changesTotal = createBinsArrayCovid(covidEntropy, 500).reduce((acc,cur) => {
     //   dataGroups
@@ -363,6 +443,7 @@ function App() {
           setShowTree={setShowTree}
           setShowBigMap={setShowBigMap}
           setShowProteinCompare={setShowProteinCompare}
+          setMainDataName={setMainDataName}
         />
 
         <div className="container">
@@ -443,16 +524,20 @@ function App() {
           </div>
         </div>
 
-        {!covidEntropy.length &&
-        !covidEntropyBins.length &&
-        !proteinInfo.length &&
-        !maxAAEntropy ? (
+        { 
+        // !covidEntropy.length &&
+        // !covidEntropyBins.length &&
+        // !proteinInfo.length &&
+        // !maxAAEntropy &&
+        loading
+        ? (
           <Spinner animation="border" role="status" className="spinner">
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
-          <div ref={appRef}>
-            <svg width="100%" height="1120">
+          <div ref={appRef}> 
+            {/* <svg width="100%" height="1120">  */}
+            <svg width="100%" height="1150"> 
               <g transform={`translate(18,10)`}>
                 <g
                   className="pointer"
@@ -484,7 +569,8 @@ function App() {
                     axis={true}
                     tooltip={false}
                     setBinsColorScale={setBinsColorScale}
-                    aa="NC_045512.2_group_1"
+                    aa={mainDataName === "corona44" ? "NC_045512.2_group_1" : "MT027064.1_group_1"}
+                    isReference={true}
                     maxAAEntropy={maxAAEntropy}
                   />
                 </g>
@@ -492,58 +578,89 @@ function App() {
 
               <g transform={`translate(18,140)`}>
                 {width &&
-                  dataGroups44.map((d, i) => {
-                    return (
-                      <g
-                        transform={`translate(120,${i * 22})`}
-                        key={d + "_bins"}
-                      >
-                        {covidEntropyBins.length && (
-                          <BinsCovid
-                            handleBinClick={handleBinClick}
-                            data={covidEntropyBins}
-                            width={width}
-                            // name={d.name}
-                            axis={false}
-                            tooltip={true}
-                            binsColorScale={binsColorScale}
-                            aa={d}
-                            maxAAEntropy={maxAAEntropy}
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-                {width &&
-                  dataGroups44.map((d, i) => {
-                    // let groupNames = [
-                    //   "AY278487.3_SARS",
+                  (mainDataName === "corona44"
+                    ? dataGroups44.map((d, i) => {
+                        const getGroup = (groupNames, d) => {
+                          return groupNames
+                            .filter(g => {
+                              return d.split("_")[0] === g.split("_")[0];
+                            })[0]
+                            .split(".")[1]
+                            .split("_")[1];
+                        };
 
-                    const getGroup = (groupNames, d) => {
-                      return groupNames
-                        .filter(g => {
-                          return d.split("_")[0] === g.split("_")[0];
-                        })[0]
-                        .split(".")[1]
-                        .split("_")[1];
-                    };
+                        return (
+                          <g
+                            transform={`translate(0,${i * 22})`}
+                            key={d}
+                            onClick={() => handleCheckbox(d)}
+                          >
+                            <CheckBox
+                              name={d}
+                              active={unChecked.indexOf(d) === -1}
+                              group={getGroup(groupNames, d)}
+                              groupsLegend={groupsLegend}
+                              handleStrainClick={handleStrainClick}
+                            />
+                            {covidEntropyBins.length && (
+                              <g transform="translate(120,0)">
+                                <BinsCovid
+                                  handleBinClick={handleBinClick}
+                                  data={covidEntropyBins}
+                                  width={width}
+                                  // name={d.name}
+                                  axis={false}
+                                  tooltip={true}
+                                  binsColorScale={binsColorScale}
+                                  aa={d}
+                                  maxAAEntropy={maxAAEntropy}
+                                />
+                              </g>
+                            )}
+                          </g>
+                        );
+                      })
+                    : dataGroups2.map((d, i) => {
+                        // const getGroup = (groupNames, d) => {
+                        //   return groupNames
+                        //     .filter(g => {
+                        //       return d.split("_")[0] === g.split("_")[0];
+                        //     })[0]
+                        //     .split(".")[1]
+                        //     .split("_")[1];
+                        // };
 
-                    return (
-                      <g
-                        transform={`translate(0,${i * 22})`}
-                        key={d}
-                        onClick={() => handleCheckbox(d)}
-                      >
-                        <CheckBox
-                          name={d}
-                          active={unChecked.indexOf(d) === -1}
-                          group={getGroup(groupNames, d)}
-                          groupsLegend={groupsLegend}
-                          handleStrainClick={handleStrainClick}
-                        />
-                      </g>
-                    );
-                  })}
+                        return (
+                          <g
+                            transform={`translate(0,${i * 22})`}
+                            key={d}
+                            onClick={() => handleCheckbox(d)}
+                          >
+                            <CheckBox
+                              name={d}
+                              active={unChecked.indexOf(d) === -1}
+                              // group={getGroup(groupNames, d)}
+                              groupsLegend={groupsLegend}
+                              handleStrainClick={handleStrainClick}
+                            />
+                            {covidEntropyBins.length && (
+                              <g transform="translate(120,0)">
+                                <BinsCovid
+                                  handleBinClick={handleBinClick}
+                                  data={covidEntropyBins}
+                                  width={width}
+                                  // name={d.name}
+                                  axis={false}
+                                  tooltip={true}
+                                  binsColorScale={binsColorScale}
+                                  aa={d}
+                                  maxAAEntropy={maxAAEntropy}
+                                />
+                              </g>
+                            )}
+                          </g>
+                        );
+                      }))}
               </g>
             </svg>
           </div>
@@ -623,15 +740,15 @@ function App() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col style={{ textAlign: "center" }}>
                       <strong>Start position:</strong>{" "}
                       {(+proteinInfo.start).toLocaleString()}
                     </Col>
-                    <Col>
+                    <Col style={{ textAlign: "center" }}>
                       <strong>End position:</strong>{" "}
                       {(+proteinInfo.end).toLocaleString()}
                     </Col>
-                    <Col>
+                    <Col style={{ textAlign: "center" }}>
                       <strong>Protein Length:</strong>{" "}
                       {(+proteinInfo["protein length"]).toLocaleString()}
                     </Col>
