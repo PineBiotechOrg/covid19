@@ -29,7 +29,7 @@ function CheckBox({ name, groupsLegend, group, handleStrainClick,covid }) {
         } // none
       ></path> */}
 
-      <rect width="10" height="22" fill={covid ? "red" : groupsLegend[group]} data-tip={group} data-for="svgTooltip" />
+      <rect width="10" height="22" fill={covid ? "red" : groupsLegend[group]} data-tip={covid ? "COVID-19" : group} data-for="svgTooltip" />
       <text
         className="pointer"
         x="21"

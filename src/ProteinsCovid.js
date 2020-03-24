@@ -23,7 +23,6 @@ const ProteinsCovid = ({ data, width, handleBinClick, max }) => {
       .data(data)
       .join("rect")
       .attr("x", d => {
-        console.log(x(+d.start))
         return x(+d.start);
       })
       .attr("width", d => {
