@@ -98,7 +98,7 @@ function App() {
 
   const [mainDataName, setMainDataName] = useState("corona2"); // "corona44" "corona2"
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   let groupsLegend = {
     "COVID-19": "red",
