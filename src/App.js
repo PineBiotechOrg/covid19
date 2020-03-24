@@ -405,13 +405,11 @@ function App() {
 
     if (mainDataName === "corona44") {
       d3.csv("./covid-19/corona44-AA-N.csv").then(data => {
-        console.log(44)
         setCovidEntropy(data);
       });
     } else if (mainDataName === "corona2") {
       d3.tsv("./covid-19/covid19-phylogeny_march_2020_FullTable.tsv").then(
         data => {
-          console.log(2)
           setCovidEntropy(data);
         }
       );
@@ -439,7 +437,7 @@ function App() {
     // setAverageData(averageData);
   }, [binSize, covidEntropy]);
 
-  console.log(covidEntropy);
+  console.log(loading)
 
   return (
     <Container fluid="true">
