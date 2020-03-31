@@ -413,6 +413,12 @@ function App() {
           setCovidEntropy(data);
         }
       );
+    } else if ( mainDataName === "coronabirthdeath" ) {
+      d3.tsv("./covid-19/coronas-compare_birth_death_FullTable.tsv").then(
+        data => {
+          setCovidEntropy(data);
+        }
+      );      
     }
   }, [mainDataName]);
 
@@ -428,6 +434,10 @@ function App() {
         createBinsArrayCovid(covidEntropy, binSize, dataGroups2)
       );
       
+    } else if (mainDataName === "coronabirthdeath") {
+      setCovidEntropyBins(
+        createBinsArrayCovid(covidEntropy, binSize, dataGroups2)
+      );      
     }
 
     // let changesTotal = createBinsArrayCovid(covidEntropy, 500).reduce((acc,cur) => {

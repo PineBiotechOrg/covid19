@@ -94,6 +94,10 @@ const Header = ({
             <NavDropdown.Item onClick={() => setMainDataName("corona2")}>
               COVID 19 human genomic sequences
             </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={() => setMainDataName("coronabirthdeath")}>
+              Comparison Birth Death coronavirus
+            </NavDropdown.Item>
           </NavDropdown>
           {/* <NavDropdown.Item href="./covid-19/corona44.tsv">
               44 strains data
