@@ -1,0 +1,23 @@
+Strain,Country,Host,Region,Virus Species,Accession,Group
+strain OC43/human/USA/951-15/1995,USA,human,North America,Human coronavirus OC43,KF530059,BetaCOV_1
+strain OC43/humanUSA/9712-13/1997,USA,human,North America,Human coronavirus OC43,KF530072,BetaCOV_2
+strain OC43/human/USA/873-16/1987,USA,human,North America,Human coronavirus OC43,KF530077,BetaCOV_3
+strain OC43/human/USA/9712-31/1997,USA,human,North America,Human coronavirus OC43,KF530080,BetaCOV_4
+strain OC43/human/USA/851-15/1985,USA,human,North America,Human coronavirus OC43 ,KF530060,BetaCOV_5
+strain OC43/human/USA/901-33/1990,USA,human,North America,Human coronavirus OC43 ,KF530066,BetaCOV_6
+Middle East respiratory syndrome coronavirus,United Arab Emirates,human,Middle East,MERS,KF192507,MERS
+Middle East respiratory syndrome coronavirus isolate Al-Hasa_4_2013,Saudi Arabia,human,Middle East,MERS ,KF186564,MERS 
+isolate Bisha_1_2012,Saudi Arabia,human,Middle East,MERS ,KF600620,MERS 
+isolate Buraidah_1_2013,Saudi Arabia,human,Middle East,MERS ,KF600630,MERS 
+isolate Al-Hasa_11c_2013 ,Saudi Arabia,human,Middle East,MERS ,KF600636,MERS 
+CUHK-W1,Hong Kong,human,China,SARS,AY278554,SARS
+BJ01,China,human,China,SARS,AY278488,SARS
+BJ02,China,human,China,SARS,AY278487,SARS
+GZ50,Hong Kong,human,China,SARS,AY304495,SARS
+GZ0402,China,human,China,SARS,AY613947,SARS
+isolate 2019-nCoV/USA-WA1/2020 ,USA,human,North America,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN985325,nCOVID-19
+isolate 2019-nCoV/USA-IL1/2020,USA,human,North America,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN988713,nCOVID-20
+strain 2019-nCoV/USA-CA1/2020,USA,human,North America,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN994467,nCOVID-21
+strain 2019-nCoV/Japan/TY/WK-012/2020,Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,LC522973,nCOVID-22
+strain 2019-nCoV/Japan/TY/WK-501/2020,Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,LC522974,nCOVID-23
+strain 2019-nCoV/Japan/TY/WK-521/2020,Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,LC522975,nCOVID-24

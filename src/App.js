@@ -456,6 +456,10 @@ function App() {
 
     } else if ( mainDataName === "coronabirthdeath" ) {
 
+      d3.csv("./covid-19/sample_data_2.csv").then(data => {
+        setStrainInfoData(data);
+      });
+
       d3.tsv("./covid-19/coronas-compare_birth_death_FullTable.tsv").then(
         data => {
           setCovidEntropy(data);
