@@ -15,6 +15,7 @@ import Header from "./Header";
 import MapCustom from "./MapCustom";
 import MapBig from "./MapBig";
 import CompareRow from "./CompareRow";
+import DataMapper from "./DataMapper";
 
 import {
   //Button,
@@ -232,6 +233,31 @@ function App() {
     "KF600620.1_group_1"
   ];
 
+  let dataGroupsBirthDeath = [
+    "KF186564.1_group_1",
+    "KF600636.1_group_1",
+    "KF600630.1_group_1",
+    "KF192507.1_group_1",
+    "KF600620.1_group_1",
+    "AY278554.2_group_1",
+    "AY304495.1_group_1",
+    "AY278488.2_group_1",
+    "AY278487.3_group_1",
+    "AY613947.1_group_1",
+    "MN985325.1_group_1",
+    "LC522973.1_group_1",
+    "LC522974.1_group_1",
+    "LC522975.1_group_1",
+    "MN988713.1_group_1",
+    "MN994467.1_group_1",
+    "KF530060.1_group_1",
+    "KF530077.1_group_1",
+    "KF530066.1_group_1",
+    "KF530072.1_group_1",
+    "KF530080.1_group_1",
+    "KF530059.1_group_1"
+  ];
+
   let groupNames = [
     "AY278487.3_SARS",
     "AY278488.2_SARS",
@@ -276,8 +302,22 @@ function App() {
     "MH685718.1_BetaCOV_1",
     "MN306053.1_BetaCOV_1",
     "MN310478.1_BetaCOV_1",
-    "NC_045512.2_COVID-19_Wuhan"
+    "NC_045512.2_COVID-19_Wuhan",
+    "MN985325.1_COVID-19_Wuhan",
+    "LC522973.1_COVID-19_Wuhan",
+    "LC522974.1_COVID-19_Wuhan",
+    "LC522975.1_COVID-19_Wuhan",
+    "MN988713.1_COVID-19_Wuhan",
+    "MN994467.1_COVID-19_Wuhan"
   ];
+
+  let dataGroupList = {
+
+    dataGroups44          : dataGroups44,
+    dataGroups2           : dataGroups2,
+    dataGroupsBirthDeath  : dataGroupsBirthDeath
+
+  };
 
   const handleBinClick = React.useCallback((d, aa) => {
     // setStartingPoint(d.position);
@@ -413,12 +453,16 @@ function App() {
           setCovidEntropy(data);
         }
       );
+
     } else if ( mainDataName === "coronabirthdeath" ) {
+
       d3.tsv("./covid-19/coronas-compare_birth_death_FullTable.tsv").then(
         data => {
           setCovidEntropy(data);
         }
-      );      
+      );
+
+    
     }
   }, [mainDataName]);
 
@@ -436,7 +480,7 @@ function App() {
       
     } else if (mainDataName === "coronabirthdeath") {
       setCovidEntropyBins(
-        createBinsArrayCovid(covidEntropy, binSize, dataGroups2)
+        createBinsArrayCovid(covidEntropy, binSize, dataGroupsBirthDeath)
       );      
     }
 
@@ -446,7 +490,6 @@ function App() {
 
     // setAverageData(averageData);
   }, [binSize, covidEntropy]);
-
 
   return (
     <Container fluid="true">
@@ -593,90 +636,31 @@ function App() {
 
               <g transform={`translate(18,140)`}>
                 {width &&
-                  (mainDataName === "corona44"
-                    ? dataGroups44.map((d, i) => {
-                        const getGroup = (groupNames, d) => {
-                          return groupNames
-                            .filter(g => {
-                              return d.split("_")[0] === g.split("_")[0];
-                            })[0]
-                            .split(".")[1]
-                            .split("_")[1];
-                        };
-
-                        return (
-                          <g
-                            transform={`translate(0,${i * 22})`}
-                            key={d}
-                            onClick={() => handleCheckbox(d)}
-                          >
-                            <CheckBox
-                              name={d}
-                              active={unChecked.indexOf(d) === -1}
-                              group={getGroup(groupNames, d)}
-                              groupsLegend={groupsLegend}
-                              handleStrainClick={handleStrainClick}
-                            />
-                            {covidEntropyBins.length && (
-                              <g transform="translate(120,0)">
-                                <BinsCovid
-                                  handleBinClick={handleBinClick}
-                                  data={covidEntropyBins}
-                                  width={width}
-                                  // name={d.name}
-                                  axis={false}
-                                  tooltip={true}
-                                  binsColorScale={binsColorScale}
-                                  aa={d}
-                                  maxAAEntropy={maxAAEntropy}
-                                />
-                              </g>
-                            )}
-                          </g>
-                        );
-                      })
-                    : dataGroups2.map((d, i) => {
-                        // const getGroup = (groupNames, d) => {
-                        //   return groupNames
-                        //     .filter(g => {
-                        //       return d.split("_")[0] === g.split("_")[0];
-                        //     })[0]
-                        //     .split(".")[1]
-                        //     .split("_")[1];
-                        // };
-
-                        return (
-                          <g
-                            transform={`translate(0,${i * 22})`}
-                            key={d}
-                            onClick={() => handleCheckbox(d)}
-                          >
-                            <CheckBox
-                              name={d}
-                              active={unChecked.indexOf(d) === -1}
-                              // group={getGroup(groupNames, d)}
-                              groupsLegend={groupsLegend}
-                              handleStrainClick={handleStrainClick}
-                              covid={true}
-                            />
-                            {covidEntropyBins.length && (
-                              <g transform="translate(120,0)">
-                                <BinsCovid
-                                  handleBinClick={handleBinClick}
-                                  data={covidEntropyBins}
-                                  width={width}
-                                  // name={d.name}
-                                  axis={false}
-                                  tooltip={true}
-                                  binsColorScale={binsColorScale}
-                                  aa={d}
-                                  maxAAEntropy={maxAAEntropy}
-                                />
-                              </g>
-                            )}
-                          </g>
-                        );
-                      }))}
+                  ( 
+                    <DataMapper
+                      binSize={binSize}
+                      BinsCovid={BinsCovid}
+                      covidEntropy={covidEntropy}
+                      aminoacid={aminoacid}
+                      position={position}
+                      covidEntropyBins={covidEntropyBins}
+                      width={width}
+                      setPosition={setPosition}
+                      proteinsCovid={proteinsCovid}
+                      handleProteinClick={handleProteinClick}
+                      mainDataName={mainDataName}
+                      groupNames={groupNames}
+                      handleStrainClick={handleStrainClick}
+                      handleCheckbox={handleCheckbox}
+                      handleBinClick={handleBinClick}
+                      maxAAEntropy={maxAAEntropy}
+                      binsColorScale={binsColorScale}
+                      groupsLegend={groupsLegend}
+                      unChecked={unChecked}
+                      CheckBox={CheckBox}
+                      dataGroupList={dataGroupList}
+                    />
+                   )}
               </g>
             </svg>
           </div>
