@@ -95,7 +95,7 @@
 
             var file = "../pdbs/" + value + ".pdb"
             stage.loadFile(file).then(function(o) {
-              o.addRepresentation("cartoon");
+              o.addRepresentation("surface");
               o.autoView();
             });
           }
