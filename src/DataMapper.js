@@ -24,8 +24,11 @@ const DataMapper = ({
   unChecked,
   groupsLegend,
   binsColorScale,
-  CheckBox
+  CheckBox,
+  setSVGHeight,
 }) => {
+
+  let group = '';
 
 
     const dataGroups44 = dataGroupList.dataGroups44,
@@ -38,7 +41,7 @@ const DataMapper = ({
 
    if( mainDataName === "corona44" ) {
 
-        return dataGroups44.map((d, i) => {
+        group = dataGroups44.map((d, i) => {
           const getGroup = (groupNames, d) => {
             return groupNames
               .filter(g => {
@@ -82,7 +85,7 @@ const DataMapper = ({
 
       } else if ( mainDataName === "coronabirthdeath" ) {
 
-        return dataGroupsBirthDeath.map((d, i) => {
+        group = dataGroupsBirthDeath.map((d, i) => {
           const getGroup = (groupNames, d) => {
 
             var filteredGroups = groupNames
@@ -140,7 +143,7 @@ const DataMapper = ({
 
       } else { 
 
-        return dataGroups2.map((d, i) => {
+        group = dataGroups2.map((d, i) => {
           // const getGroup = (groupNames, d) => {
           //   return groupNames
           //     .filter(g => {
@@ -182,12 +185,14 @@ const DataMapper = ({
             </g>
           );
         });
-      }  
+      }
+
+      setSVGHeight( ( group.length * 22 ) + 150 );
 
       return (
 
         <>
-          <div>Hello World</div>
+          {group}
         </>
 
       );

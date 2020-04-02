@@ -99,6 +99,8 @@ function App() {
 
   const [loading, setLoading] = useState(true);
 
+  const [SVGHeight, setSVGHeight] = useState(null);
+
   let groupsLegend = {
     "COVID-19": "red",
     SARS: "pink",
@@ -595,7 +597,7 @@ function App() {
         ) : (
           <div ref={appRef}>
             {/* <svg width="100%" height="1120">  */}
-            <svg width="100%" height="1150">
+            <svg width="100%" height={SVGHeight}>
               <g transform={`translate(18,10)`}>
                 <g
                   className="pointer"
@@ -663,6 +665,7 @@ function App() {
                       unChecked={unChecked}
                       CheckBox={CheckBox}
                       dataGroupList={dataGroupList}
+                      setSVGHeight={setSVGHeight}
                     />
                    )}
               </g>
