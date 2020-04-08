@@ -15,20 +15,20 @@
       }
     </style>
     <script src="https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
-      function getUrlVars() {
-        var vars = {};
-        var parts = window.location.href.replace(
-          /[?&]+([^=&]+)=([^&]*)/gi,
-          function(m, key, value) {
-            vars[key] = value;
-          }
-        );
-        return vars;
-      }
+      // function getUrlVars() {
+      //   var vars = {};
+      //   var parts = window.location.href.replace(
+      //     /[?&]+([^=&]+)=([^&]*)/gi,
+      //     function(m, key, value) {
+      //       vars[key] = value;
+      //     }
+      //   );
+      //   return vars;
+      // }
 
-      var pdb = "../pdbs/" + getUrlVars()["pdb"] + ".pdb";
-
+      // var pdb = "../pdbs/" + getUrlVars()["pdb"] + ".pdb";
 
       document.addEventListener("DOMContentLoaded", function() {
         // Create NGL Stage object
@@ -49,27 +49,112 @@
 
         var file = "5XLR_conservation-BatCorona_vs_COVID19.pdb";
         var file1 = "5XLR_conservation-SARSHuman_vs_COVID19.pdb";
+        var file2 = "../pdbs/QHD43416_1.pdb";
 
         var schemeId = NGL.ColormakerRegistry.addScheme(function(params) {
           this.atomColor = function(atom) {
             if (atom.bfactor <= 50) {
               return 0xff0000; // red
-            }  else {
+            } else {
               return 0xffffff; // white
             }
           };
         });
 
-        stage.loadFile(file).then(function(o) {
-          o.addRepresentation("surface", { color: schemeId }); // pass schemeId  here
-          o.autoView();
+        var selectedRepresentation = "surface";
+
+        // stage.loadFile(file).then(function(o) {
+        //   o.addRepresentation(selectedRepresentation, {
+        //     color: schemeId,
+        //     // surfaceType: "ms",
+        //     // smooth: 10,
+        //     // probeRadius: 1.4,
+        //     // scaleFactor: 2.0,
+        //     flatShaded: true,
+        //     opacity: 1,
+        //     lowResolution: true,
+        //     sele: "polymer",
+        //     name: "polymer"
+        //   }); // pass schemeId  here
+        //   o.autoView();
+        // });
+
+        function changeView(value) {
+          stage.removeAllComponents();
+          if (value === "WHOLE") {
+            stage
+              .loadFile("5XLR_conservation-BatCorona_vs_COVID19.pdb")
+              .then(function(o) {
+                o.addRepresentation(selectedRepresentation, {
+                  color: schemeId,
+                  // surfaceType: "ms",
+                  // smooth: 10,
+                  // probeRadius: 1.4,
+                  // scaleFactor: 2.0,
+                  flatShaded: true,
+                  opacity: 1,
+                  lowResolution: true,
+                  sele: "polymer",
+                  name: "polymer"
+                }); // pass schemeId  here
+                o.autoView();
+              });
+          } else {
+            var file = "../pdbs/" + value + ".pdb";
+            stage.loadFile(file).then(function(o) {
+              o.addRepresentation(selectedRepresentation, {
+                sele: "polymer",
+                name: "polymer"
+              });
+              o.autoView();
+            });
+          }
+        }
+
+        changeView("WHOLE")
+
+        d3.select(".select-protein").on("change", function() {
+          changeView(d3.select(this).property("value"));
         });
 
+        d3.select(".representation").on("change", function() {
+          stage.getRepresentationsByName("polymer").dispose();
 
+          selectedRepresentation = d3.select(this).property("value");
+
+          stage.eachComponent(function(o) {
+            o.addRepresentation(selectedRepresentation, {
+              sele: "polymer",
+              name: "polymer"
+            });
+          });
+        });
+
+        /**/
+
+        /**/
       });
     </script>
   </head>
   <body>
+    <select
+      style="top: 40px; right: 40px; position: absolute; z-index: 10;"
+      class="select-protein"
+      ><option value="WHOLE">LOAD WHOLE STRUCTURE</option
+      ><option value="QHD43416_1">SURFACE GLYCOPROTEIN </option
+      ><option value="QHD43418_1">ENVELOPE PROTEIN </option
+      ><option value="QHD43419_1">MEMBRANE GLYCOPROTEIN </option>
+      <option value="QHD43423_2">NUCLEOCAPSID PHOSPHOPROTEIN </option>
+    </select>
+
+    <select
+      style="top: 60px; right: 40px;  position: absolute; z-index: 10;"
+      class="representation"
+      ><option value="surface">surface</option>
+      <option value="cartoon">cartoon</option
+      ><option value="spacefill">spacefill</option
+      ><option value="licorice">licorice</option></select
+    >
     <div id="viewport" style="width:100%; height:100%;"></div>
   </body>
 </html>
