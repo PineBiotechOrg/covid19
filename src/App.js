@@ -441,7 +441,19 @@ function App() {
       setProteinsCovid(proteins);
     });
 
-    d3.csv("./covid-19/sample_data.csv").then(data => {
+    switch ( mainDataName ) {
+      case "corona44" :
+      case "corona2" :
+        var sample_data = "./covid-19/sample_data.csv";
+        break;
+      case "coronabirthdeath":
+        var sample_data = "./covid-19/sample_data_2.csv";
+        break;
+      default:
+        var samle_data = "./covid-19/sample_data.csv";
+    }
+
+    d3.csv(sample_data).then(data => {
       setStrainInfoData(data);
     });
 
@@ -457,10 +469,6 @@ function App() {
       );
 
     } else if ( mainDataName === "coronabirthdeath" ) {
-
-      d3.csv("./covid-19/sample_data_2.csv").then(data => {
-        setStrainInfoData(data);
-      });
 
       d3.tsv("./covid-19/coronas-compare_birth_death_FullTable.tsv").then(
         data => {
