@@ -260,6 +260,40 @@ function App() {
     "KF530059.1_group_1"
   ];
 
+
+  let dataGroupsPangolin = [
+    "AY278488.2_group_1",
+    "AY278487.3_group_1",
+    "AY278554.2_group_1",
+    "AY304495.1_group_1",
+    "AY304495.1_group_1",
+    "AY613947.1_group_1",
+    "DQ071615.1_group_3",
+    "KF569996.1_group_3",
+    "JX993987.1_group_3",
+    "LC522974.1_group_4",
+    "LC522975.1_group_4",
+    "LC522973.1_group_4",
+    "MN985325.1_group_4",
+    "MN988713.1_group_4",
+    "MN994467.1_group_4",
+    "MN996532.1_group_3",
+    "MT121216.1_group_2",
+    "MT084071.1_group_2",
+    "MG772933.1_group_3",
+    "MT040335.1_group_2",
+    "MT040336.1_group_2",
+    "MT040334.1_group_2",
+    "MT040333.1_group_2",
+    "MT072864.1_group_2",
+    "MT072865.1_group_2",
+    "KF186564.1_group_1",
+    "KF600636.1_group_1",
+    "KF600630.1_group_1",
+    "KF192507.1_group_1",
+    "KF600620.1_group_1"
+  ];
+
   let groupNames = [
     "AY278487.3_SARS",
     "AY278488.2_SARS",
@@ -317,7 +351,8 @@ function App() {
 
     dataGroups44          : dataGroups44,
     dataGroups2           : dataGroups2,
-    dataGroupsBirthDeath  : dataGroupsBirthDeath
+    dataGroupsBirthDeath  : dataGroupsBirthDeath,
+    dataGroupsPangolin    : dataGroupsPangolin
 
   };
 
@@ -477,6 +512,14 @@ function App() {
       );
 
     
+    } else if ( mainDataName === "pangolinhumansars" ) {
+
+      d3.tsv("./covid-19/MSA_-_Bat_Pangolin_Human_SARS_like_FullTable.tsv").then(
+        data => {
+          setCovidEntropy(data);
+        }
+      );     
+
     }
   }, [mainDataName]);
 
@@ -495,6 +538,10 @@ function App() {
     } else if (mainDataName === "coronabirthdeath") {
       setCovidEntropyBins(
         createBinsArrayCovid(covidEntropy, binSize, dataGroupsBirthDeath)
+      );      
+    } else if (mainDataName === "pangolinhumansars") {
+      setCovidEntropyBins(
+        createBinsArrayCovid(covidEntropy, binSize, dataGroupsPangolin)
       );      
     }
 
