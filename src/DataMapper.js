@@ -34,6 +34,7 @@ const DataMapper = ({
     const dataGroups44 = dataGroupList.dataGroups44,
           dataGroups2 = dataGroupList.dataGroups2,
           dataGroupsBirthDeath = dataGroupList.dataGroupsBirthDeath,
+          dataGroupsPangolin = dataGroupList.dataGroupsPangolin,
 
           aa = aminoacid;
 
@@ -86,6 +87,64 @@ const DataMapper = ({
       } else if ( mainDataName === "coronabirthdeath" ) {
 
         group = dataGroupsBirthDeath.map((d, i) => {
+          const getGroup = (groupNames, d) => {
+
+            var filteredGroups = groupNames
+                                .filter( g  => {
+                                  return d.split("_")[0] === g.split("_")[0];
+                                })[0],
+                group = '';
+
+          if( typeof filteredGroups != 'undefined' ) {
+                group = filteredGroups
+                          .split(".")[1]
+                          .split("_")[1];
+          }
+
+            return group;
+              
+          };
+
+          console.log( groupNames );
+          console.log( d );
+          console.log( getGroup(groupNames, d) );
+
+          return (
+            <g
+              transform={`translate(0,${i * 22})`}
+              key={d}
+              onClick={() => handleCheckbox(d)}
+            >
+              <CheckBox
+                name={d}
+                active={unChecked.indexOf(d) === -1}
+                group={getGroup(groupNames, d)}
+                groupsLegend={groupsLegend}
+                handleStrainClick={handleStrainClick}
+              />
+              {covidEntropyBins.length && (
+                <g transform="translate(120,0)">
+                  <BinsCovid
+                    handleBinClick={handleBinClick}
+                    data={covidEntropyBins}
+                    width={width}
+                    // name={d.name}
+                    axis={false}
+                    tooltip={true}
+                    binsColorScale={binsColorScale}
+                    aa={d}
+                    maxAAEntropy={maxAAEntropy}
+                  />
+                </g>
+              )}
+            </g>
+          );
+
+        });
+
+      } else if( mainDataName === "pangolinhumansars" ) {
+
+        group = dataGroupsPangolin.map((d, i) => {
           const getGroup = (groupNames, d) => {
 
             var filteredGroups = groupNames
