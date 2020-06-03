@@ -484,6 +484,9 @@ function App() {
       case "coronabirthdeath":
         var sample_data = "./covid-19/sample_data_2.csv";
         break;
+      case "pangolinhumansars":
+        var sample_data = "./covid-19/sample_data_3.csv";
+        break;
       default:
         var samle_data = "./covid-19/sample_data.csv";
     }
