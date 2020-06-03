@@ -1,0 +1,30 @@
+Strain,Country,Host,Region,Virus Species,Accession,Group
+"SARS coronavirus CUHK-W1, complete genome",USA,human,North America,SARS,AY278487,SARS-human
+"SARS coronavirus BJ01, complete genome",USA,human,North America,SARS,AY278488,SARS-human
+"SARS coronavirus BJ02, complete genome",USA,human,North America,SARS,AY278554,SARS-human
+"SARS coronavirus GZ50, complete genome",USA,human,North America,SARS,AY304495,SARS-human
+"SARS coronavirus GZ0402, complete genome",USA,human,North America,SARS,AY613947,SARS-human
+"Bat SARS coronavirus Rp3, complete genome",USA,bat,North America,SARS-like,DQ071615,Bat
+"Bat coronavirus Rp/Shaanxi2011, complete genome",China,bat,Asia,SARS-like,JX993987,Bat
+"Middle East respiratory syndrome coronavirus isolate Al-Hasa_4_2013, complete genome",Saudi Arabia,human,Middle East,MERS ,KF186564,MERS
+"Middle East respiratory syndrome coronavirus, complete genome",Saudi Arabia,human,Middle East,MERS ,KF192507,MERS
+"Middle East respiratory syndrome coronavirus isolate Bisha_1_2012, complete genome",Saudi Arabia,human,Middle East,MERS ,KF569996,MERS
+"Middle East respiratory syndrome coronavirus isolate Buraidah_1_2013, complete genome",Saudi Arabia,human,Middle East,MERS ,KF600620,MERS
+"Middle East respiratory syndrome coronavirus isolate Al-Hasa_11c_2013, partial genome",Hong Kong,human,Asia,SARS,KF600630,MERS
+"Rhinolophus affinis coronavirus isolate LYRa11, complete genome",China,bat,Asia,SARS-like,KF600636,Bat
+"Bat SARS-like coronavirus isolate bat-SL-CoVZC45, complete genome",China,bat,Asia,SARS-like,LC522973,Bat
+"Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/USA/USA-WA1/2020, complete genome",USA,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,LC522974,nCOVID-17
+"Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoV/USA-IL1/2020, complete genome",USA,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,LC522975,nCOVID-18
+"Severe acute respiratory syndrome coronavirus 2 isolate 2019-nCoV/USA-CA1/2020, complete genome",USA,human,North America,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MG772933,nCOVID-19
+"Bat coronavirus RaTG13, complete genome",China,bat,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN985325,nCOVID-20
+"Severe acute respiratory syndrome coronavirus 2 2019-nCoV/Japan/TY/WK-012/2020 RNA, complete genome",Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN988713,nCOVID-21
+"Severe acute respiratory syndrome coronavirus 2 2019-nCoV/Japan/TY/WK-501/2020 RNA, complete genome",Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN994467,nCOVID-22
+"Severe acute respiratory syndrome coronavirus 2 2019-nCoV/Japan/TY/WK-521/2020 RNA, complete genome",Japan,human,Asia,SARS-COV-2 Severe acute respiratory syndrome coronavirus 2,MN996532,nCOVID-23
+"Pangolin coronavirus isolate PCoV_GX-P4L, complete genome",China,Pangolin,Asia,SARS-like,MT040333,Pangolin
+"Pangolin coronavirus isolate PCoV_GX-P1E, complete genome",China,Pangolin,Asia,SARS-like,MT040334,Pangolin
+"Pangolin coronavirus isolate PCoV_GX-P5L, complete genome",China,Pangolin,Asia,SARS-like,MT040335,Pangolin
+"Pangolin coronavirus isolate PCoV_GX-P5E, complete genome",China,Pangolin,Asia,SARS-like,MT040336,Pangolin
+Pangolin coronavirus isolate MP789 genomic sequence,China,Pangolin,Asia,SARS-like,MT072864,Pangolin
+"Pangolin coronavirus isolate MP789, complete genome",China,Pangolin,Asia,SARS-like,MT072865,Pangolin
+"Pangolin coronavirus isolate PCoV_GX-P2V, complete genome",China,Pangolin,Asia,SARS-like,MT084071,Pangolin
+Pangolin coronavirus isolate PCoV_GX-P3B genomic sequence,China,Pangolin,Asia,SARS-like,MT121216,Pangolin
